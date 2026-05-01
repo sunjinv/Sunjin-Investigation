@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == 'ops.yu@sunjinv.com'
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Validation Helpers ---
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'lastLogin']) &&
+             data.uid is string && data.uid.size() <= 128 &&
+             data.email is string && data.email.size() <= 256;
+    }
+
+    function isValidReservation(data) {
+      return data.keys().hasAll(['userId', 'category', 'date', 'timeSlot', 'status', 'notes', 'createdAt']) &&
+             data.userId == request.auth.uid &&
+             data.category in ['CORPORATE', 'DIGITAL_FORENSICS', 'PRIVATE', 'VIP'] &&
+             data.date is string && data.date.size() == 10 &&
+             data.timeSlot is string && data.timeSlot.size() <= 10 &&
+             data.status in ['PENDING', 'CONFIRMED', 'COMPLETED', 'CANCELLED'] &&
+             data.notes is string && data.notes.size() <= 2000;
+    }
+
+    // --- Matches ---
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+      allow create: if isOwner(userId) && isValidUser(incoming());
+      allow update: if (isOwner(userId) || isAdmin()) && (
+        (incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'lastLogin'])) ||
+        isAdmin()
+      );
+    }
+
+    match /reservations/{reservationId} {
+      allow get: if isOwner(resource.data.userId) || isAdmin();
+      allow list: if isSignedIn() && (isAdmin() || (resource.data.userId == request.auth.uid));
+      allow create: if isSignedIn() && isValidId(reservationId) && isValidReservation(incoming());
+      allow update: if (isAdmin() || (isOwner(existing().userId) && existing().status == 'PENDING' && incoming().status == 'PENDING')) &&
+                    isValidReservation(incoming()) &&
+                    (incoming().diff(existing()).affectedKeys().hasOnly(['notes', 'category', 'date', 'timeSlot', 'status']) || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if false; 
+    }
+  }
+}
