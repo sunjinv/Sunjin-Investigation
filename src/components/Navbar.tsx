@@ -67,10 +67,10 @@ function NavDropdown({ item, isScrolled }: { item: NavItem; isScrolled: boolean 
     >
       <a
         href={item.href}
-        className="text-[11px] tracking-[0.2em] font-medium hover:text-brand-gold transition-colors flex items-center gap-1.5 py-4"
+        className="text-[13px] tracking-[0.2em] font-medium hover:text-brand-gold transition-colors flex items-center gap-1.5 py-6"
       >
         {item.name}
-        <ChevronDown className={cn("w-3 h-3 transition-transform duration-300", isOpen && "rotate-180")} />
+        <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-300", isOpen && "rotate-180")} />
       </a>
       
       <AnimatePresence>
@@ -79,13 +79,13 @@ function NavDropdown({ item, isScrolled }: { item: NavItem; isScrolled: boolean 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute top-full left-0 bg-brand-charcoal border border-white/10 min-w-[200px] py-4 shadow-2xl backdrop-blur-xl bg-opacity-95"
+            className="absolute top-full left-0 bg-brand-charcoal border border-white/10 min-w-[220px] py-5 shadow-2xl backdrop-blur-xl bg-opacity-95"
           >
             {item.children?.map((child) => (
               <a
                 key={child.name}
                 href={child.href}
-                className="block px-6 py-2.5 text-[10px] tracking-widest text-white/60 hover:text-brand-gold hover:bg-white/5 transition-all"
+                className="block px-8 py-3 text-[12px] tracking-widest text-white/60 hover:text-brand-gold hover:bg-white/5 transition-all outline-none focus:text-brand-gold"
               >
                 {child.name}
               </a>
@@ -114,52 +114,52 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-2 md:px-12',
-        isScrolled ? 'bg-brand-charcoal/90 border-b border-white/5 backdrop-blur-md py-1' : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-3 md:px-12',
+        isScrolled ? 'bg-brand-charcoal/90 border-b border-white/5 backdrop-blur-md py-2' : 'bg-transparent'
       )}
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
         {/* Left Links */}
-        <div className="hidden lg:flex items-center gap-10 flex-1">
+        <div className="hidden lg:flex items-center gap-12 flex-1">
           {navLinks.slice(0, 3).map((link) => (
             <NavDropdown key={link.name} item={link} isScrolled={isScrolled} />
           ))}
         </div>
 
         {/* Logo */}
-        <a href="/" className="flex flex-col items-center py-4">
-          <h1 className="text-xl md:text-2xl font-serif tracking-[0.4em] font-light leading-none">
+        <a href="/" className="flex flex-col items-center py-6">
+          <h1 className="text-2xl md:text-[32px] font-serif tracking-[0.4em] font-light leading-none">
             SUNJIN
           </h1>
-          <span className="text-[7px] md:text-[9px] tracking-[0.6em] font-sans opacity-50 mt-1 uppercase">
+          <span className="text-[9px] md:text-[11px] tracking-[0.6em] font-sans opacity-50 mt-2 uppercase">
             Investigation
           </span>
         </a>
 
         {/* Right Links */}
-        <div className="hidden lg:flex items-center justify-end gap-10 flex-1">
+        <div className="hidden lg:flex items-center justify-end gap-12 flex-1">
           {navLinks.slice(3).map((link) => (
             <NavDropdown key={link.name} item={link} isScrolled={isScrolled} />
           ))}
-          <div className="h-4 w-[1px] bg-white/10 mx-2" />
+          <div className="h-5 w-[1px] bg-white/10 mx-3" />
           {user ? (
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-7">
               <button
                 onClick={() => logout()}
-                className="text-[10px] tracking-[0.2em] font-medium hover:text-brand-gold transition-colors opacity-70"
+                className="text-[12px] tracking-[0.2em] font-medium hover:text-brand-gold transition-colors opacity-70"
               >
                 LOGOUT
               </button>
               {isAdmin && (
-                 <a href="#admin" className="p-2 rounded-full border border-white/10 hover:border-brand-gold hover:bg-brand-gold/5 transition-all">
-                    <User className="w-4 h-4 text-brand-gold" />
+                 <a href="#admin" className="p-2.5 rounded-full border border-white/10 hover:border-brand-gold hover:bg-brand-gold/5 transition-all">
+                    <User className="w-5 h-5 text-brand-gold" />
                  </a>
               )}
             </div>
           ) : (
             <button
               onClick={() => signInWithGoogle()}
-              className="text-[10px] tracking-[0.2em] font-medium hover:text-brand-gold transition-colors opacity-70"
+              className="text-[12px] tracking-[0.2em] font-medium hover:text-brand-gold transition-colors opacity-70"
             >
               LOGIN
             </button>
