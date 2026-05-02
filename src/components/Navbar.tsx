@@ -122,11 +122,22 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-3 md:px-12',
-        isScrolled ? 'bg-brand-charcoal/90 border-b border-white/5 backdrop-blur-md py-2' : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-[60] transition-all duration-500 px-6 py-3 md:px-12',
+        (isScrolled || isMobileMenuOpen) ? 'bg-brand-charcoal border-b border-white/5 backdrop-blur-md py-2' : 'bg-transparent'
       )}
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
@@ -179,7 +190,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="lg:hidden p-2"
+          className="lg:hidden p-2 relative z-[70]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -193,8 +204,8 @@ export default function Navbar() {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 top-[72px] bg-brand-charcoal z-40 lg:hidden overflow-y-auto"
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-brand-charcoal z-50 pt-[120px] overflow-y-auto"
           >
             <div className="p-8 space-y-2">
               {navLinks.map((link) => (
