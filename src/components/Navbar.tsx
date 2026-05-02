@@ -205,9 +205,20 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed inset-0 top-0 left-0 w-full h-screen bg-brand-charcoal z-50 pt-[120px] overflow-y-auto"
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-brand-charcoal z-50 pt-[100px] overflow-y-auto"
           >
             <div className="p-8 space-y-2">
+              {/* Mobile Menu Logo */}
+              <div className="flex flex-col items-center mb-16 opacity-30">
+                <h1 className="text-2xl font-serif tracking-[0.4em] font-light leading-none">
+                  SUNJIN
+                </h1>
+                <span className="text-[9px] tracking-[0.6em] font-sans mt-2 uppercase">
+                  Investigation
+                </span>
+                <div className="w-8 h-[1px] bg-white/20 mt-6" />
+              </div>
+
               {navLinks.map((link) => (
                 <div key={link.name} className="border-b border-white/5 last:border-0 overflow-hidden">
                   <button
