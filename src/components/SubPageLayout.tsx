@@ -46,7 +46,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
       {/* Main Content Section - Variants */}
       {variant === 'classic' && (
         <section className="py-24 px-6 md:px-20 bg-white text-brand-charcoal">
-          <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-20 items-start">
+          <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8">
               <h2 className="text-3xl md:text-4xl font-serif leading-snug">
                  시대적 요구와<br />
@@ -63,8 +63,8 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
 
       {variant === 'modern' && (
         <section className="py-32 px-6 md:px-20 bg-brand-charcoal text-white border-y border-white/5">
-          <div className="max-w-4xl mx-auto space-y-16">
-            <div className="text-center space-y-10 relative">
+          <div className="max-w-4xl mx-auto space-y-32">
+            <div className="text-center space-y-32 relative">
               <motion.h2 
                 initial={{ opacity: 0, scale: 0.9 }} 
                 whileInView={{ opacity: 1, scale: 1 }} 
@@ -131,63 +131,80 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
       {content.gridItems && (
         <section className={cn(
           "py-32 px-6 md:px-20",
-          variant === 'classic' ? "bg-brand-charcoal" : 
-          variant === 'modern' ? "bg-white" : "bg-brand-charcoal"
+          (variant === 'classic' || variant === 'modern') ? "bg-white" : "bg-brand-charcoal"
         )}>
           <div className="max-w-screen-xl mx-auto">
-            <div className={cn(
-              "grid gap-12",
-              variant === 'technical' ? "md:grid-cols-2" : "md:grid-cols-3"
-            )}>
-              {content.gridItems.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.8 }}
-                  className={cn(
-                    "group relative transition-all duration-700",
-                    variant === 'modern' ? "bg-transparent p-6 md:p-8" :
-                    variant === 'classic' ? "bg-white/5 border border-white/10 p-10 hover:border-brand-gold text-white" :
-                    "bg-transparent border border-white/10 p-10 hover:border-brand-gold text-white"
-                  )}
-                >
-                  {variant === 'modern' ? (
-                    <div className="space-y-10 group">
-                      <div className="flex items-center gap-6">
-                        <span className="text-6xl font-serif italic text-brand-gold/10 group-hover:text-brand-gold/30 transition-colors duration-700 select-none">
-                          0{idx + 1}
-                        </span>
-                        <div className="h-[1px] flex-grow bg-brand-charcoal/5" />
+            {variant === 'classic' ? (
+              /* Brand Story specific detailed layout */
+              <div className="space-y-24">
+                {content.gridItems.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1, duration: 1 }}
+                    className="flex flex-col items-center text-center space-y-12 group max-w-4xl mx-auto"
+                  >
+                    <div className="space-y-8 w-full">
+                      <div className="flex items-center justify-center gap-6">
+                        <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
+                        <span className="text-brand-gold font-mono text-sm tracking-widest">[{String(idx + 1).padStart(2, '0')}]</span>
+                        <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
                       </div>
-                      
-                      <div className="space-y-6 pl-2">
-                        <h3 className="text-2xl md:text-3xl font-serif tracking-tight text-brand-charcoal leading-tight border-l-4 border-brand-gold/0 group-hover:border-brand-gold/100 pl-0 group-hover:pl-6 transition-all duration-700">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm md:text-base text-brand-charcoal/60 leading-relaxed font-light whitespace-pre-line px-0 group-hover:text-brand-charcoal/90 transition-colors duration-700">
-                          {item.text}
-                        </p>
-                      </div>
-                      
-                      <div className="pt-4 flex items-center gap-3 opacity-20 group-hover:opacity-100 transition-opacity duration-1000">
-                        <div className="w-2 h-2 rounded-full bg-brand-gold" />
-                        <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-brand-gold">Superior Intelligence Section</span>
-                      </div>
+                      <h3 className="text-2xl md:text-3xl font-serif tracking-tight text-brand-charcoal leading-tight">
+                        {item.title}
+                      </h3>
                     </div>
-                  ) : (
-                    <div className="space-y-6">
-                      <span className="text-brand-gold font-mono text-xs tracking-widest block">[{String(idx + 1).padStart(2, '0')}]</span>
-                      <h3 className="text-xl font-serif tracking-wide">{item.title}</h3>
-                      <p className="text-sm opacity-60 leading-relaxed font-light whitespace-pre-line">
+                    <div className="w-full">
+                      <p className="text-sm md:text-base leading-relaxed text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 px-4">
                         {item.text}
                       </p>
                     </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              /* Modern / Standard layout for Company Intro */
+              <div className={cn(
+                "grid gap-12",
+                variant === 'technical' ? "md:grid-cols-2" : "md:grid-cols-3"
+              )}>
+                {content.gridItems.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1, duration: 0.8 }}
+                    className="group relative transition-all duration-700 bg-transparent p-6 md:p-8"
+                  >
+                    <div className="space-y-10">
+                      <div className={cn(
+                        "w-full h-[2px] transition-colors duration-700",
+                        variant === 'modern' ? "bg-brand-gold/20 group-hover:bg-brand-gold/60" : "bg-white/10 group-hover:bg-white/40"
+                      )} />
+                      <div className="space-y-6">
+                        <h3 className={cn(
+                          "text-xl md:text-2xl font-serif tracking-tight leading-tight border-l-4 border-brand-gold/0 group-hover:border-brand-gold/100 pl-0 group-hover:pl-6 transition-all duration-700",
+                          variant === 'modern' ? "text-brand-charcoal" : "text-white"
+                        )}>
+                          {item.title}
+                        </h3>
+                        <p className={cn(
+                          "text-xs md:text-sm leading-relaxed font-light whitespace-pre-line px-0 transition-colors duration-700",
+                          variant === 'modern' 
+                            ? "text-brand-charcoal/60 group-hover:text-brand-charcoal/90" 
+                            : "text-white/60 group-hover:text-white/90"
+                        )}>
+                          {item.text}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}
@@ -198,7 +215,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
             initial={{ scale: 1.1 }}
             whileInView={{ scale: 1 }}
             transition={{ duration: 2 }}
-            src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
             alt="Atmospheric" 
             className="w-full h-full object-cover grayscale opacity-50"
          />
