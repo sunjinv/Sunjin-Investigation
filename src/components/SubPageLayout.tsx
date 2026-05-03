@@ -45,16 +45,16 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
 
       {/* Main Content Section - Variants */}
       {variant === 'classic' && (
-        <section className="py-24 px-6 md:px-20 bg-white text-brand-charcoal">
+        <section className="py-24 px-6 md:px-20 bg-brand-charcoal text-white">
           <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-serif leading-snug">
+              <h2 className="text-3xl md:text-4xl font-serif leading-snug text-white">
                  시대적 요구와<br />
                  수사 패러다임의 진화.
               </h2>
               <div className="w-12 h-[2px] bg-brand-gold" />
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="space-y-6 text-sm md:text-base leading-relaxed opacity-80 font-light whitespace-pre-line">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="space-y-6 text-sm md:text-base leading-relaxed opacity-80 font-light whitespace-pre-line text-white/80">
               {content.description.map((para, i) => <p key={i}>{para}</p>)}
             </motion.div>
           </div>
