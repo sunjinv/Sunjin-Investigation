@@ -19,7 +19,7 @@ export const navLinks: NavItem[] = [
     children: [
       { name: '브랜드 스토리', href: '/company/story' },
       { name: '회사 소개', href: '/company/about' },
-      { name: '책임과 가치', href: '/company/values' },
+      { name: '책임과 비전', href: '/company/values' },
       { name: '핵심 역량', href: '/company/competency' },
     ]
   },

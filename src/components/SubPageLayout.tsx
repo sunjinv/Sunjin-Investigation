@@ -1,9 +1,11 @@
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 
 export interface SectionContent {
   title: string;
   subtitle: string;
+  sectionTitle?: string;
   description: string[];
   image?: string;
   gridItems?: { title: string; text: string; image?: string }[];
@@ -12,6 +14,7 @@ export interface SectionContent {
 
 export default function SubPageLayout({ content }: { content: SectionContent }) {
   const variant = content.variant || 'classic';
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div className="pb-20 bg-brand-charcoal min-h-screen">
@@ -48,9 +51,8 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
         <section className="py-24 px-6 md:px-20 bg-brand-charcoal text-white">
           <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-serif leading-snug text-white">
-                 시대적 요구와<br />
-                 수사 패러다임의 진화.
+              <h2 className="text-3xl md:text-4xl font-serif leading-snug text-white whitespace-pre-line">
+                 {content.sectionTitle || "시대적 요구와\n수사 패러다임의 진화."}
               </h2>
               <div className="w-12 h-[2px] bg-brand-gold" />
             </motion.div>
@@ -71,7 +73,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                 viewport={{ once: true }} 
                 className="text-brand-gold text-3xl md:text-6xl font-serif italic tracking-tighter opacity-40 select-none leading-none"
               >
-                Mission
+                {content.sectionTitle || "Mission"}
               </motion.h2>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }} 
@@ -112,7 +114,9 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
           <div className="max-w-screen-xl mx-auto space-y-20">
             <div className="flex flex-col md:flex-row gap-12 items-baseline border-b border-black/5 pb-10">
               <h2 className="text-5xl font-serif italic text-brand-gold">01</h2>
-              <div className="text-sm tracking-[0.3em] font-bold opacity-30 uppercase">Foundational Philosophy</div>
+              <div className="text-sm tracking-[0.3em] font-bold opacity-30 uppercase">
+                {content.sectionTitle || "Foundational Philosophy"}
+              </div>
             </div>
             <div className="grid md:grid-cols-12 gap-12">
               <div className="md:col-span-8 md:col-start-5 space-y-10">
@@ -135,35 +139,101 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
         )}>
           <div className="max-w-screen-xl mx-auto">
             {variant === 'classic' ? (
-              /* Brand Story specific detailed layout */
-              <div className="space-y-24">
-                {content.gridItems.map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1, duration: 1 }}
-                    className="flex flex-col items-center space-y-12 group max-w-4xl mx-auto"
-                  >
-                    <div className="space-y-8 w-full text-center">
-                      <div className="flex items-center justify-center gap-6">
-                        <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
-                        <span className="text-brand-gold font-mono text-sm tracking-widest">[{String(idx + 1).padStart(2, '0')}]</span>
-                        <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
-                      </div>
-                      <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight">
+              /* Conditional layout: Brand Story vs Responsibility & Values */
+              content.subtitle === 'RESPONSIBILITY & VALUES' ? (
+                /* Horizontal Titles Navigation and Content Area */
+                <div className="space-y-4 md:space-y-6">
+                  {/* Titles Navigation */}
+                  <div className="flex flex-wrap items-center justify-center gap-x-8 md:gap-x-16 gap-y-6 border-b border-black/5 pb-10">
+                    {content.gridItems.map((item, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveTab(idx)}
+                        className={cn(
+                          "relative pb-4 text-lg md:text-xl font-serif text-brand-charcoal transition-all duration-500 hover:text-brand-gold outline-none cursor-pointer",
+                          activeTab === idx ? "text-brand-gold" : "opacity-40"
+                        )}
+                      >
                         {item.title}
-                      </h3>
-                    </div>
-                    <div className="w-full text-left">
-                      <p className="text-xs md:text-sm leading-8 md:leading-9 tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 px-6 md:px-12 border-l border-brand-gold/10 group-hover:border-brand-gold/40 transition-all">
-                        {item.text}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                        {activeTab === idx && (
+                          <motion.div 
+                            layoutId="activeTabUnderline"
+                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-gold"
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                          />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Content Area */}
+                  <div className="max-w-4xl mx-auto min-h-[400px]">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        className="bg-white p-8 md:p-20 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
+                      >
+                        <div className="space-y-8 md:space-y-12">
+                          <div className="flex items-center gap-6">
+                            <div className="h-[1px] w-12 bg-brand-gold/30" />
+                          </div>
+                          
+                          {content.gridItems[activeTab].text.includes('\n\n') ? (
+                            <div className="space-y-12">
+                               <p className="text-xl md:text-2xl font-serif italic text-brand-charcoal leading-relaxed">
+                                  {content.gridItems[activeTab].text.split('\n\n')[0]}
+                               </p>
+                               <div className="space-y-8">
+                                 {content.gridItems[activeTab].text.split('\n\n').slice(1).map((para, pIdx) => (
+                                   <p key={pIdx} className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight">
+                                     {para}
+                                   </p>
+                                 ))}
+                               </div>
+                            </div>
+                          ) : (
+                            <p className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line">
+                              {content.gridItems[activeTab].text}
+                            </p>
+                          )}
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                </div>
+              ) : (
+                /* Brand Story specific detailed layout (Vertical Stack) */
+                <div className="space-y-24">
+                  {content.gridItems.map((item, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1, duration: 1 }}
+                      className="flex flex-col items-center space-y-12 group max-w-4xl mx-auto"
+                    >
+                      <div className="space-y-8 w-full text-center">
+                        <div className="flex items-center justify-center gap-6">
+                          <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight">
+                          {item.title}
+                        </h3>
+                      </div>
+                      <div className="w-full text-left">
+                        <p className="text-xs md:text-sm leading-8 md:leading-9 tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 px-4">
+                          {item.text}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )
             ) : (
               /* Modern / Standard layout for Company Intro */
               <div className={cn(
