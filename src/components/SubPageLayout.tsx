@@ -144,20 +144,20 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.1, duration: 1 }}
-                    className="flex flex-col items-center text-center space-y-12 group max-w-4xl mx-auto"
+                    className="flex flex-col items-center space-y-12 group max-w-4xl mx-auto"
                   >
-                    <div className="space-y-8 w-full">
+                    <div className="space-y-8 w-full text-center">
                       <div className="flex items-center justify-center gap-6">
                         <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
                         <span className="text-brand-gold font-mono text-sm tracking-widest">[{String(idx + 1).padStart(2, '0')}]</span>
                         <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-serif tracking-tight text-brand-charcoal leading-tight">
+                      <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight">
                         {item.title}
                       </h3>
                     </div>
-                    <div className="w-full">
-                      <p className="text-sm md:text-base leading-relaxed text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 px-4">
+                    <div className="w-full text-left">
+                      <p className="text-xs md:text-sm leading-8 md:leading-9 tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 px-6 md:px-12 border-l border-brand-gold/10 group-hover:border-brand-gold/40 transition-all">
                         {item.text}
                       </p>
                     </div>
