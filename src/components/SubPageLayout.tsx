@@ -16,6 +16,33 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
   const variant = content.variant || 'classic';
   const [activeTab, setActiveTab] = useState(0);
 
+  const keywordsToBold = [
+    '친환경 데이터 오퍼레이션',
+    '인권 중심의 정보 보호',
+    '무결점 지배구조 및 컴플라이언스',
+    '공익적 인텔리전스 지원',
+    '공공 안전망 기여',
+    '산업 표준화 선도',
+    '전략적 상생 생태계 조성'
+  ];
+
+  const renderBoldText = (text: string) => {
+    if (!text) return text;
+    
+    // Escape keywords for regex
+    const escapedKeywords = keywordsToBold.map(kw => kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const regex = new RegExp(`(${escapedKeywords.join('|')})`, 'g');
+    
+    const parts = text.split(regex);
+    
+    return parts.map((part, i) => {
+      if (keywordsToBold.includes(part)) {
+        return <strong key={i} className="font-bold text-brand-charcoal opacity-100">{part}</strong>;
+      }
+      return part;
+    });
+  };
+
   return (
     <div className="pb-20 bg-brand-charcoal min-h-screen">
       {/* Hero Section (Remains Consistent as requested) */}
@@ -189,15 +216,15 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                                </p>
                                <div className="space-y-8">
                                  {content.gridItems[activeTab].text.split('\n\n').slice(1).map((para, pIdx) => (
-                                   <p key={pIdx} className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight">
-                                     {para}
+                                   <p key={pIdx} className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight border-l border-brand-gold/20 pl-6">
+                                     {renderBoldText(para)}
                                    </p>
                                  ))}
                                </div>
                             </div>
                           ) : (
                             <p className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line">
-                              {content.gridItems[activeTab].text}
+                              {renderBoldText(content.gridItems[activeTab].text)}
                             </p>
                           )}
                         </div>
