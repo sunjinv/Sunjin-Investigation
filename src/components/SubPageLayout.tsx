@@ -94,14 +94,16 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
         <section className="py-32 px-6 md:px-20 bg-brand-charcoal text-white border-y border-white/5">
           <div className="max-w-4xl mx-auto space-y-32">
             <div className="text-center space-y-32 relative">
-              <motion.h2 
-                initial={{ opacity: 0, scale: 0.9 }} 
-                whileInView={{ opacity: 1, scale: 1 }} 
-                viewport={{ once: true }} 
-                className="text-brand-gold text-3xl md:text-6xl font-serif italic tracking-tighter opacity-40 select-none leading-none"
-              >
-                {content.sectionTitle || "Mission"}
-              </motion.h2>
+              {content.sectionTitle && (
+                <motion.h2 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  whileInView={{ opacity: 1, scale: 1 }} 
+                  viewport={{ once: true }} 
+                  className="text-brand-gold text-3xl md:text-6xl font-serif italic tracking-tighter opacity-40 select-none leading-none"
+                >
+                  {content.sectionTitle}
+                </motion.h2>
+              )}
               <motion.div 
                 initial={{ opacity: 0, y: 10 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
@@ -167,7 +169,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
           <div className="max-w-screen-xl mx-auto">
             {variant === 'classic' ? (
               /* Conditional layout: Brand Story vs Responsibility & Values */
-              content.subtitle === 'RESPONSIBILITY & VALUES' ? (
+              (content.subtitle === 'RESPONSIBILITY & VALUES') ? (
                 /* Horizontal Titles Navigation and Content Area */
                 <div className="space-y-4 md:space-y-6">
                   {/* Titles Navigation */}
@@ -205,9 +207,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                         className="bg-white p-8 md:p-20 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
                       >
                         <div className="space-y-8 md:space-y-12">
-                          <div className="flex items-center gap-6">
-                            <div className="h-[1px] w-12 bg-brand-gold/30" />
-                          </div>
+                          {/* Removed decoration as requested */}
                           
                           {content.gridItems[activeTab].text.includes('\n\n') ? (
                             <div className="space-y-12">
@@ -261,6 +261,34 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                   ))}
                 </div>
               )
+            ) : (variant === 'modern' && content.subtitle === 'CORE COMPETENCY') ? (
+              /* Specific layout for Core Competency: Title Left, Text Right */
+              <div className="space-y-16 md:space-y-24">
+                {content.gridItems.map((item, idx) => (
+                   <motion.div
+                     key={idx}
+                     initial={{ opacity: 0, y: 30 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ delay: idx * 0.1, duration: 0.8 }}
+                     className="border-t border-black/5 pt-12 md:pt-16 group"
+                   >
+                     <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start">
+                       <div className="md:col-span-5 space-y-6">
+                          <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight">
+                            {item.title}
+                          </h3>
+                          <div className="h-[1px] w-8 bg-brand-gold/30 group-hover:w-16 transition-all duration-700" />
+                       </div>
+                       <div className="md:col-span-7">
+                          <p className="text-sm md:text-[15px] leading-relaxed md:leading-[1.8] text-brand-charcoal/60 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700">
+                            {item.text}
+                          </p>
+                       </div>
+                     </div>
+                   </motion.div>
+                ))}
+              </div>
             ) : (
               /* Modern / Standard layout for Company Intro */
               <div className={cn(
