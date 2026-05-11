@@ -109,47 +109,287 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/business/divorce': {
     title: 'Divorce & Family',
     subtitle: 'FAMILY JUSTICE',
+    sectionTitle: '"결정적 사실로 가사 분쟁의 주도권을 장악합니다."',
+    variant: 'service',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '가족 간의 분쟁은 가장 고통스럽고 섬세한 접근이 필요한 영역입니다. 선진은 이혼 소송의 결정적 증거 수집(외도, 재산 은닉 등)과 더불어, 자녀 보호를 위한 신원 확인 업무를 수행합니다.',
-      '모든 조사는 의뢰인의 심리적 안정을 최우선으로 고려하며, 획득된 증거가 법정에서 배척되지 않도록 전문 변호인단과 협업합니다.'
-    ]
+      '치열한 정보전이 되는 가사 분쟁. 선진 민간수사 그룹은 법적 증명력을 갖춘 무결점 데이터를 채증하여, 의뢰인과 전담 법무법인의 가장 강력한 무기를 설계합니다.'
+    ],
+    approach: {
+      title: 'Approach',
+      subtitle: '가사 분쟁의 완벽한 종결을 지원하는 단계별 실행 프로세스입니다.',
+      steps: [
+        {
+          title: '쟁점 분석',
+          text: '귀책사유, 은닉 자산 등 사안의 핵심 쟁점을 파악하고 정보 수집을 위한 잠재적 리스크를 정밀하게 진단합니다.'
+        },
+        {
+          title: '전략 수립',
+          text: '법률 전문가의 가이드라인에 완벽히 부합하는, 가장 안전하고 합법적인 맞춤형 채증 로드맵을 설계합니다.'
+        },
+        {
+          title: '정밀 채증',
+          text: '고도화된 현장 오퍼레이션을 통해, 재판의 판도를 바꿀 수 있는 객관적이고 결정적인 팩트(Fact)를 수집합니다.'
+        },
+        {
+          title: '데이터 이관 및 지원',
+          text: '수집된 무결점 증거를 의뢰인 및 법무법인에 안전하게 이관하며, 분쟁이 종결될 때까지 지속적인 조사 지원망을 유지합니다.'
+        }
+      ]
+    },
+    operations: {
+      title: 'Operations',
+      cards: [
+        {
+          title: '귀책사유 사실조사',
+          text: '배우자의 외도 등 재판의 핵심이 되는 귀책사유를 객관적으로 증명할 수 있는 합법적 정황 데이터를 채증합니다.',
+          image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop'
+        },
+        {
+          title: '은닉 자산 소재 파악',
+          text: '합리적인 재산 분할을 위해, 상대방이 고의로 은닉하거나 처분한 부동산 및 금융 자산의 흐름과 소재지를 끝까지 추적합니다.',
+          image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2011&auto=format&fit=crop'
+        },
+        {
+          title: '양육 환경 정황 채증',
+          text: '자녀의 양육권 판결에 결정적 영향을 미치는 \'상대방의 양육 환경 결격 사유\'를 입증할 객관적 데이터를 수집합니다.',
+          image: 'https://images.unsplash.com/photo-1536640717429-44574490f140?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '제3자 신원 및 정황 확인',
+          text: '부정행위에 가담한 공동 불법행위자(상간자)의 정확한 인적 사항과 정황을 특정하여, 독립적인 법적 대응의 기반을 마련합니다.',
+          image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop'
+        }
+      ]
+    }
   },
   '/business/litigation': {
     title: 'Litigation & Evidence',
     subtitle: 'LEGAL PROOF',
+    sectionTitle: '"법률적 확신을 완성하는 압도적 사실 규명."',
+    variant: 'service',
     image: 'https://images.unsplash.com/photo-1589216532372-1c2a367900d9?q=80&w=2071&auto=format&fit=crop',
     description: [
-      '민형사 소송에서 승리의 열쇠는 "누구도 반박할 수 없는 명백한 증거"에 있습니다. 선진은 위증을 파헤치고, 사라진 목격자를 확보하며, 문서의 진위를 가리는 고도의 조사 기법을 동원합니다.',
-      '수사 기관이 다루기 어려운 개인 간의 민사 채무 관계 및 권리 침해 사실을 입각하여 증명해 드립니다.'
-    ]
+      '복잡한 분쟁의 향방을 결정짓는 것은 결국 객관적인 데이터입니다. 선진 민간수사 그룹은 대형 로펌의 변론 전략에 즉각 투입될 수 있는 가장 예리한 사실(Fact)을 규명하여 의뢰인의 법률적 명분을 완성합니다.'
+    ],
+    approach: {
+      title: 'Approach',
+      subtitle: '실체적 진실 규명을 위한 단계별 리스크 관리 프로세스입니다.',
+      steps: [
+        {
+          title: '증거 공백 진단',
+          text: '현재 확보된 데이터의 허점을 분석하고, 재판에서 우위를 점하기 위해 반드시 보완되어야 할 핵심 증거의 공백을 진단합니다.'
+        },
+        {
+          title: '채증 경로 설계',
+          text: '법적 증거능력을 상실하지 않도록 관련 판례와 법령을 준수하며, 가장 안전하고 효율적인 정보 수집 경로를 설계합니다.'
+        },
+        {
+          title: '심층 사실 규명',
+          text: '첨단 인프라와 전문 오퍼레이터를 투입하여 수면 아래 가려진 핵심 단서와 인적·물적 정황 데이터를 입체적으로 규명합니다.'
+        },
+        {
+          title: '데이터 증명력 검증',
+          text: '채증된 결과물의 법적 효력을 극대화하기 위해 데이터의 무결성을 최종 검증하며, 법률 전문가에게 안전하게 이관합니다.'
+        }
+      ]
+    },
+    operations: {
+      title: 'Operations',
+      cards: [
+        {
+          title: '민사 사건 핵심 팩트 채증',
+          text: '손해배상, 채무 불이행 등 민사 소송의 승패를 결정지을 결정적 스모킹 건(Smoking Gun)을 합법적인 범위 내에서 규명합니다.',
+          image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '형사 반증 및 알리바이 확인',
+          text: '억울한 혐의를 벗기 위한 반증 자료를 수집하거나, 진술의 신빙성을 입증할 수 있는 객관적인 알리바이 정황을 역추적합니다.',
+          image: 'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '보험 및 금융 부정 적발',
+          text: '고도화된 지능형 보험 사기나 금융 부정 행위의 정황을 포착하고, 이를 입증할 수 있는 구체적인 물적 데이터를 채증합니다.',
+          image: 'https://images.unsplash.com/photo-1560472355-536de3962603?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '핵심 인물 소재 및 사실 확인',
+          text: '재판의 결정적 증언을 해줄 수 있는 핵심 인물의 소재를 파악하고, 진술의 진위 여부를 판단할 수 있는 주변 정황을 조사합니다.',
+          image: 'https://images.unsplash.com/photo-1573164060897-4253f68c9554?q=80&w=2069&auto=format&fit=crop'
+        }
+      ]
+    }
   },
   '/business/forensics': {
     title: 'Digital & TSCM',
     subtitle: 'CYBER SHIELD',
+    sectionTitle: '"기술적 사각지대를 제거하는 압도적 보안 인프라."',
+    variant: 'service',
     image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '디지털 데이터는 거짓말을 하지 않습니다. 선진의 포렌식 센터는 삭제된 카카오톡 메시지, 메일로그, 브라우저 방문 기록 등을 정밀 복원하여 감춰진 패턴을 분석합니다.',
-      '또한, 도청 장치 및 몰래카메라 탐지(TSCM) 보안 서비스를 통해 기업 회의실 및 개인 공간의 절대 보안을 보장합니다.'
-    ]
+      '눈에 보이지 않는 보안 위협을 선제적으로 차단하고, 파기된 데이터 속의 진실을 복원합니다. 선진 민간수사 그룹은 독점적인 기술 자산을 통해 정보의 무결성과 법적 증명력을 완벽하게 확보합니다.'
+    ],
+    approach: {
+      title: 'Approach',
+      subtitle: '기술적 위협 제거와 데이터 복원을 위한 단계별 고도화 프로세스입니다.',
+      steps: [
+        {
+          title: '보안 취약점 식별',
+          text: '현재 공간 및 기기의 보안 상태를 정밀 진단하여, 정보 유출 가능성이 있는 모든 잠재적 위협 요소를 파악합니다.'
+        },
+        {
+          title: '정밀 탐지 및 추출',
+          text: '군사 등급의 TSCM 장비와 첨단 포렌식 솔루션을 투입하여 은닉된 기기 탐지 및 파기된 데이터를 신속히 추출합니다.'
+        },
+        {
+          title: '심층 데이터 분석',
+          text: '추출된 데이터를 다각도로 분석하여 불법적인 침입 흔적이나 은폐된 사실 관계를 입체적으로 규명합니다.'
+        },
+        {
+          title: '증명력 검증 및 이관',
+          text: '결과물의 법적 효력을 극대화하기 위해 데이터 무결성을 최종 검증하며, 정밀 분석 리포트를 법률 전문가에게 이관합니다.'
+        }
+      ]
+    },
+    operations: {
+      title: 'Operations',
+      cards: [
+        {
+          title: '상시 도청 및 불법 촬영 탐지',
+          text: '정교하게 은닉된 도청 장치와 비인가 촬영 기기를 특수 장비로 정밀 스캔하여, 의뢰인의 프라이버시 공간을 완벽하게 보호합니다.',
+          image: 'https://images.unsplash.com/photo-1557597774-9518a29d45d9?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '디지털 데이터 복원 및 분석',
+          text: '훼손되거나 삭제된 모바일 및 PC 데이터를 복구하여, 분쟁 해결의 스모킹 건(Smoking Gun)이 될 디지털 흔적을 찾아냅니다.',
+          image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '기업 정보 유출 경로 역추적',
+          text: '내부 기밀 유출이나 부정한 정보 접근의 경로를 기술적으로 추적하여, 보안 허점을 보완하고 책임 소재를 명확히 규명합니다.',
+          image: 'https://images.unsplash.com/photo-1558494949-ef010ccdcc32?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '데이터 무결성 유지 및 검증',
+          text: '수집된 디지털 증거가 법정에서 증거능력을 상실하지 않도록 원본성 유지와 무결성 증명 절차를 엄격히 수행합니다.',
+          image: 'https://images.unsplash.com/photo-1633265485768-3066373b11bc?q=80&w=2070&auto=format&fit=crop'
+        }
+      ]
+    }
   },
   '/business/missing': {
     title: 'Missing Persons',
     subtitle: 'SEARCH & FIND',
+    sectionTitle: '"입체적 정보망과 기동력으로 은닉된 소재를 완벽히 규명합니다."',
+    variant: 'service',
     image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop',
     description: [
-      '소중한 사람의 실종이나 사기꾼의 소재 파악은 시간과의 싸움입니다. 선진은 독자적인 데이터베이스와 위치 추적 기법을 통해 대상자의 은신처를 신속하게 포착합니다.',
-      '과거의 인연을 찾거나, 상속 등 법적 절차를 위한 거주지 확인 등 다양한 니즈에 맞춰 은밀하고 정확하게 움직입니다.'
-    ]
+      '물리적 공간의 한계를 극복하는 고도화된 추적 인프라. 선진 민간수사 그룹은 방대한 데이터 분석과 현장 정보망(HUMINT)을 융합하여, 대상의 소재와 실태를 가장 신속하고 정확하게 파악합니다.'
+    ],
+    approach: {
+      title: 'Approach',
+      subtitle: '신속한 소재 파악과 사실 확인을 위한 단계별 추적 프로세스입니다.',
+      steps: [
+        {
+          title: '사전 정황 프로파일링',
+          text: '사안 접수 즉시 대상자의 최종 행적, 생활 패턴, 잠재적 이동 경로 등 파편화된 로우 데이터(Raw Data)를 다각도로 분석합니다.'
+        },
+        {
+          title: '다차원 정보망 가동',
+          text: '사이버 데이터 추적 기법과 각 거점별로 구축된 특수 정보망을 동시다발적으로 투입하여 은닉 가능성이 높은 타겟 범위를 좁힙니다.'
+        },
+        {
+          title: '현장 실체 규명 및 채증',
+          text: '포착된 소재지에 전문 현장 오퍼레이터를 급파하여, 대상자의 실제 거주 여부와 주변 생활 정황을 합법적이고 객관적으로 채증합니다.'
+        },
+        {
+          title: '정황 데이터 이관',
+          text: '파악된 소재지 및 실태 등, 향후 법적 절차 진행(소송, 강제집행 등)에 반드시 필요한 정확한 사실 확인 리포트를 의뢰인에게 이관합니다.'
+        }
+      ]
+    },
+    operations: {
+      title: 'Operations',
+      cards: [
+        {
+          title: '악성 채무자 및 은닉자 소재 규명',
+          text: '민사 소송 및 강제 집행을 고의로 회피하며 잠적한 채무자의 실거주지와 은닉 정황을 끝까지 추적하여 권리 구제의 발판을 마련합니다.',
+          image: 'https://images.unsplash.com/photo-1454165833767-027ffea9e78a?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '주요 소송 관계인 소재 파악',
+          text: '재판의 향방을 결정지을 핵심 증인이나 참고인의 소재를 확인하여, 원활한 법률적 절차가 진행될 수 있도록 적극 지원합니다.',
+          image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop'
+        },
+        {
+          title: '장기 실종자 및 가족 추적',
+          text: '공권력의 사각지대에 놓이거나 골든타임이 지난 장기 실종, 가출 사건의 행적을 당사의 독자적인 인프라를 통해 신속하게 재구성합니다.',
+          image: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=2062&auto=format&fit=crop'
+        },
+        {
+          title: '거주 실태 및 신원 교차 검증',
+          text: '기업 간 중대 거래나 개인 간 계약 전후, 대상자가 제공한 신원 정보의 진위 여부와 실제 거주 실태를 철저하게 교차 검증합니다.',
+          image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop'
+        }
+      ]
+    }
   },
   '/business/corporate': {
     title: 'Corporate Risk',
-    subtitle: 'DEFENSE STRATEGY',
+    subtitle: 'BUSINESS INTEGRITY',
+    sectionTitle: '"기업의 핵심 가치를 수호하는 압도적 리스크 매니지먼트."',
+    variant: 'service',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '기업의 정보 자산은 곧 생존입니다. 선진은 핵심 기술 유출 방지 시스템 구축, 퇴사 대상자 관리, 협력사 평판 조회 등을 통해 잠재적 리스크를 사전에 차단합니다.',
-      '내부 횡령이나 배임 사건 발생 시, 신속한 특별 조사를 통해 증거를 조기 확보하고 피해 확산을 방지합니다.'
-    ]
+      '비즈니스를 향한 대내외적 위협은 막대한 재무적 손실과 브랜드 가치 훼손으로 직결됩니다. 선진 민간수사 그룹은 철저한 기밀 유지 속에서 치명적인 리스크를 진단하고, 완벽한 법적 대응망을 구축하여 기업의 영속성을 수호합니다.'
+    ],
+    approach: {
+      title: 'Approach',
+      subtitle: '기업 자산 보호와 위기 통제를 위한 단계별 리스크 매니지먼트 프로세스입니다.',
+      steps: [
+        {
+          title: '위협 요소 진단',
+          text: '비즈니스 구조 내에 잠재된 내부 비리, 정보 유출 등의 위협 징후를 조기에 포착하고 기업이 직면한 재무적·법률적 피해 규모를 산출합니다.'
+        },
+        {
+          title: '대응 로드맵 설계',
+          text: '기업의 정상적인 경영 활동에 지장을 주지 않도록, 철저한 정보 차단벽을 가동한 가장 은밀하고 합법적인 맞춤형 조사 전략을 기획합니다.'
+        },
+        {
+          title: '심층 정황 채증',
+          text: '내부 감사망을 피한 교묘한 부정행위와 외부 침해 정황을 적발하기 위해, 현장 조사와 디지털 추적을 병행하여 결정적 물적 데이터를 수집합니다.'
+        },
+        {
+          title: '데이터 이관 및 통제',
+          text: '확보된 객관적 증거를 사내 법무팀 및 외부 로펌에 안전하게 이관하며, 동일한 위기가 재발하지 않도록 내부 보안 통제망 강화를 지원합니다.'
+        }
+      ]
+    },
+    operations: {
+      title: 'Operations',
+      cards: [
+        {
+          title: '내부 횡령 및 배임 정황 채증',
+          text: '장부 조작, 리베이트 수수, 유령 회사 설립 등 교묘하게 은폐된 자금의 흐름을 역추적하여 임직원의 비리 정황을 입증할 물적 데이터를 확보합니다.',
+          image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2011&auto=format&fit=crop'
+        },
+        {
+          title: '영업비밀 및 핵심 기술 유출 추적',
+          text: '경쟁사나 퇴사자에 의한 설계도, 고객 DB, 핵심 기술 등의 무단 반출 정황을 포착하고 유출 경로를 추적하여 기업의 지적 재산권을 수호합니다.',
+          image: 'https://images.unsplash.com/photo-1558494949-ef010ccdcc32?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '불공정 거래 및 B2B 분쟁 조사',
+          text: '협력사의 계약 위반, 불법 하도급, 경쟁사의 악의적 시장 교란 행위 등을 입증할 수 있는 객관적인 사실 관계를 규명하여 분쟁의 우위를 선점합니다.',
+          image: 'https://images.unsplash.com/photo-1454165833767-027ffea9e78a?q=80&w=2070&auto=format&fit=crop'
+        },
+        {
+          title: '비즈니스 실사 및 평판 리스크 검증',
+          text: 'M&A, 대규모 투자, 핵심 임원 영입을 앞두고 표면적인 서류 이면에 숨겨진 우발 채무나 주요 대상자의 평판 리스크를 심층적으로 검증합니다.',
+          image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop'
+        }
+      ]
+    }
   },
 
   // --- FRAMEWORK ---

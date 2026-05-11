@@ -9,7 +9,24 @@ export interface SectionContent {
   description: string[];
   image?: string;
   gridItems?: { title: string; text: string; image?: string }[];
-  variant?: 'classic' | 'modern' | 'editorial' | 'technical';
+  variant?: 'classic' | 'modern' | 'editorial' | 'technical' | 'service';
+  approach?: {
+    title: string;
+    subtitle: string;
+    steps: {
+      title: string;
+      text: string;
+      icon?: string;
+    }[];
+  };
+  operations?: {
+    title: string;
+    cards: {
+      title: string;
+      text: string;
+      image: string;
+    }[];
+  };
 }
 
 export default function SubPageLayout({ content }: { content: SectionContent }) {
@@ -45,35 +62,158 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
 
   return (
     <div className="pb-20 bg-brand-charcoal min-h-screen">
-      {/* Hero Section (Remains Consistent as requested) */}
-      <section className="relative h-[70vh] md:h-[80vh] flex items-center px-6 md:px-20 overflow-hidden">
+      {/* Hero Section */}
+      <section className={cn(
+        "relative flex items-center overflow-hidden px-6 md:px-20",
+        variant === 'service' ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
+      )}>
         <div className="absolute inset-0 z-0">
           <img
             src={content.image || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"}
             alt={content.title}
             className="w-full h-full object-cover brightness-[0.3]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-brand-charcoal/40 to-transparent" />
+          {variant !== 'service' && <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-brand-charcoal/40 to-transparent" />}
           <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/40 via-transparent to-brand-charcoal" />
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative z-10 max-w-screen-xl space-y-6"
-        >
-          <span className="text-brand-gold text-[10px] md:text-sm tracking-[0.6em] font-semibold uppercase block">
-            {content.subtitle}
-          </span>
-          <h1 className="text-4xl md:text-7xl font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre">
-            {content.title}
-          </h1>
-          <div className="w-20 h-[1px] bg-brand-gold/50" />
-        </motion.div>
+        {variant === 'service' ? (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="relative z-10 max-w-4xl text-center space-y-10"
+          >
+            <div className="space-y-6">
+              <h1 className="text-3xl md:text-6xl font-serif tracking-tight leading-tight text-white px-4">
+                {content.sectionTitle}
+              </h1>
+              <div className="w-12 h-[2px] bg-brand-gold mx-auto" />
+            </div>
+            <p className="text-base md:text-lg text-white/70 font-light leading-relaxed max-w-2xl mx-auto whitespace-pre-line px-4">
+              {content.description.join('\n')}
+            </p>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="relative z-10 max-w-screen-xl space-y-6"
+          >
+            <span className="text-brand-gold text-[10px] md:text-sm tracking-[0.6em] font-semibold uppercase block">
+              {content.subtitle}
+            </span>
+            <h1 className="text-4xl md:text-7xl font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre">
+              {content.title}
+            </h1>
+            <div className="w-20 h-[1px] bg-brand-gold/50" />
+          </motion.div>
+        )}
       </section>
 
       {/* Main Content Section - Variants */}
+      {variant === 'service' && (
+        <>
+          {/* Approach Section */}
+          {content.approach && (
+            <section className="py-32 px-6 md:px-20 bg-[#f9f9f9]">
+              <div className="max-w-screen-xl mx-auto space-y-20">
+                <div className="text-center space-y-6">
+                  <h2 className="text-4xl md:text-6xl font-serif text-brand-charcoal tracking-tight">
+                    {content.approach.title}
+                  </h2>
+                  <p className="text-brand-charcoal/50 text-sm md:text-base font-light">
+                    {content.approach.subtitle}
+                  </p>
+                </div>
+
+                <div className="relative">
+                  {/* Connecting Line (Desktop) */}
+                  <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-[1px] bg-black/5" />
+                  
+                  <div className="grid md:grid-cols-4 gap-12 relative z-10">
+                    {content.approach.steps.map((step, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="text-center space-y-8"
+                      >
+                        <div className="flex flex-col items-center space-y-6">
+                          <div className="w-32 h-32 rounded-full border border-black/5 bg-white flex items-center justify-center shadow-sm group-hover:border-brand-gold/30 transition-colors">
+                            <span className="text-brand-gold font-serif italic text-2xl">0{idx + 1}</span>
+                          </div>
+                          <div className="space-y-4">
+                            <span className="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block">
+                              STEP 0{idx + 1}
+                            </span>
+                            <h3 className="text-xl font-serif text-brand-charcoal">
+                              {step.title}
+                            </h3>
+                          </div>
+                        </div>
+                        <p className="text-sm leading-relaxed text-brand-charcoal/60 font-light px-4">
+                          {step.text}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Key Operations Section */}
+          {content.operations && (
+            <section className="py-32 px-6 md:px-20 bg-brand-charcoal">
+              <div className="max-w-screen-xl mx-auto space-y-20">
+                <div className="text-center space-y-6">
+                  <h2 className="text-4xl md:text-6xl font-serif text-brand-gold tracking-tight">
+                    {content.operations.title}
+                  </h2>
+                  <div className="w-12 h-[1px] bg-brand-gold/30 mx-auto" />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  {content.operations.cards.map((card, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="group relative h-[400px] overflow-hidden rounded-sm"
+                    >
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.4] group-hover:scale-105 group-hover:brightness-[0.6] transition-all duration-1000"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                      
+                      <div className="absolute inset-0 p-10 flex flex-col justify-end space-y-6">
+                        <div className="space-y-2">
+                          <h3 className="text-2xl md:text-3xl font-serif text-white tracking-tight leading-tight">
+                            {card.title}
+                          </h3>
+                        </div>
+                        <p className="text-sm text-white/70 font-light leading-relaxed max-w-md opacity-100 transition-opacity duration-700">
+                          {card.text}
+                        </p>
+                        <div className="w-0 h-[1px] bg-brand-gold group-hover:w-16 transition-all duration-700" />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+        </>
+      )}
+
       {variant === 'classic' && (
         <section className="py-24 px-6 md:px-20 bg-brand-charcoal text-white">
           <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-10 items-start">
