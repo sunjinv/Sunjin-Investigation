@@ -53,7 +53,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
      ]
   },
   '/company/values': {
-    title: '지속 가능한 인텔리전스 \n생태계를 위한 철학',
+    title: '지속 가능한\n산업 생태계를 위한 철학',
     subtitle: 'RESPONSIBILITY & VALUES',
     sectionTitle: '인텔리전스 산업의 새로운\n윤리적 준거점',
     variant: 'classic',
@@ -81,7 +81,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     ]
   },
   '/company/competency': {
-     title: '대체 불가능한 핵심 전략 파트너',
+     title: '대체 불가능한\n핵심 전략 파트너',
      subtitle: 'CORE COMPETENCY',
      variant: 'modern',
      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
@@ -396,7 +396,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/framework/model': {
     title: 'Resolution Model',
     subtitle: 'METHODOLOGY',
-    sectionTitle: '"사건의 다양성을 관통하는 단 하나의 명확한 규범"',
+    sectionTitle: '"사건의 다양성을 관통하는 단 하나의 명확한 해법"',
     variant: 'framework',
     image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
     description: [
@@ -404,7 +404,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     ],
     frameworkSections: [
       {
-        title: '진행 단계별 통제 규범',
+        title: '진행 단계별 통제 전략',
         subtitle: 'Timeline Stage',
         items: [
           { title: '징후 포착 및 잠복기', text: "섣부른 의심 표현에 따른 방어선 노출 리스크를 차단하고, 대상자의 방어 기제 작동 전 완벽한 섀도우 스탠스 유지 및 초기 정황 데이터 보존" },
@@ -413,7 +413,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
         ]
       },
       {
-        title: '위협 근원별 보안 규범',
+        title: '위협 근원별 보안 전략',
         subtitle: 'Threat Origin',
         items: [
           { title: '특수관계인 및 내부자 리스크', text: "대상자에게 증거 인멸의 시간만 제공하는 성급한 내부 감사를 중단하고, 신속한 데이터 프리징 및 극비리 보안 TF 구성을 통한 내부 리스크 통제" },
@@ -422,7 +422,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
         ]
       },
       {
-        title: '목적 지향형 실행 규범',
+        title: '목적 지향형 실행 전략',
         subtitle: 'Objective Driven',
         items: [
           { title: '핵심 자산 수호 및 회수', text: "통상적인 서류 조회만으로 차명 자산을 규명할 수 있다는 안일함을 배제하고, 고도화된 자금 세탁 역추적을 위한 은닉 정황 프로파일링 및 현장 실사 전권 위임" },

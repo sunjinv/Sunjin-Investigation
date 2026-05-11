@@ -57,7 +57,7 @@ export const navLinks: NavItem[] = [
   },
 ];
 
-function NavDropdown({ item, isScrolled }: { item: NavItem; isScrolled: boolean }) {
+function NavDropdown({ item, isScrolled }: { item: NavItem; isScrolled: boolean; key?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 

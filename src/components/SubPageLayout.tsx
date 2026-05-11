@@ -106,7 +106,11 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
             className="relative z-10 max-w-4xl text-center space-y-10"
           >
             <div className="space-y-6">
-              <h1 className="text-3xl md:text-6xl font-serif tracking-tight leading-tight text-white px-4">
+              <h1 className={cn(
+                "font-serif tracking-tight leading-tight text-white px-4 break-keep",
+                (content.sectionTitle && content.sectionTitle.length > 24) ? "text-xl md:text-4xl md:whitespace-nowrap" : 
+                (content.sectionTitle && content.sectionTitle.length > 18) ? "text-2xl md:text-5xl md:whitespace-nowrap" : "text-3xl md:text-6xl"
+              )}>
                 {content.sectionTitle}
               </h1>
               <div className={cn(
