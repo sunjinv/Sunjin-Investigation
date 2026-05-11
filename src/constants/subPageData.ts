@@ -1,4 +1,4 @@
-import { SectionContent } from './SubPageLayout';
+import { SectionContent } from '../components/SubPageLayout';
 
 export const SUBPAGE_DATA: Record<string, SectionContent> = {
   // --- COMPANY ---
@@ -153,7 +153,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
         {
           title: '양육 환경 정황 채증',
           text: '자녀의 양육권 판결에 결정적 영향을 미치는 \'상대방의 양육 환경 결격 사유\'를 입증할 객관적 데이터를 수집합니다.',
-          image: 'https://images.unsplash.com/photo-1536640717429-44574490f140?q=80&w=2070&auto=format&fit=crop'
+          image: 'https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=2070&auto=format&fit=crop'
         },
         {
           title: '제3자 신원 및 정황 확인',
@@ -396,10 +396,40 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/framework/model': {
     title: 'Resolution Model',
     subtitle: 'METHODOLOGY',
+    sectionTitle: '"사건의 다양성을 관통하는 단 하나의 명확한 규범"',
+    variant: 'framework',
     image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '선진의 "분쟁 해결 모델"은 (1) 정보 수집 (2) 패턴 분석 (3) 법적 전략 수립 (4) 증거 확보 (5) 분쟁 종결의 5단계 프로세스를 따릅니다.',
-      '우리는 단순한 조사 보고서 전달에 그치지 않고, 의뢰인이 원하는 실질적 결과(기소, 합의, 승소)를 얻을 수 있을 때까지 통합 컨설팅을 제공합니다.'
+      '위기의 형태는 달라도 실체적 진실을 규명하는 프레임워크는 명확합니다. 직면한 상황에 가장 필요한 실전적 대응 전략을 설계합니다.'
+    ],
+    frameworkSections: [
+      {
+        title: '진행 단계별 통제 규범',
+        subtitle: 'Timeline Stage',
+        items: [
+          { title: '징후 포착 및 잠복기', text: "섣부른 의심 표현에 따른 방어선 노출 리스크를 차단하고, 대상자의 방어 기제 작동 전 완벽한 섀도우 스탠스 유지 및 초기 정황 데이터 보존" },
+          { title: '분쟁 표면화 및 충돌기', text: "무리한 자체 조사로 인한 위법 수집 리스크를 통제하고, 모든 소통을 단절한 철저한 단방향 통제 실행을 통한 주도권 탈환" },
+          { title: '법적 대응 및 종결기', text: "물리적 팩트가 결여된 단순 법리 구성의 한계를 극복하기 위해, 재판부를 설득할 증거의 공백 도출 및 당사·로펌 간의 완벽한 삼각 공조 체계 구축" }
+        ]
+      },
+      {
+        title: '위협 근원별 보안 규범',
+        subtitle: 'Threat Origin',
+        items: [
+          { title: '특수관계인 및 내부자 리스크', text: "대상자에게 증거 인멸의 시간만 제공하는 성급한 내부 감사를 중단하고, 신속한 데이터 프리징 및 극비리 보안 TF 구성을 통한 내부 리스크 통제" },
+          { title: '적대적 외부 환경 리스크', text: "실체가 특정되지 않은 맹목적 대응에 따른 방어선 노출을 방지하고, 당사의 OSINT 및 HUMINT 가동을 위한 온·오프라인 단서의 원형 보존 집중" },
+          { title: '정보 보안 및 사이버 리스크', text: "섣부른 기기 초기화로 인한 데이터 무결성 훼손을 막고, 즉각적인 TSCM 프로토콜 가동을 통한 은닉 장비 탐지 및 유출 경로 역추적" }
+        ]
+      },
+      {
+        title: '목적 지향형 실행 규범',
+        subtitle: 'Objective Driven',
+        items: [
+          { title: '핵심 자산 수호 및 회수', text: "통상적인 서류 조회만으로 차명 자산을 규명할 수 있다는 안일함을 배제하고, 고도화된 자금 세탁 역추적을 위한 은닉 정황 프로파일링 및 현장 실사 전권 위임" },
+          { title: '재판 승소 및 법률적 우위', text: "객관적 교차 검증이 결여된 주관적 호소나 감정적 대응을 멈추고, 상대의 논리를 탄핵할 압도적 스모킹 건 확보에 리소스 집중" },
+          { title: '명예 방어 및 리스크 통제', text: "허위 사실에 대한 무분별한 개별 해명에 따른 이슈 증폭을 차단하고, 즉각적인 정보 차단벽 구축 및 발화점 특정을 위한 디지털 역추적 선행" }
+        ]
+      }
     ]
   },
 
