@@ -43,9 +43,9 @@ export const navLinks: NavItem[] = [
   },
   { 
     name: 'PORTFOLIO', 
-    href: '/portfolio/outcome',
+    href: '/portfolio/performance',
     children: [
-      { name: '기대성과', href: '/portfolio/outcome' },
+      { name: '기대성과', href: '/portfolio/performance' },
     ]
   },
   { 

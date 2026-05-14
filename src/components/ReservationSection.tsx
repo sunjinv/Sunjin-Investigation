@@ -26,12 +26,12 @@ export default function ReservationSection({ onOpenBooking }: { onOpenBooking: (
         >
           <div className="space-y-4">
             <h4 className="text-brand-gold text-xs tracking-[0.3em] font-semibold">PRIVATE CONSULTATION</h4>
-            <h2 className="text-3xl md:text-5xl font-serif tracking-tight leading-tight">
+            <h2 className="text-3xl md:text-5xl font-serif tracking-tight leading-tight break-keep">
               당신의 가장 중요한 순간,<br />전문가와 직접 상의하십시오.
             </h2>
           </div>
           
-          <p className="text-sm md:text-lg text-white/60 leading-relaxed max-w-lg">
+          <p className="text-sm md:text-lg text-white/60 leading-relaxed max-w-lg break-keep">
             모든 상담은 철저한 암호화 기술로 보호됩니다. 
             사실 확인부터 전략 수립까지, 선진 민간수사 그룹이 당신의 권리를 지켜드립니다.
           </p>

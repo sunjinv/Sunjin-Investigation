@@ -24,7 +24,7 @@ export default function Hero() {
           <h2 className="text-4xl md:text-7xl font-serif tracking-[0.4em] font-light leading-tight">
             UNCOVER THE UNSEEN.
           </h2>
-          <p className="text-sm md:text-lg font-sans tracking-[0.2em] font-light opacity-80 max-w-2xl mx-auto">
+          <p className="text-sm md:text-lg font-sans tracking-[0.2em] font-light opacity-80 max-w-2xl mx-auto break-keep">
             보이지 않는 진실, 압도적인 전문성으로 증명합니다.
           </p>
         </motion.div>

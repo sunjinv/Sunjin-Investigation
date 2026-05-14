@@ -13,7 +13,7 @@ export default function Banner() {
           SUNJIN INVESTIGATION
         </h2>
         <div className="w-16 h-[1px] bg-brand-charcoal mx-auto mb-6" />
-        <p className="text-xs md:text-sm tracking-[0.4em] font-medium opacity-70">
+        <p className="text-xs md:text-sm tracking-[0.4em] font-medium opacity-70 break-keep">
           타협하지 않는 원칙, 100% 기밀 유지 시스템.
         </p>
       </div>

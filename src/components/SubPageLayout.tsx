@@ -9,7 +9,7 @@ export interface SectionContent {
   description: string[];
   image?: string;
   gridItems?: { title: string; text: string; image?: string }[];
-  variant?: 'classic' | 'modern' | 'editorial' | 'technical' | 'service' | 'framework';
+  variant?: 'classic' | 'modern' | 'editorial' | 'technical' | 'service' | 'framework' | 'casestudy';
   approach?: {
     title: string;
     subtitle: string;
@@ -33,6 +33,14 @@ export interface SectionContent {
     items: {
       title: string;
       text: string;
+    }[];
+  }[];
+  caseStudySections?: {
+    category: string;
+    cases: {
+      title: string;
+      subject: string;
+      solution: string;
     }[];
   }[];
 }
@@ -86,7 +94,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
       {/* Hero Section */}
       <section className={cn(
         "relative flex items-center overflow-hidden px-6 md:px-20",
-        (variant === 'service' || variant === 'framework') ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
+        (variant === 'service' || variant === 'framework' || variant === 'casestudy') ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
       )}>
         <div className="absolute inset-0 z-0">
           <img
@@ -94,11 +102,11 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
             alt={content.title}
             className="w-full h-full object-cover brightness-[0.3]"
           />
-          {(variant !== 'service' && variant !== 'framework') && <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-brand-charcoal/40 to-transparent" />}
+          {(variant !== 'service' && variant !== 'framework' && variant !== 'casestudy') && <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-brand-charcoal/40 to-transparent" />}
           <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/40 via-transparent to-brand-charcoal" />
         </div>
 
-        {(variant === 'service' || variant === 'framework') ? (
+        {(variant === 'service' || variant === 'framework' || variant === 'casestudy') ? (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,7 +126,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                 (variant === 'framework' || isNewDesignPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) ? "bg-white" : "bg-brand-gold"
               )} />
             </div>
-            <p className="text-base md:text-lg text-white/70 font-light leading-relaxed max-w-2xl mx-auto whitespace-pre-line px-4">
+            <p className="text-base md:text-lg text-white/70 font-light leading-relaxed max-w-2xl mx-auto whitespace-pre-line px-4 break-keep">
               {content.description.join('\n')}
             </p>
           </motion.div>
@@ -135,7 +143,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
             )}>
               {content.subtitle}
             </span>
-            <h1 className="text-4xl md:text-7xl font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre">
+            <h1 className="text-4xl md:text-7xl font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre break-keep">
               {content.title}
             </h1>
             <div className={cn(
@@ -158,7 +166,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
               <div className="max-w-screen-xl mx-auto space-y-20">
                 <div className="text-center space-y-6">
                   <h2 className={cn(
-                    "text-4xl md:text-6xl tracking-tight text-brand-charcoal",
+                    "text-4xl md:text-6xl tracking-tight text-brand-charcoal break-keep",
                     isNewDesignPage ? "font-sans font-bold uppercase" : "font-serif"
                   )}>
                     {content.approach.title}
@@ -197,10 +205,10 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                               <span className="text-brand-charcoal/30 text-[10px] tracking-[0.4em] font-bold uppercase block">
                                 STEP 0{idx + 1}
                               </span>
-                              <h3 className="text-2xl font-sans font-bold text-brand-charcoal tracking-tight group-hover:text-brand-gold transition-colors duration-500">
+                              <h3 className="text-2xl font-sans font-bold text-brand-charcoal tracking-tight group-hover:text-brand-gold transition-colors duration-500 break-keep">
                                 {step.title}
                               </h3>
-                              <p className="text-sm leading-relaxed text-brand-charcoal/50 font-light">
+                              <p className="text-sm leading-relaxed text-brand-charcoal/50 font-light break-keep">
                                 {step.text}
                               </p>
                             </div>
@@ -215,12 +223,12 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                                 <span className="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block">
                                   STEP 0{idx + 1}
                                 </span>
-                                <h3 className="text-xl font-serif text-brand-charcoal">
+                                <h3 className="text-xl font-serif text-brand-charcoal break-keep">
                                   {step.title}
                                 </h3>
                               </div>
                             </div>
-                            <p className="text-sm leading-relaxed text-brand-charcoal/60 font-light px-4">
+                            <p className="text-sm leading-relaxed text-brand-charcoal/60 font-light px-4 break-keep">
                               {step.text}
                             </p>
                           </>
@@ -278,13 +286,13 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                       <div className="absolute inset-0 p-10 flex flex-col justify-end space-y-6">
                         <div className="space-y-4">
                           <h3 className={cn(
-                            "text-2xl md:text-3xl text-white tracking-tighter leading-tight",
+                            "text-2xl md:text-3xl text-white tracking-tighter leading-tight break-keep",
                             isNewDesignPage ? "font-sans font-bold uppercase" : "font-serif"
                           )}>
                             {card.title}
                           </h3>
                         </div>
-                        <p className="text-sm text-white/50 font-light leading-relaxed max-w-md opacity-100 transition-opacity duration-700">
+                        <p className="text-sm text-white/50 font-light leading-relaxed max-w-md opacity-100 transition-opacity duration-700 break-keep">
                           {card.text}
                         </p>
                         <div className="w-0 h-[1px] bg-brand-gold group-hover:w-16 transition-all duration-700" />
@@ -318,7 +326,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="text-xl md:text-3xl font-serif tracking-tight leading-tight"
+                        className="text-xl md:text-3xl font-serif tracking-tight leading-tight break-keep"
                       >
                         {section.title}
                       </motion.h2>
@@ -342,12 +350,12 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
 
                           <div className="grid md:grid-cols-3 gap-8 relative z-10">
                             <div className="md:col-span-1">
-                              <h3 className="text-lg md:text-xl font-sans font-bold text-white tracking-tight uppercase">
+                              <h3 className="text-lg md:text-xl font-sans font-bold text-white tracking-tight uppercase break-keep">
                                 {item.title}
                               </h3>
                             </div>
                             <div className="md:col-span-2">
-                              <p className="text-sm md:text-base text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700">
+                              <p className="text-sm md:text-base text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700 break-keep">
                                 {item.text}
                               </p>
                             </div>
@@ -368,7 +376,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
         <section className="py-24 px-6 md:px-20 bg-brand-charcoal text-white">
           <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-serif leading-snug text-white whitespace-pre-line">
+              <h2 className="text-3xl md:text-4xl font-serif leading-snug text-white whitespace-pre-line break-keep">
                  {content.sectionTitle || "시대적 요구와\n수사 패러다임의 진화."}
               </h2>
               <div className={cn(
@@ -376,7 +384,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                 (isBrandStoryPage || isResponsibilityPage) ? "bg-white" : "bg-brand-gold"
               )} />
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="space-y-6 text-sm md:text-base leading-relaxed opacity-80 font-light whitespace-pre-line text-white/80">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="space-y-6 text-sm md:text-base leading-relaxed opacity-80 font-light whitespace-pre-line text-white/80 break-keep">
               {content.description.map((para, i) => <p key={i}>{para}</p>)}
             </motion.div>
           </div>
@@ -392,7 +400,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                   initial={{ opacity: 0, scale: 0.9 }} 
                   whileInView={{ opacity: 1, scale: 1 }} 
                   viewport={{ once: true }} 
-                  className="text-brand-gold text-3xl md:text-6xl font-serif italic tracking-tighter opacity-40 select-none leading-none"
+                  className="text-brand-gold text-3xl md:text-6xl font-serif italic tracking-tighter opacity-40 select-none leading-none break-keep"
                 >
                   {content.sectionTitle}
                 </motion.h2>
@@ -402,7 +410,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                 whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-base md:text-xl font-serif leading-tight tracking-wide text-white/90"
+                className="text-base md:text-xl font-serif leading-tight tracking-wide text-white/90 break-keep"
               >
                 {content.description[0]}
               </motion.div>
@@ -421,7 +429,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
               transition={{ delay: 0.3 }}
-              className="text-base md:text-lg font-light leading-relaxed opacity-60 whitespace-pre-line text-center max-w-3xl mx-auto"
+              className="text-base md:text-lg font-light leading-relaxed opacity-60 whitespace-pre-line text-center max-w-3xl mx-auto break-keep"
             >
               {content.description.slice(1).map((para, i) => (
                 <p key={i}>{para}</p>
@@ -443,12 +451,75 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
             <div className="grid md:grid-cols-12 gap-12">
               <div className="md:col-span-8 md:col-start-5 space-y-10">
                 {content.description.map((para, i) => (
-                  <p key={i} className="text-xl md:text-2xl font-serif font-light leading-snug whitespace-pre-line">
+                  <p key={i} className="text-xl md:text-2xl font-serif font-light leading-snug whitespace-pre-line break-keep">
                     {para}
                   </p>
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+      )}
+
+      {variant === 'casestudy' && (
+        <section className="py-32 px-6 md:px-20 bg-brand-charcoal text-white">
+          <div className="max-w-screen-xl mx-auto space-y-32">
+            {content.caseStudySections?.map((section, sIdx) => (
+              <div key={sIdx} className="space-y-16">
+                {/* Cases Grid */}
+                <div className="grid grid-cols-1 gap-16">
+                  {section.cases.map((cs, cIdx) => (
+                    <motion.div
+                      key={cIdx}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: cIdx * 0.1 }}
+                      className="group relative bg-[#161616] border border-white/5 p-10 md:p-14 flex flex-col hover:border-brand-gold/30 transition-all duration-700 hover:bg-[#1a1a1a]"
+                    >
+                      <div className="flex-grow space-y-6">
+                        {/* CASE LABEL & DESCRIPTION */}
+                        <div className="space-y-2">
+                          <div className="space-y-2">
+                            <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.6em] text-white/20 uppercase block">
+                              {section.category}
+                            </span>
+                            <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.6em] text-white/40 uppercase block">
+                              CASE
+                            </span>
+                          </div>
+                          <p className="text-sm md:text-base font-sans font-light text-white/90 leading-relaxed break-keep">
+                            {cs.title}
+                          </p>
+                        </div>
+
+                        {/* SUBJECT */}
+                        <div className="space-y-2">
+                          <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.6em] text-white/40 uppercase block">
+                            SUBJECT
+                          </span>
+                          <h3 className="text-xl md:text-3xl font-sans font-bold text-white tracking-tight leading-relaxed break-keep">
+                            {cs.subject}
+                          </h3>
+                        </div>
+                        
+                        {/* SOLUTION */}
+                        <div className="space-y-2 pt-2">
+                          <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.6em] text-white/40 uppercase block">
+                            SOLUTION
+                          </span>
+                          <p className="text-sm md:text-base font-sans font-light text-white/90 leading-relaxed group-hover:text-white transition-colors duration-700 break-keep">
+                            {cs.solution}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-gold group-hover:w-full transition-all duration-1000" />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       )}
@@ -504,19 +575,19 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                           
                           {content.gridItems[activeTab].text.includes('\n\n') ? (
                             <div className="space-y-12">
-                               <p className="text-xl md:text-2xl font-serif italic text-brand-charcoal leading-relaxed">
+                               <p className="text-xl md:text-2xl font-serif italic text-brand-charcoal leading-relaxed break-keep">
                                   {content.gridItems[activeTab].text.split('\n\n')[0]}
                                </p>
                                <div className="space-y-8">
                                  {content.gridItems[activeTab].text.split('\n\n').slice(1).map((para, pIdx) => (
-                                   <p key={pIdx} className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight border-l border-brand-gold/20 pl-6">
+                                   <p key={pIdx} className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight border-l border-brand-gold/20 pl-6 break-keep">
                                      {renderBoldText(para)}
                                    </p>
                                  ))}
                                </div>
                             </div>
                           ) : (
-                            <p className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line">
+                            <p className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line break-keep">
                               {renderBoldText(content.gridItems[activeTab].text)}
                             </p>
                           )}
@@ -541,12 +612,12 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                         <div className="flex items-center justify-center gap-6">
                           <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight">
+                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight break-keep">
                           {item.title}
                         </h3>
                       </div>
                       <div className="w-full text-left">
-                        <p className="text-xs md:text-sm leading-8 md:leading-9 tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 px-4">
+                        <p className="text-xs md:text-sm leading-8 md:leading-9 tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 px-4 break-keep">
                           {item.text}
                         </p>
                       </div>
@@ -568,13 +639,13 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                    >
                      <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start">
                        <div className="md:col-span-5 space-y-6">
-                          <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight">
+                          <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight break-keep">
                             {item.title}
                           </h3>
                           <div className="h-[1px] w-8 bg-brand-gold/30 group-hover:w-16 transition-all duration-700" />
                        </div>
                        <div className="md:col-span-7">
-                          <p className="text-sm md:text-[15px] leading-relaxed md:leading-[1.8] text-brand-charcoal/60 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700">
+                          <p className="text-sm md:text-[15px] leading-relaxed md:leading-[1.8] text-brand-charcoal/60 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 break-keep">
                             {item.text}
                           </p>
                        </div>
@@ -604,13 +675,13 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
                       )} />
                       <div className="space-y-6">
                         <h3 className={cn(
-                          "text-xl md:text-2xl font-serif tracking-tight leading-tight border-l-4 border-brand-gold/0 group-hover:border-brand-gold/100 pl-0 group-hover:pl-6 transition-all duration-700",
+                          "text-xl md:text-2xl font-serif tracking-tight leading-tight border-l-4 border-brand-gold/0 group-hover:border-brand-gold/100 pl-0 group-hover:pl-6 transition-all duration-700 break-keep",
                           variant === 'modern' ? "text-brand-charcoal" : "text-white"
                         )}>
                           {item.title}
                         </h3>
                         <p className={cn(
-                          "text-xs md:text-sm leading-relaxed font-light whitespace-pre-line px-0 transition-colors duration-700",
+                          "text-xs md:text-sm leading-relaxed font-light whitespace-pre-line px-0 transition-colors duration-700 break-keep",
                           variant === 'modern' 
                             ? "text-brand-charcoal/60 group-hover:text-brand-charcoal/90" 
                             : "text-white/60 group-hover:text-white/90"
