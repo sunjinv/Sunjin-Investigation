@@ -89,6 +89,38 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
     });
   };
 
+  const [selectedCategory, setSelectedCategory] = useState<string>('전체');
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  // Reset page when category changes
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategory(cat);
+    setExpandedId(null);
+    setCurrentPage(1);
+  };
+
+  const allCategories = ['전체', ...(content.caseStudySections?.map(s => s.category) || [])];
+  const filteredCases = selectedCategory === '전체' 
+    ? content.caseStudySections?.flatMap(s => s.cases.map(c => ({ ...c, category: s.category }))) || []
+    : content.caseStudySections?.find(s => s.category === selectedCategory)?.cases.map(c => ({ ...c, category: selectedCategory })) || [];
+
+  const totalPages = Math.ceil(filteredCases.length / itemsPerPage);
+  const currentCases = filteredCases.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const getVisiblePages = () => {
+    const totalVisible = 5;
+    let start = Math.max(1, currentPage - Math.floor(totalVisible / 2));
+    let end = Math.min(totalPages, start + totalVisible - 1);
+
+    if (end - start + 1 < totalVisible) {
+      start = Math.max(1, end - totalVisible + 1);
+    }
+
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  };
+
   return (
     <div className="pb-20 bg-brand-charcoal min-h-screen">
       {/* Hero Section */}
@@ -123,7 +155,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
               </h1>
               <div className={cn(
                 "w-12 h-[2px] mx-auto",
-                (variant === 'framework' || isNewDesignPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) ? "bg-white" : "bg-brand-gold"
+                (variant === 'framework' || variant === 'casestudy' || isNewDesignPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) ? "bg-white" : "bg-brand-gold"
               )} />
             </div>
             <p className="text-base md:text-lg text-white/70 font-light leading-relaxed max-w-2xl mx-auto whitespace-pre-line px-4 break-keep">
@@ -463,63 +495,142 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
 
       {variant === 'casestudy' && (
         <section className="py-32 px-6 md:px-20 bg-brand-charcoal text-white">
-          <div className="max-w-screen-xl mx-auto space-y-32">
-            {content.caseStudySections?.map((section, sIdx) => (
-              <div key={sIdx} className="space-y-16">
-                {/* Cases Grid */}
-                <div className="grid grid-cols-1 gap-16">
-                  {section.cases.map((cs, cIdx) => (
+          <div className="max-w-4xl mx-auto space-y-16">
+            {/* Category Filter */}
+            <div className="flex flex-wrap items-baseline gap-4 md:gap-8 border-b border-white/5 pb-12">
+              <div className="flex flex-wrap gap-4 md:gap-10">
+                {allCategories.map((cat, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleCategoryChange(cat)}
+                    className={cn(
+                      "text-sm md:text-base font-sans transition-all duration-500 hover:text-white outline-none cursor-pointer",
+                      selectedCategory === cat ? "text-white font-bold" : "text-white/30 font-light"
+                    )}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Accordion List */}
+            <div className="space-y-0">
+              <AnimatePresence mode="popLayout">
+                {currentCases.map((cs, idx) => {
+                  const actualIdx = (currentPage - 1) * itemsPerPage + idx;
+                  const itemId = `${cs.category}-${actualIdx}`;
+                  const isExpanded = expandedId === itemId;
+
+                  return (
                     <motion.div
-                      key={cIdx}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: cIdx * 0.1 }}
-                      className="group relative bg-[#161616] border border-white/5 p-10 md:p-14 flex flex-col hover:border-brand-gold/30 transition-all duration-700 hover:bg-[#1a1a1a]"
+                      key={itemId}
+                      layout
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="border-b border-white/10"
                     >
-                      <div className="flex-grow space-y-6">
-                        {/* CASE LABEL & DESCRIPTION */}
-                        <div className="space-y-2">
-                          <div className="space-y-2">
-                            <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.6em] text-white/20 uppercase block">
-                              {section.category}
-                            </span>
-                            <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.6em] text-white/40 uppercase block">
-                              CASE
-                            </span>
-                          </div>
-                          <p className="text-sm md:text-base font-sans font-light text-white/90 leading-relaxed break-keep">
-                            {cs.title}
-                          </p>
-                        </div>
+                      <button
+                        onClick={() => setExpandedId(isExpanded ? null : itemId)}
+                        className="w-full py-10 md:py-14 flex items-center gap-6 md:gap-12 text-left group outline-none cursor-pointer"
+                      >
+                        <span className="text-sm md:text-base font-sans font-bold text-white/20 group-hover:text-white transition-colors">
+                          {String(actualIdx + 1).padStart(2, '0')}
+                        </span>
+                        <h3 className={cn(
+                          "flex-grow text-base md:text-xl font-sans tracking-tight leading-relaxed transition-all duration-500 break-keep",
+                          isExpanded ? "text-white font-bold" : "text-white/70 font-light group-hover:text-white"
+                        )}>
+                          {cs.subject}
+                        </h3>
+                        <motion.div
+                          animate={{ rotate: isExpanded ? 45 : 0 }}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                          className="relative w-3 h-3 md:w-4 md:h-4 flex items-center justify-center overflow-visible"
+                        >
+                          <div className="absolute w-full h-[1px] bg-white/30 group-hover:bg-white transition-colors" />
+                          <div className="absolute h-full w-[1px] bg-white/30 group-hover:bg-white transition-colors" />
+                        </motion.div>
+                      </button>
 
-                        {/* SUBJECT */}
-                        <div className="space-y-2">
-                          <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.6em] text-white/40 uppercase block">
-                            SUBJECT
-                          </span>
-                          <h3 className="text-xl md:text-3xl font-sans font-bold text-white tracking-tight leading-relaxed break-keep">
-                            {cs.subject}
-                          </h3>
-                        </div>
-                        
-                        {/* SOLUTION */}
-                        <div className="space-y-2 pt-2">
-                          <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.6em] text-white/40 uppercase block">
-                            SOLUTION
-                          </span>
-                          <p className="text-sm md:text-base font-sans font-light text-white/90 leading-relaxed group-hover:text-white transition-colors duration-700 break-keep">
-                            {cs.solution}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-gold group-hover:w-full transition-all duration-1000" />
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pb-14 pl-12 md:pl-28 space-y-10">
+                              <div className="space-y-8 max-w-3xl">
+                                <div className="space-y-3">
+                                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] text-white/40 uppercase block">
+                                    CASE
+                                  </span>
+                                  <p className="text-sm md:text-base text-white/90 font-light leading-relaxed break-keep">
+                                    {cs.title}
+                                  </p>
+                                </div>
+                                <div className="space-y-3">
+                                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] text-white/40 uppercase block">
+                                    SOLUTION
+                                  </span>
+                                  <p className="text-sm md:text-[17px] text-white/90 font-light leading-relaxed break-keep">
+                                    {cs.solution}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-4 pt-12">
+                <button 
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 text-white/30 hover:text-white disabled:opacity-0 transition-colors cursor-pointer text-xs tracking-widest font-bold"
+                >
+                  PREV
+                </button>
+                <div className="flex gap-4">
+                  {getVisiblePages().map(page => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={cn(
+                        "text-sm tracking-tighter transition-all duration-300 relative py-2 px-1",
+                        currentPage === page ? "text-white font-bold" : "text-white/20 hover:text-white"
+                      )}
+                    >
+                      {String(page).padStart(2, '0')}
+                      {currentPage === page && (
+                        <motion.div 
+                          layoutId="pageUnderline"
+                          className="absolute bottom-0 left-0 right-0 h-[1px] bg-white"
+                        />
+                      )}
+                    </button>
                   ))}
                 </div>
+                <button 
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 text-white/30 hover:text-white disabled:opacity-0 transition-colors cursor-pointer text-xs tracking-widest font-bold"
+                >
+                  NEXT
+                </button>
               </div>
-            ))}
+            )}
           </div>
         </section>
       )}
