@@ -109,7 +109,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/business/divorce': {
     title: 'Divorce & Family',
     subtitle: 'FAMILY JUSTICE',
-    sectionTitle: '"결정적 사실로 가사 분쟁의 주도권을 장악합니다."',
+    sectionTitle: '결정적 사실로 가사 분쟁의 주도권을 장악합니다.',
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',
     description: [
@@ -166,7 +166,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/business/litigation': {
     title: 'Litigation & Evidence',
     subtitle: 'LEGAL PROOF',
-    sectionTitle: '"법률적 확신을 완성하는 압도적 사실 규명."',
+    sectionTitle: '법률적 확신을 완성하는 압도적 사실 규명',
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1589216532372-1c2a367900d9?q=80&w=2071&auto=format&fit=crop',
     description: [
@@ -223,7 +223,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/business/forensics': {
     title: 'Digital & TSCM',
     subtitle: 'CYBER SHIELD',
-    sectionTitle: '"기술적 사각지대를 제거하는 압도적 보안 인프라."',
+    sectionTitle: '기술적 사각지대를 제거하는 압도적 보안 인프라',
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop',
     description: [
@@ -280,7 +280,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/business/missing': {
     title: 'Missing Persons',
     subtitle: 'SEARCH & FIND',
-    sectionTitle: '"입체적 정보망과 기동력으로 은닉된 소재를 완벽히 규명합니다."',
+    sectionTitle: '입체적 정보망과 기동력으로 은닉된 소재를 완벽히 규명합니다.',
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop',
     description: [
@@ -337,7 +337,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/business/corporate': {
     title: 'Corporate Risk',
     subtitle: 'BUSINESS INTEGRITY',
-    sectionTitle: '"기업의 핵심 가치를 수호하는 압도적 리스크 매니지먼트."',
+    sectionTitle: '기업의 핵심 가치를 수호하는 압도적 리스크 매니지먼트',
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
     description: [
@@ -396,7 +396,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/framework/model': {
     title: 'Resolution Model',
     subtitle: 'METHODOLOGY',
-    sectionTitle: '"사건의 다양성을 관통하는 단 하나의 명확한 해법"',
+    sectionTitle: '사건의 다양성을 관통하는 단 하나의 명확한 해법',
     variant: 'framework',
     image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
     description: [
@@ -437,7 +437,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/portfolio/performance': {
     title: 'Business Case Study',
     subtitle: 'PORTFOLIO',
-    sectionTitle: '"압도적 결과로 입증하는 실전 수사의 기록"',
+    sectionTitle: '압도적 결과로 입증하는 실전 수사의 기록',
     variant: 'casestudy',
     image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop',
     description: [
@@ -719,6 +719,30 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
             solution: '드론 및 열화상 카메라를 활용한 물리적 현장 스캐닝과 폐기물 처리 업체의 이면 장부를 딥다이브하여, 위법 행위를 명확히 입증하고 즉각적인 계약 해지의 정당성을 부여합니다.'
           }
         ]
+      }
+    ]
+  },
+  '/contact': {
+    title: 'Reservation & Inquiry',
+    subtitle: 'CONTACT US',
+    sectionTitle: 'YOUR PRIVATE HELPLINE',
+    variant: 'contact',
+    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop',
+    description: [
+      '무거운 질문을 마주했을 때, 가장 먼저 연결되는 전문가 그룹'
+    ],
+    gridItems: [
+      { 
+        title: '주소', 
+        text: '서울특별시 강남구 테헤란로70길 12, 4층' 
+      },
+      { 
+        title: '전화', 
+        text: '02-3444-XXXX (24HR Hot-line)' 
+      },
+      { 
+        title: '이메일', 
+        text: 'office@sunjinv.com' 
       }
     ]
   }

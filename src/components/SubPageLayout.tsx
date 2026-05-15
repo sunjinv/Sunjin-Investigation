@@ -9,7 +9,7 @@ export interface SectionContent {
   description: string[];
   image?: string;
   gridItems?: { title: string; text: string; image?: string }[];
-  variant?: 'classic' | 'modern' | 'editorial' | 'technical' | 'service' | 'framework' | 'casestudy';
+  variant?: 'classic' | 'modern' | 'editorial' | 'technical' | 'service' | 'framework' | 'casestudy' | 'contact';
   approach?: {
     title: string;
     subtitle: string;
@@ -45,7 +45,7 @@ export interface SectionContent {
   }[];
 }
 
-export default function SubPageLayout({ content }: { content: SectionContent }) {
+export default function SubPageLayout({ content, onBooking }: { content: SectionContent; onBooking?: () => void }) {
   const variant = content.variant || 'classic';
   const [activeTab, setActiveTab] = useState(0);
   
@@ -126,7 +126,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
       {/* Hero Section */}
       <section className={cn(
         "relative flex items-center overflow-hidden px-6 md:px-20",
-        (variant === 'service' || variant === 'framework' || variant === 'casestudy') ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
+        (variant === 'service' || variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
       )}>
         <div className="absolute inset-0 z-0">
           <img
@@ -134,11 +134,11 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
             alt={content.title}
             className="w-full h-full object-cover brightness-[0.3]"
           />
-          {(variant !== 'service' && variant !== 'framework' && variant !== 'casestudy') && <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-brand-charcoal/40 to-transparent" />}
+          {(variant !== 'service' && variant !== 'framework' && variant !== 'casestudy' && variant !== 'contact') && <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-brand-charcoal/40 to-transparent" />}
           <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/40 via-transparent to-brand-charcoal" />
         </div>
 
-        {(variant === 'service' || variant === 'framework' || variant === 'casestudy') ? (
+        {(variant === 'service' || variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -147,7 +147,10 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
           >
             <div className="space-y-6">
               <h1 className={cn(
-                "font-serif tracking-tight leading-tight text-white px-4 break-keep",
+                "font-serif leading-tight text-white px-4 break-keep",
+                variant === 'contact' ? "tracking-[0.2em]" : "tracking-tight",
+                (variant === 'casestudy') ? "text-xl md:text-4xl md:whitespace-nowrap" :
+                (variant === 'contact') ? "text-2xl md:text-5xl md:whitespace-nowrap font-medium" :
                 (content.sectionTitle && content.sectionTitle.length > 24) ? "text-xl md:text-4xl md:whitespace-nowrap" : 
                 (content.sectionTitle && content.sectionTitle.length > 18) ? "text-2xl md:text-5xl md:whitespace-nowrap" : "text-3xl md:text-6xl"
               )}>
@@ -155,7 +158,7 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
               </h1>
               <div className={cn(
                 "w-12 h-[2px] mx-auto",
-                (variant === 'framework' || variant === 'casestudy' || isNewDesignPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) ? "bg-white" : "bg-brand-gold"
+                (variant === 'framework' || variant === 'casestudy' || variant === 'contact' || isNewDesignPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) ? "bg-white" : "bg-brand-gold"
               )} />
             </div>
             <p className="text-base md:text-lg text-white/70 font-light leading-relaxed max-w-2xl mx-auto whitespace-pre-line px-4 break-keep">
@@ -642,7 +645,73 @@ export default function SubPageLayout({ content }: { content: SectionContent }) 
           (variant === 'classic' || variant === 'modern') ? "bg-white" : "bg-brand-charcoal"
         )}>
           <div className="max-w-screen-xl mx-auto">
-            {variant === 'classic' ? (
+            {variant === 'contact' ? (
+              <div className="space-y-16 md:space-y-24">
+                {/* Information Section */}
+                <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start border-t border-white/5 pt-16 md:pt-24">
+                  <div className="md:col-span-5 space-y-2">
+                    <h2 className="text-white/40 text-[10px] md:text-xs tracking-[0.6em] font-bold uppercase font-sans">INFORMATION</h2>
+                    <h3 className="text-2xl md:text-4xl font-sans text-white tracking-tight break-keep">
+                      선진 본사
+                    </h3>
+                  </div>
+                  <div className="md:col-span-7 space-y-12 md:pt-[24px]">
+                    <div className="grid gap-12">
+                      {content.gridItems.map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 }}
+                          className="group border-b border-white/5 pb-10 last:border-0"
+                        >
+                          <h4 className="text-white/40 text-sm md:text-base font-sans font-medium tracking-tight uppercase mb-2 transition-colors">
+                            {item.title}
+                          </h4>
+                          <p className="text-base md:text-lg text-white font-light leading-relaxed whitespace-pre-line transition-colors duration-700 break-keep">
+                            {item.text}
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Reservation Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="grid md:grid-cols-12 gap-8 md:gap-16 items-start border-t border-white/5 pt-16 md:pt-24"
+                >
+                  <div className="md:col-span-5 space-y-2">
+                    <h2 className="text-white/40 text-[10px] md:text-xs tracking-[0.6em] font-bold uppercase font-sans">RESERVATION</h2>
+                    <h3 className="text-2xl md:text-4xl font-sans text-white tracking-tight leading-tight break-keep">
+                      사건 의뢰 및 상담
+                    </h3>
+                  </div>
+                  <div className="md:col-span-7 space-y-20 md:pt-[24px]">
+                    <p className="text-base md:text-lg text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700 whitespace-pre-line break-keep">
+                      모든 상담은 철저한 보안 원칙 아래 진행됩니다.{"\n"}
+                      아래 버튼을 통해 원하시는 일정을 선택해 주십시오.
+                    </p>
+                    <div className="pt-4">
+                      <button
+                        onClick={onBooking}
+                        className="w-full md:w-auto flex items-center justify-center gap-3 bg-brand-gold hover:bg-brand-gold/90 text-black px-12 py-5 transition-all duration-300 font-extrabold tracking-[0.3em] text-sm"
+                      >
+                        상담 예약 진행 (LOG-IN REQUIRED)
+                      </button>
+                      <div className="mt-6 flex items-center gap-4 text-[10px] tracking-widest font-bold text-white/20 uppercase">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        SECURE LINE ACTIVE
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            ) : variant === 'classic' ? (
               /* Conditional layout: Brand Story vs Responsibility & Values */
               (content.subtitle === 'RESPONSIBILITY & VALUES') ? (
                 /* Horizontal Titles Navigation and Content Area */

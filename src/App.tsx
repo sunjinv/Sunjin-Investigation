@@ -34,7 +34,7 @@ function HomePage({ onBooking }: { onBooking: () => void }) {
   );
 }
 
-function DynamicSubPage() {
+function DynamicSubPage({ onBooking }: { onBooking?: () => void }) {
   const location = useLocation();
   const content = SUBPAGE_DATA[location.pathname];
 
@@ -44,7 +44,7 @@ function DynamicSubPage() {
     </div>
   );
 
-  return <SubPageLayout content={content} />;
+  return <SubPageLayout content={content} onBooking={onBooking} />;
 }
 
 function AppContent() {
@@ -77,8 +77,8 @@ function AppContent() {
           <Route path="/company/*" element={<DynamicSubPage />} />
           <Route path="/business/*" element={<DynamicSubPage />} />
           <Route path="/framework/*" element={<DynamicSubPage />} />
-          <Route path="/portfolio/*" element={<DynamicSubPage />} />
-          <Route path="/contact" element={<HomePage onBooking={handleBookingClick} />} />
+          <Route path="/portfolio/*" element={<DynamicSubPage onBooking={handleBookingClick} />} />
+          <Route path="/contact" element={<DynamicSubPage onBooking={handleBookingClick} />} />
         </Routes>
       </main>
 
