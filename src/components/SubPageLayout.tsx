@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Calendar, Mail } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 export interface SectionContent {
@@ -696,13 +697,21 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       모든 상담은 철저한 보안 원칙 아래 진행됩니다.{"\n"}
                       아래 버튼을 통해 원하시는 일정을 선택해 주십시오.
                     </p>
-                    <div className="pt-4">
+                    <div className="pt-4 flex flex-col items-start gap-4">
                       <button
                         onClick={onBooking}
-                        className="w-full md:w-auto flex items-center justify-center gap-3 bg-brand-gold hover:bg-brand-gold/90 text-black px-12 py-5 transition-all duration-300 font-extrabold tracking-[0.3em] text-sm"
+                        className="w-full md:w-72 flex items-center justify-center gap-3 bg-brand-gold hover:bg-brand-gold/90 text-black px-8 py-4 transition-all duration-300 font-medium tracking-widest text-xs"
                       >
-                        상담 예약 진행 (LOG-IN REQUIRED)
+                        <Calendar className="w-4 h-4" />
+                        DATE & TIME RESERVATION
                       </button>
+                      <a 
+                        href="mailto:office@sunjinv.com"
+                        className="w-full md:w-72 flex items-center justify-center gap-3 border border-white/20 hover:border-white/40 px-8 py-4 transition-all duration-300 font-medium tracking-widest text-xs"
+                      >
+                        <Mail className="w-4 h-4" />
+                        DIRECT INQUIRY
+                      </a>
                       <div className="mt-6 flex items-center gap-4 text-[10px] tracking-widest font-bold text-white/20 uppercase">
                         <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                         SECURE LINE ACTIVE
