@@ -35,7 +35,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop',
      description: [
        '"압도적인 정보력과 철저한 보안을 바탕으로 지속 가능한 전략적 우위를 설계합니다"',
-       "선진 민간수사 그룹은 복잡한 비즈니스 환경과 프라이빗 영역에서 발생하는 \n고도의 리스크를 선제적으로 통제하는 최상위급 조사 기업입니다. \n당사는 단순한 단서 수집을 넘어, 재판의 판도를 주도하고 협상의 우위를 선점하는 \n'결정적 인텔리전스'를 제공함으로써 압도적인 결과물을 증명합니다.",
+       "선진은 복잡한 비즈니스 환경과 프라이빗 영역에서 발생하는 \n고도의 리스크를 선제적으로 통제하는 최상위급 조사 기업입니다. \n당사는 단순한 단서 수집을 넘어, 재판의 판도를 주도하고 협상의 우위를 선점하는 \n'결정적 인텔리전스'를 제공함으로써 압도적인 결과물을 증명합니다.",
      ],
      gridItems: [
        { 
@@ -59,7 +59,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'classic',
     image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop',
     description: [
-      '선진 민간수사 그룹의 영향력은 의뢰인의 위기를 해결하는 데서 멈추지 않습니다. 우리는 정보가 가진 무게를 엄중히 인식하며, 가장 투명한 거버넌스와 사회적 책무를 통해 민간수사 산업의 올바른 미래를 설계합니다.'
+      '선진의 영향력은 의뢰인의 위기를 해결하는 데서 멈추지 않습니다. 우리는 정보가 가진 무게를 엄중히 인식하며, 가장 투명한 거버넌스와 사회적 책무를 통해 민간수사 산업의 올바른 미래를 설계합니다.'
     ],
     gridItems: [
       {
@@ -87,7 +87,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
      description: [
        '다각적 정보 분석부터 현장 오퍼레이션 고도화로, 분쟁의 종결을 위한 전략적 로드맵을 완성합니다.',
-       "선진 민간수사 그룹의 모든 결과물은 개인의 직관이나 우연이 아닌, 철저히 구조화된 시스템을 통해 도출됩니다. 의뢰인의 리스크를 완벽하게 통제하고 가장 안전한 결론을 이끌어내는 세 가지 핵심 전략 자산을 소개합니다."
+       "선진의 모든 결과물은 개인의 직관이나 우연이 아닌, 철저히 구조화된 시스템을 통해 도출됩니다. 의뢰인의 리스크를 완벽하게 통제하고 가장 안전한 결론을 이끌어내는 세 가지 핵심 전략 자산을 소개합니다."
      ],
      gridItems: [
        {
@@ -113,7 +113,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '치열한 정보전이 되는 가사 분쟁. 선진 민간수사 그룹은 법적 증명력을 갖춘 무결점 데이터를 채증하여, 의뢰인과 전담 법무법인의 가장 강력한 무기를 설계합니다.'
+      '법적 증명력을 갖춘 무결점 데이터를 채증하여, 의뢰인과 전담 법무법인의 가장 강력한 무기를 설계합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -170,7 +170,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1589216532372-1c2a367900d9?q=80&w=2071&auto=format&fit=crop',
     description: [
-      '복잡한 분쟁의 향방을 결정짓는 것은 결국 객관적인 데이터입니다. 선진 민간수사 그룹은 대형 로펌의 변론 전략에 즉각 투입될 수 있는 가장 예리한 사실을 규명하여 의뢰인의 법률적 명분을 완성합니다.'
+      '변론 전략에 즉각 투입될 수 있는 가장 예리한 사실을 규명하여 의뢰인의 법률적 명분을 완성합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -227,7 +227,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '눈에 보이지 않는 보안 위협을 선제적으로 차단하고, 파기된 데이터 속의 진실을 복원합니다. 선진 민간수사 그룹은 독점적인 기술 자산을 통해 정보의 무결성과 법적 증명력을 완벽하게 확보합니다.'
+      '독점적인 기술 자산을 통해 정보의 무결성과 법적 증명력을 완벽하게 확보합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -284,7 +284,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop',
     description: [
-      '물리적 공간의 한계를 극복하는 고도화된 추적 인프라. 선진 민간수사 그룹은 방대한 데이터 분석과 현장 정보망을 융합하여, 대상의 소재와 실태를 가장 신속하고 정확하게 파악합니다.'
+      '방대한 데이터 분석과 현장 정보망을 융합하여, 대상의 소재와 실태를 가장 신속하고 정확하게 파악합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -341,7 +341,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '비즈니스를 향한 대내외적 위협은 막대한 재무적 손실과 브랜드 가치 훼손으로 직결됩니다. 선진 민간수사 그룹은 철저한 기밀 유지 속에서 치명적인 리스크를 진단하고, 완벽한 법적 대응망을 구축하여 기업의 영속성을 수호합니다.'
+      '철저한 기밀 유지 속에서 치명적인 리스크를 진단하고, 완벽한 법적 대응망을 구축하여 기업의 영속성을 수호합니다.'
     ],
     approach: {
       title: 'Approach',
