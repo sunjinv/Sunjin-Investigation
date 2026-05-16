@@ -183,8 +183,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             </span>
             <h1 className={cn(
               "font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre break-keep",
-              isBrandStoryPage ? "text-[8vw] md:text-7xl lg:text-8xl scale-y-110" : "text-4xl md:text-7xl",
-              isCompanyIntroPage && "text-[7vw] md:text-5xl px-4 md:px-0 leading-[1.4] md:leading-tight",
+              isBrandStoryPage ? "text-[8vw] md:text-7xl lg:text-7xl scale-y-110" : "text-4xl md:text-7xl",
+              isCompanyIntroPage && "text-[7vw] md:text-5xl lg:text-7xl px-4 md:px-0 leading-[1.4] md:leading-tight",
               isCoreCompetencyPage && "text-[8vw] md:text-6xl px-6 md:px-0"
             )}>
               {content.title}
@@ -428,7 +428,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
           )}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 lg:col-span-4">
               <h2 className={cn(
-                "text-2xl md:text-4xl lg:text-5xl font-serif leading-relaxed md:leading-snug text-white whitespace-pre-line break-keep",
+                "text-2xl md:text-4xl lg:text-[24px] font-serif leading-relaxed md:leading-snug text-white whitespace-pre-line break-keep",
                 isBrandStoryPage && "mb-8 md:mb-0",
                 isCompanyIntroPage && "mb-12 md:mb-0 lg:mb-16"
               )}>
@@ -474,7 +474,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-base md:text-xl font-serif leading-tight tracking-wide text-white/90 break-keep"
+                className="text-base md:text-xl lg:text-[24px] font-serif leading-tight tracking-wide text-white/90 break-keep"
               >
                 {content.description[0]}
               </motion.div>
@@ -496,7 +496,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               className={cn(
                 "whitespace-pre-line text-center max-w-3xl mx-auto break-keep",
                 (isCompanyIntroPage || isCoreCompetencyPage) 
-                  ? "text-sm md:text-base opacity-80 font-light leading-relaxed text-white/80"
+                  ? "text-sm md:text-base lg:text-[18px] opacity-80 font-light leading-relaxed lg:leading-[1.8] text-white/80"
                   : "text-base md:text-lg font-light leading-relaxed opacity-60"
               )}
             >
@@ -850,7 +850,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                         <div className="flex items-center justify-center gap-6">
                           <div className="h-[1px] w-12 lg:w-20 bg-brand-gold/30 group-hover:w-20 lg:group-hover:w-32 group-hover:bg-brand-gold transition-all duration-1000" />
                         </div>
-                        <h3 className="text-xl md:text-2xl lg:text-5xl font-serif tracking-tight text-brand-charcoal leading-tight break-keep overflow-wrap-anywhere">
+                        <h3 className="text-xl md:text-2xl lg:text-[24px] font-serif tracking-tight text-brand-charcoal leading-tight break-keep overflow-wrap-anywhere">
                           {item.title}
                         </h3>
                       </div>
@@ -917,14 +917,14 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       )} />
                       <div className="space-y-6">
                         <h3 className={cn(
-                          "text-xl md:text-2xl lg:text-3xl font-serif tracking-tight leading-tight transition-all duration-700 break-keep",
+                          "text-xl md:text-2xl lg:text-[24px] font-serif tracking-tight leading-tight transition-all duration-700 break-keep",
                           !isCompanyIntroPage && "border-l-4 border-brand-gold/0 group-hover:border-brand-gold/100 pl-0 group-hover:pl-6",
                           variant === 'modern' ? "text-brand-charcoal" : "text-white"
                         )}>
                           {item.title}
                         </h3>
                         <p className={cn(
-                          "text-xs md:text-sm lg:text-[17px] leading-relaxed lg:leading-[1.8] font-light whitespace-pre-line px-0 transition-colors duration-700 break-keep",
+                          "text-xs md:text-sm lg:text-[18px] leading-relaxed lg:leading-[1.8] font-light whitespace-pre-line px-0 transition-colors duration-700 break-keep",
                           variant === 'modern' 
                             ? "text-brand-charcoal/60 group-hover:text-brand-charcoal/90" 
                             : "text-white/60 group-hover:text-white/90"
