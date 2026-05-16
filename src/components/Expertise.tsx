@@ -90,7 +90,7 @@ export default function Expertise() {
                   <p className="text-xs md:text-sm text-white/60 max-w-md opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 break-keep">
                     {item.description}
                   </p>
-                  <div className="w-0 group-hover:w-16 h-[1px] bg-brand-gold mt-6 transition-all duration-700" />
+                  <div className="w-0 group-hover:w-16 h-[1px] bg-white mt-6 transition-all duration-700" />
                 </div>
               </motion.div>
             </Link>

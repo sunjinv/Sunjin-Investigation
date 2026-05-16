@@ -339,7 +339,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     subtitle: 'BUSINESS INTEGRITY',
     sectionTitle: '기업의 핵심 가치를 수호하는 압도적 리스크 매니지먼트',
     variant: 'service',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=2070&auto=format&fit=crop',
     description: [
       '철저한 기밀 유지 속에서 치명적인 리스크를 진단하고, 완벽한 법적 대응망을 구축하여 기업의 영속성을 수호합니다.'
     ],

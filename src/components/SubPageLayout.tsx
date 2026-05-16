@@ -331,7 +331,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                         <p className="text-sm text-white/50 font-light leading-relaxed max-w-md opacity-100 transition-opacity duration-700 break-keep">
                           {card.text}
                         </p>
-                        <div className="w-0 h-[1px] bg-brand-gold group-hover:w-16 transition-all duration-700" />
+                        <div className={cn(
+                          "w-0 h-[1px] transition-all duration-700 group-hover:w-16",
+                          isNewDesignPage ? "bg-white" : "bg-brand-gold"
+                        )} />
                       </div>
                     </motion.div>
                   ))}
@@ -764,7 +767,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           
                           {content.gridItems[activeTab].text.includes('\n\n') ? (
                             <div className="space-y-12">
-                               <p className="text-xl md:text-2xl font-serif italic text-brand-charcoal leading-relaxed break-keep">
+                               <p className={cn(
+                                 "text-xl md:text-2xl font-serif italic text-brand-charcoal leading-relaxed break-keep",
+                                 isResponsibilityPage && "text-center"
+                               )}>
                                   {content.gridItems[activeTab].text.split('\n\n')[0]}
                                </p>
                                <div className="space-y-8">
@@ -864,7 +870,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       )} />
                       <div className="space-y-6">
                         <h3 className={cn(
-                          "text-xl md:text-2xl font-serif tracking-tight leading-tight border-l-4 border-brand-gold/0 group-hover:border-brand-gold/100 pl-0 group-hover:pl-6 transition-all duration-700 break-keep",
+                          "text-xl md:text-2xl font-serif tracking-tight leading-tight transition-all duration-700 break-keep",
+                          !isCompanyIntroPage && "border-l-4 border-brand-gold/0 group-hover:border-brand-gold/100 pl-0 group-hover:pl-6",
                           variant === 'modern' ? "text-brand-charcoal" : "text-white"
                         )}>
                           {item.title}
