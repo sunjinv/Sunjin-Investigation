@@ -179,7 +179,12 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             )}>
               {content.subtitle}
             </span>
-            <h1 className="text-4xl md:text-7xl font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre break-keep">
+            <h1 className={cn(
+              "font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre break-keep",
+              isBrandStoryPage ? "text-[8vw] md:text-7xl scale-y-110" : "text-4xl md:text-7xl",
+              isCompanyIntroPage && "text-[7vw] md:text-5xl px-4 md:px-0 leading-[1.4] md:leading-tight",
+              isCoreCompetencyPage && "text-[8vw] md:text-6xl px-6 md:px-0"
+            )}>
               {content.title}
             </h1>
             <div className={cn(
@@ -412,18 +417,37 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       )}
 
       {variant === 'classic' && (
-        <section className="py-24 px-6 md:px-20 bg-brand-charcoal text-white">
-          <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+        <section className={cn(
+          "py-24 md:py-32 bg-brand-charcoal text-white",
+          isBrandStoryPage ? "px-10" : isCompanyIntroPage ? "px-[5vw] md:px-20" : "px-10 md:px-20"
+        )}>
+          <div className={cn(
+            "max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 md:gap-10 items-start",
+            isCompanyIntroPage && "w-full"
+          )}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-serif leading-snug text-white whitespace-pre-line break-keep">
+              <h2 className={cn(
+                "text-2xl md:text-4xl font-serif leading-relaxed md:leading-snug text-white whitespace-pre-line break-keep",
+                isBrandStoryPage && "mb-8 md:mb-0",
+                isCompanyIntroPage && "mb-12 md:mb-0"
+              )}>
                  {content.sectionTitle || "시대적 요구와\n수사 패러다임의 진화."}
               </h2>
               <div className={cn(
                 "w-12 h-[2px]",
-                (isBrandStoryPage || isResponsibilityPage) ? "bg-white" : "bg-brand-gold"
+                (isBrandStoryPage || isResponsibilityPage || isCompanyIntroPage) ? "bg-white" : "bg-brand-gold"
               )} />
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="space-y-6 text-sm md:text-base leading-relaxed opacity-80 font-light whitespace-pre-line text-white/80 break-keep">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ delay: 0.2 }} 
+              className={cn(
+                "space-y-6 text-sm md:text-base opacity-80 font-light whitespace-pre-line text-white/80 break-keep",
+                (isBrandStoryPage || isCompanyIntroPage) ? "leading-[1.8]" : "leading-relaxed"
+              )}
+            >
               {content.description.map((para, i) => <p key={i}>{para}</p>)}
             </motion.div>
           </div>
@@ -645,8 +669,9 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       {/* Grid Features Section - Layout varies based on variant */}
       {content.gridItems && (
         <section className={cn(
-          "py-32 px-6 md:px-20",
-          (variant === 'classic' || variant === 'modern') ? "bg-white" : "bg-brand-charcoal"
+          "py-32 px-10 md:px-20",
+          (variant === 'classic' || variant === 'modern') ? "bg-white" : "bg-brand-charcoal",
+          isBrandStoryPage ? "px-8 md:px-20" : isCompanyIntroPage ? "px-[6vw] md:px-20" : isCoreCompetencyPage ? "px-10 md:px-20" : ""
         )}>
           <div className="max-w-screen-xl mx-auto">
             {variant === 'contact' ? (
@@ -729,13 +754,13 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 /* Horizontal Titles Navigation and Content Area */
                 <div className="space-y-4 md:space-y-6">
                   {/* Titles Navigation */}
-                  <div className="flex flex-wrap items-center justify-center gap-x-8 md:gap-x-16 gap-y-6 border-b border-black/5 pb-10">
+                  <div className="flex flex-nowrap md:flex-wrap items-center md:justify-center gap-x-10 md:gap-x-16 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-black/5 pb-10 px-6 md:px-0">
                     {content.gridItems.map((item, idx) => (
                       <button
                         key={idx}
                         onClick={() => setActiveTab(idx)}
                         className={cn(
-                          "relative pb-4 text-lg md:text-xl font-serif text-brand-charcoal transition-all duration-500 hover:text-brand-gold outline-none cursor-pointer",
+                          "relative pb-4 text-base md:text-xl font-serif text-brand-charcoal transition-all duration-500 hover:text-brand-gold outline-none cursor-pointer whitespace-nowrap flex-shrink-0",
                           activeTab === idx ? "text-brand-gold" : "opacity-40"
                         )}
                       >
@@ -754,46 +779,46 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   {/* Content Area */}
                   <div className="max-w-4xl mx-auto min-h-[400px]">
                     <AnimatePresence mode="wait">
-                      <motion.div
-                        key={activeTab}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        className="bg-white p-8 md:p-20 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
-                      >
-                        <div className="space-y-8 md:space-y-12">
-                          {/* Removed decoration as requested */}
-                          
-                          {content.gridItems[activeTab].text.includes('\n\n') ? (
-                            <div className="space-y-12">
-                               <p className={cn(
-                                 "text-xl md:text-2xl font-serif italic text-brand-charcoal leading-relaxed break-keep",
-                                 isResponsibilityPage && "text-center"
-                               )}>
-                                  {content.gridItems[activeTab].text.split('\n\n')[0]}
-                               </p>
-                               <div className="space-y-8">
-                                 {content.gridItems[activeTab].text.split('\n\n').slice(1).map((para, pIdx) => (
-                                   <p key={pIdx} className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight border-l border-brand-gold/20 pl-6 break-keep">
-                                     {renderBoldText(para)}
-                                   </p>
-                                 ))}
-                               </div>
-                            </div>
-                          ) : (
-                            <p className="text-sm md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line break-keep">
-                              {renderBoldText(content.gridItems[activeTab].text)}
-                            </p>
-                          )}
-                        </div>
-                      </motion.div>
+                        <motion.div
+                          key={activeTab}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.5, ease: "easeOut" }}
+                          className="bg-white p-10 md:p-20 mx-6 md:mx-auto shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
+                        >
+                          <div className="space-y-12 md:space-y-12">
+                            {/* Removed decoration as requested */}
+                            
+                            {content.gridItems[activeTab].text.includes('\n\n') ? (
+                              <div className="space-y-16 md:space-y-12">
+                                 <p className={cn(
+                                   "text-lg md:text-2xl font-serif italic text-brand-charcoal leading-[1.8] md:leading-relaxed break-keep overflow-wrap-anywhere",
+                                   isResponsibilityPage && "text-center"
+                                 )}>
+                                    {content.gridItems[activeTab].text.split('\n\n')[0]}
+                                 </p>
+                                 <div className="space-y-12 md:space-y-8">
+                                   {content.gridItems[activeTab].text.split('\n\n').slice(1).map((para, pIdx) => (
+                                     <p key={pIdx} className="text-xs md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight border-l border-brand-gold/20 pl-6 break-keep overflow-wrap-anywhere">
+                                       {renderBoldText(para)}
+                                     </p>
+                                   ))}
+                                 </div>
+                              </div>
+                            ) : (
+                              <p className="text-xs md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line break-keep overflow-wrap-anywhere">
+                                {renderBoldText(content.gridItems[activeTab].text)}
+                              </p>
+                            )}
+                          </div>
+                        </motion.div>
                     </AnimatePresence>
                   </div>
                 </div>
               ) : (
                 /* Brand Story specific detailed layout (Vertical Stack) */
-                <div className="space-y-24">
+                <div className="space-y-32 md:space-y-24">
                   {content.gridItems.map((item, idx) => (
                     <motion.div
                       key={idx}
@@ -801,18 +826,21 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1, duration: 1 }}
-                      className="flex flex-col items-center space-y-12 group max-w-4xl mx-auto"
+                      className="flex flex-col items-center space-y-16 md:space-y-12 group max-w-4xl mx-auto"
                     >
                       <div className="space-y-8 w-full text-center">
                         <div className="flex items-center justify-center gap-6">
                           <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight break-keep">
+                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight break-keep overflow-wrap-anywhere">
                           {item.title}
                         </h3>
                       </div>
                       <div className="w-full text-left">
-                        <p className="text-xs md:text-sm leading-8 md:leading-9 tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 px-4 break-keep">
+                        <p className={cn(
+                          "text-xs md:text-sm tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 break-keep",
+                          isBrandStoryPage ? "px-6 md:px-4 leading-9 md:leading-9" : "px-4 leading-8 md:leading-9"
+                        )}>
                           {item.text}
                         </p>
                       </div>
@@ -822,7 +850,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               )
             ) : (variant === 'modern' && content.subtitle === 'CORE COMPETENCY') ? (
               /* Specific layout for Core Competency: Title Left, Text Right */
-              <div className="space-y-16 md:space-y-24">
+              <div className="space-y-20 md:space-y-24">
                 {content.gridItems.map((item, idx) => (
                    <motion.div
                      key={idx}
@@ -832,15 +860,15 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                      transition={{ delay: idx * 0.1, duration: 0.8 }}
                      className="border-t border-black/5 pt-12 md:pt-16 group"
                    >
-                     <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start">
+                     <div className="grid md:grid-cols-12 gap-4 md:gap-16 items-start">
                        <div className="md:col-span-5 space-y-6">
-                          <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight break-keep">
+                          <h3 className="text-lg md:text-2xl font-serif tracking-tight text-brand-charcoal leading-[1.5] md:leading-tight break-keep overflow-wrap-anywhere">
                             {item.title}
                           </h3>
                           <div className="h-[1px] w-8 bg-brand-gold/30 group-hover:w-16 transition-all duration-700" />
                        </div>
                        <div className="md:col-span-7">
-                          <p className="text-sm md:text-[15px] leading-relaxed md:leading-[1.8] text-brand-charcoal/60 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 break-keep">
+                          <p className="text-sm md:text-[15px] leading-[1.8] md:leading-[1.8] text-brand-charcoal/60 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 break-keep overflow-wrap-anywhere">
                             {item.text}
                           </p>
                        </div>
@@ -852,7 +880,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               /* Modern / Standard layout for Company Intro */
               <div className={cn(
                 "grid gap-12",
-                variant === 'technical' ? "md:grid-cols-2" : "md:grid-cols-3"
+                variant === 'technical' ? "md:grid-cols-2" : "md:grid-cols-3",
+                isCompanyIntroPage && "gap-16 md:gap-12"
               )}>
                 {content.gridItems.map((item, idx) => (
                   <motion.div
@@ -895,7 +924,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       )}
 
       {/* Atmosphere Visual */}
-      <section className="h-[60vh] relative overflow-hidden">
+      <section className={cn(
+        "h-[60vh] relative overflow-hidden",
+        isCompanyIntroPage && "min-h-[40vh]"
+      )}>
          <motion.img 
             initial={{ scale: 1.1 }}
             whileInView={{ scale: 1 }}

@@ -3,8 +3,8 @@ import { Mail, Calendar } from 'lucide-react';
 
 export default function ReservationSection({ onOpenBooking }: { onOpenBooking: () => void }) {
   return (
-    <section id="reservation" className="bg-brand-charcoal py-24 md:py-32 px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section id="reservation" className="bg-brand-charcoal py-24 md:py-32 px-10">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 md:gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}

@@ -7,13 +7,13 @@ export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
   };
 
   return (
-    <footer className="bg-black text-white/40 py-12 px-6 border-t border-white/5 relative">
+    <footer className="bg-black text-white/40 py-16 px-10 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-serif tracking-[0.3em] font-light text-white mb-2">
-            SUNJIN
+        <div className="text-center mb-12">
+          <h2 className="text-xl md:text-2xl font-serif tracking-[0.3em] font-light text-white mb-2 uppercase">
+            Sunjin
           </h2>
-          <span className="text-[10px] tracking-[0.5em] font-sans opacity-60">
+          <span className="text-[8px] md:text-[10px] tracking-[0.5em] font-sans opacity-60 block">
             INVESTIGATION
           </span>
         </div>

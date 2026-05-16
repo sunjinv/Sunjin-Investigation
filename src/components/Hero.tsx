@@ -21,10 +21,10 @@ export default function Hero() {
            transition={{ duration: 1.5, ease: "easeOut" }}
            className="space-y-4"
         >
-          <h2 className="text-4xl md:text-7xl font-serif tracking-[0.4em] font-light leading-tight">
+          <h2 className="text-[10vw] md:text-7xl font-serif tracking-[0.2em] md:tracking-[0.4em] font-light leading-tight break-keep overflow-wrap-anywhere">
             SURPASS THE SURFACE.
           </h2>
-          <p className="text-sm md:text-lg font-sans tracking-[0.2em] font-light opacity-80 max-w-2xl mx-auto break-keep">
+          <p className="text-xs md:text-lg font-sans tracking-[0.1em] md:tracking-[0.2em] font-light opacity-80 max-w-2xl mx-auto break-keep px-4">
             드러난 현상 이면의 위기, 견고한 자산으로 전환합니다.
           </p>
         </motion.div>

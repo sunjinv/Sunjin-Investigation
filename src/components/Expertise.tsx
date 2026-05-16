@@ -48,8 +48,8 @@ const expertises = [
 export default function Expertise() {
   return (
     <section id="expertise" className="bg-brand-charcoal py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-12 gap-4">
+      <div className="max-w-7xl mx-auto px-0 md:px-6">
+        <div className="grid grid-cols-12 gap-0 md:gap-4">
           {expertises.map((item, idx) => (
             <Link
               key={idx}
