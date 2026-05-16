@@ -127,6 +127,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       {/* Hero Section */}
       <section className={cn(
         "relative flex items-center overflow-hidden px-6 md:px-20",
+        (isBrandStoryPage || isCompanyIntroPage) && "lg:px-[12vw]",
         (variant === 'service' || variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
       )}>
         <div className="absolute inset-0 z-0">
@@ -418,18 +419,18 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
 
       {variant === 'classic' && (
         <section className={cn(
-          "py-24 md:py-32 lg:py-52 bg-brand-charcoal text-white",
-          isBrandStoryPage ? "px-10 lg:px-20" : isCompanyIntroPage ? "px-[5vw] md:px-20" : "px-10 md:px-20"
+          "py-24 md:py-32 lg:py-64 bg-brand-charcoal text-white",
+          isBrandStoryPage ? "px-10 lg:px-20" : isCompanyIntroPage ? "px-[5vw] md:px-20 lg:px-[12vw]" : "px-10 md:px-20"
         )}>
           <div className={cn(
             "max-w-screen-xl mx-auto grid md:grid-cols-2 lg:grid-cols-12 gap-12 md:gap-10 lg:gap-24 items-start",
             isCompanyIntroPage && "w-full"
           )}>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 lg:col-span-5">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 lg:col-span-4">
               <h2 className={cn(
                 "text-2xl md:text-4xl lg:text-5xl font-serif leading-relaxed md:leading-snug text-white whitespace-pre-line break-keep",
                 isBrandStoryPage && "mb-8 md:mb-0",
-                isCompanyIntroPage && "mb-12 md:mb-0"
+                isCompanyIntroPage && "mb-12 md:mb-0 lg:mb-16"
               )}>
                  {content.sectionTitle || "시대적 요구와\n수사 패러다임의 진화."}
               </h2>
@@ -444,8 +445,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               viewport={{ once: true }} 
               transition={{ delay: 0.2 }} 
               className={cn(
-                "space-y-6 text-sm md:text-base lg:text-[18px] lg:col-span-7 lg:pl-12 opacity-80 font-light whitespace-pre-line text-white/80 break-keep",
-                isBrandStoryPage ? "leading-[1.8] lg:leading-[2]" : "leading-relaxed"
+                "space-y-6 text-sm md:text-base lg:text-[18px] lg:col-span-8 lg:pl-16 opacity-80 font-light whitespace-pre-line text-white/80 break-keep max-w-3xl",
+                (isBrandStoryPage || isCompanyIntroPage) ? "leading-[1.8] lg:leading-[2.2]" : "leading-relaxed"
               )}
             >
               {content.description.map((para, i) => <p key={i}>{para}</p>)}
@@ -679,11 +680,11 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       {/* Grid Features Section - Layout varies based on variant */}
       {content.gridItems && (
         <section className={cn(
-          "py-32 px-10 md:px-20",
+          "py-32 px-10 md:px-20 lg:py-64 lg:px-24",
           (variant === 'classic' || variant === 'modern' || variant === 'contact') ? "" : "bg-brand-charcoal",
           (variant === 'classic' || variant === 'modern') && "bg-white",
           variant === 'contact' && "px-[6vw] md:px-20 bg-brand-charcoal",
-          isBrandStoryPage ? "px-8 md:px-20" : isCompanyIntroPage ? "px-[6vw] md:px-20" : isCoreCompetencyPage ? "px-10 md:px-20" : ""
+          isBrandStoryPage ? "px-8 md:px-20" : isCompanyIntroPage ? "px-[6vw] md:px-20 lg:px-[12vw]" : isCoreCompetencyPage ? "px-10 md:px-20" : ""
         )}>
           <div className="max-w-screen-xl mx-auto">
             {variant === 'contact' ? (
@@ -898,7 +899,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               <div className={cn(
                 "grid gap-12",
                 variant === 'technical' ? "md:grid-cols-2" : "md:grid-cols-3",
-                isCompanyIntroPage && "gap-16 md:gap-12"
+                isCompanyIntroPage && "gap-16 md:gap-12 lg:gap-24"
               )}>
                 {content.gridItems.map((item, idx) => (
                   <motion.div
@@ -916,14 +917,14 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       )} />
                       <div className="space-y-6">
                         <h3 className={cn(
-                          "text-xl md:text-2xl font-serif tracking-tight leading-tight transition-all duration-700 break-keep",
+                          "text-xl md:text-2xl lg:text-3xl font-serif tracking-tight leading-tight transition-all duration-700 break-keep",
                           !isCompanyIntroPage && "border-l-4 border-brand-gold/0 group-hover:border-brand-gold/100 pl-0 group-hover:pl-6",
                           variant === 'modern' ? "text-brand-charcoal" : "text-white"
                         )}>
                           {item.title}
                         </h3>
                         <p className={cn(
-                          "text-xs md:text-sm leading-relaxed font-light whitespace-pre-line px-0 transition-colors duration-700 break-keep",
+                          "text-xs md:text-sm lg:text-[17px] leading-relaxed lg:leading-[1.8] font-light whitespace-pre-line px-0 transition-colors duration-700 break-keep",
                           variant === 'modern' 
                             ? "text-brand-charcoal/60 group-hover:text-brand-charcoal/90" 
                             : "text-white/60 group-hover:text-white/90"
