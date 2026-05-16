@@ -22,7 +22,7 @@ export default function Hero() {
            className="space-y-4"
         >
           <h2 className="text-4xl md:text-7xl font-serif tracking-[0.4em] font-light leading-tight">
-            BEYOND THE SURFACE.
+            SURPASS THE SURFACE.
           </h2>
           <p className="text-sm md:text-lg font-sans tracking-[0.2em] font-light opacity-80 max-w-2xl mx-auto break-keep">
             드러난 현상 이면의 위기, 견고한 자산으로 전환합니다.
