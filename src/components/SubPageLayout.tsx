@@ -127,7 +127,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       {/* Hero Section */}
       <section className={cn(
         "relative flex items-center overflow-hidden px-6 md:px-20",
-        (isBrandStoryPage || isCompanyIntroPage || isResponsibilityPage) && "lg:px-[12vw]",
+        (isBrandStoryPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) && "lg:px-[12vw]",
         (variant === 'service' || variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
       )}>
         <div className="absolute inset-0 z-0">
@@ -184,8 +184,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             <h1 className={cn(
               "font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre break-keep",
               isBrandStoryPage ? "text-[8vw] md:text-7xl lg:text-7xl scale-y-110" : "text-4xl md:text-7xl",
-              (isCompanyIntroPage || isResponsibilityPage) && "text-[7vw] md:text-5xl lg:text-7xl px-4 md:px-0 leading-[1.4] md:leading-tight",
-              isCoreCompetencyPage && "text-[8vw] md:text-6xl px-6 md:px-0"
+              (isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) && "text-[7vw] md:text-5xl lg:text-7xl px-4 md:px-0 leading-[1.4] md:leading-tight"
             )}>
               {content.title}
             </h1>
@@ -868,7 +867,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               )
             ) : (variant === 'modern' && content.subtitle === 'CORE COMPETENCY') ? (
               /* Specific layout for Core Competency: Title Left, Text Right */
-              <div className="space-y-20 md:space-y-24">
+              <div className="space-y-20 md:space-y-24 lg:space-y-32">
                 {content.gridItems.map((item, idx) => (
                    <motion.div
                      key={idx}
@@ -876,17 +875,17 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                      whileInView={{ opacity: 1, y: 0 }}
                      viewport={{ once: true }}
                      transition={{ delay: idx * 0.1, duration: 0.8 }}
-                     className="border-t border-black/5 pt-12 md:pt-16 group"
+                     className="border-t border-black/5 pt-12 md:pt-16 lg:pt-24 group"
                    >
                      <div className="grid md:grid-cols-12 gap-4 md:gap-16 items-start">
                        <div className="md:col-span-5 space-y-6">
-                          <h3 className="text-lg md:text-2xl font-serif tracking-tight text-brand-charcoal leading-[1.5] md:leading-tight break-keep overflow-wrap-anywhere">
+                          <h3 className="text-lg md:text-2xl lg:text-[24px] font-serif tracking-tight text-brand-charcoal leading-[1.5] md:leading-tight break-keep overflow-wrap-anywhere">
                             {item.title}
                           </h3>
                           <div className="h-[1px] w-8 bg-brand-gold/30 group-hover:w-16 transition-all duration-700" />
                        </div>
                        <div className="md:col-span-7">
-                          <p className="text-sm md:text-[15px] leading-[1.8] md:leading-[1.8] text-brand-charcoal/60 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 break-keep overflow-wrap-anywhere">
+                          <p className="text-sm md:text-[15px] lg:text-[18px] leading-[1.8] md:leading-[1.8] lg:leading-[1.8] text-brand-charcoal/60 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 break-keep overflow-wrap-anywhere">
                             {item.text}
                           </p>
                        </div>
