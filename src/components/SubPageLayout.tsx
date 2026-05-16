@@ -127,7 +127,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       {/* Hero Section */}
       <section className={cn(
         "relative flex items-center overflow-hidden px-6 md:px-20",
-        (isBrandStoryPage || isCompanyIntroPage) && "lg:px-[12vw]",
+        (isBrandStoryPage || isCompanyIntroPage || isResponsibilityPage) && "lg:px-[12vw]",
         (variant === 'service' || variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
       )}>
         <div className="absolute inset-0 z-0">
@@ -184,7 +184,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             <h1 className={cn(
               "font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre break-keep",
               isBrandStoryPage ? "text-[8vw] md:text-7xl lg:text-7xl scale-y-110" : "text-4xl md:text-7xl",
-              isCompanyIntroPage && "text-[7vw] md:text-5xl lg:text-7xl px-4 md:px-0 leading-[1.4] md:leading-tight",
+              (isCompanyIntroPage || isResponsibilityPage) && "text-[7vw] md:text-5xl lg:text-7xl px-4 md:px-0 leading-[1.4] md:leading-tight",
               isCoreCompetencyPage && "text-[8vw] md:text-6xl px-6 md:px-0"
             )}>
               {content.title}
@@ -769,7 +769,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   {/* Titles Navigation */}
                   <div className="relative group/tabs -mx-10 md:mx-0">
                     <div className={cn(
-                      "flex flex-nowrap md:flex-wrap items-center md:justify-center gap-x-10 md:gap-x-16 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-black/5 pb-10 px-10 md:px-0",
+                      "flex flex-nowrap md:flex-wrap items-center md:justify-center gap-x-10 md:gap-x-16 lg:gap-x-24 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-black/5 pb-10 px-10 md:px-0",
                       "mask-tabs-mobile md:[mask-image:none]"
                     )}>
                       {content.gridItems.map((item, idx) => (
@@ -777,7 +777,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                         key={idx}
                         onClick={() => setActiveTab(idx)}
                         className={cn(
-                          "relative pb-4 text-base md:text-xl font-serif text-brand-charcoal transition-all duration-500 hover:text-brand-gold outline-none cursor-pointer whitespace-nowrap flex-shrink-0",
+                          "relative pb-4 text-base md:text-xl lg:text-2xl lg:tracking-tight font-serif text-brand-charcoal transition-all duration-500 hover:text-brand-gold outline-none cursor-pointer whitespace-nowrap flex-shrink-0",
                           activeTab === idx ? "text-brand-gold" : "opacity-40"
                         )}
                       >
@@ -803,22 +803,22 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.5, ease: "easeOut" }}
-                          className="bg-white py-12 px-6 md:p-20 w-[92%] md:w-full mx-auto shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
+                          className="bg-white py-12 px-6 md:p-20 lg:py-32 lg:px-20 w-[92%] md:w-full mx-auto shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
                         >
-                          <div className="space-y-12 md:space-y-12">
+                          <div className="space-y-12 md:space-y-12 lg:space-y-24">
                             {/* Removed decoration as requested */}
                             
                             {content.gridItems[activeTab].text.includes('\n\n') ? (
-                              <div className="space-y-16 md:space-y-12">
+                              <div className="space-y-16 md:space-y-12 lg:space-y-24">
                                  <p className={cn(
-                                   "text-lg md:text-2xl font-serif italic text-brand-charcoal leading-[1.8] md:leading-relaxed break-keep overflow-wrap-anywhere",
+                                   "text-lg md:text-2xl lg:text-[24px] font-serif italic text-brand-charcoal leading-[1.8] md:leading-relaxed break-keep overflow-wrap-anywhere",
                                    isResponsibilityPage && "text-center"
                                  )}>
                                     {content.gridItems[activeTab].text.split('\n\n')[0]}
                                  </p>
-                                 <div className="space-y-12 md:space-y-8">
+                                 <div className="space-y-12 md:space-y-8 lg:space-y-20">
                                    {content.gridItems[activeTab].text.split('\n\n').slice(1).map((para, pIdx) => (
-                                     <p key={pIdx} className="text-xs md:text-base leading-8 md:leading-10 text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight border-l border-brand-gold/20 pl-6 break-keep overflow-wrap-anywhere">
+                                     <p key={pIdx} className="text-xs md:text-base lg:text-[18px] leading-8 md:leading-10 lg:leading-[1.8] text-brand-charcoal/70 font-light whitespace-pre-line tracking-tight border-l border-brand-gold/20 pl-6 break-keep overflow-wrap-anywhere">
                                        {renderBoldText(para)}
                                      </p>
                                    ))}
