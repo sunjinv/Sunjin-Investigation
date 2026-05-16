@@ -148,10 +148,11 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
           >
             <div className="space-y-6">
               <h1 className={cn(
-                "font-serif leading-tight text-white px-4 break-keep",
+                "font-serif leading-tight text-white px-[6vw] md:px-4 break-keep",
                 variant === 'contact' ? "tracking-[0.2em]" : "tracking-tight",
-                (variant === 'casestudy') ? "text-xl md:text-4xl md:whitespace-nowrap" :
+                (variant === 'casestudy') ? "text-2xl md:text-4xl md:whitespace-nowrap leading-[1.4] md:leading-tight" :
                 (variant === 'contact') ? "text-2xl md:text-5xl md:whitespace-nowrap font-medium" :
+                (variant === 'framework') ? "text-2xl md:text-5xl leading-[1.3] md:leading-tight" :
                 (content.sectionTitle && content.sectionTitle.length > 24) ? "text-xl md:text-4xl md:whitespace-nowrap" : 
                 (content.sectionTitle && content.sectionTitle.length > 18) ? "text-2xl md:text-5xl md:whitespace-nowrap" : "text-3xl md:text-6xl"
               )}>
@@ -162,7 +163,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 (variant === 'framework' || variant === 'casestudy' || variant === 'contact' || isNewDesignPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) ? "bg-white" : "bg-brand-gold"
               )} />
             </div>
-            <p className="text-base md:text-lg text-white/70 font-light leading-relaxed max-w-2xl mx-auto whitespace-pre-line px-4 break-keep">
+            <p className="text-base md:text-lg text-white/70 font-light leading-[1.65] max-w-2xl mx-auto whitespace-pre-line px-[6vw] md:px-4 break-keep">
               {content.description.join('\n')}
             </p>
           </motion.div>
@@ -201,13 +202,13 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
           {/* Approach Section */}
           {content.approach && (
             <section className={cn(
-              "py-32 px-6 md:px-20",
+              "py-20 md:py-32 px-6 md:px-20",
               isNewDesignPage ? "bg-white" : "bg-[#f9f9f9]"
             )}>
-              <div className="max-w-screen-xl mx-auto space-y-20">
-                <div className="text-center space-y-6">
+              <div className="max-w-screen-xl mx-auto space-y-12 md:space-y-20">
+                <div className="text-center space-y-6 px-[6vw] md:px-0">
                   <h2 className={cn(
-                    "text-4xl md:text-6xl tracking-tight text-brand-charcoal break-keep",
+                    "text-3xl md:text-6xl tracking-tight text-brand-charcoal break-keep",
                     isNewDesignPage ? "font-sans font-bold uppercase" : "font-serif"
                   )}>
                     {content.approach.title}
@@ -222,8 +223,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   {!isNewDesignPage && <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-[1px] bg-black/5" />}
                   
                   <div className={cn(
-                    "grid md:grid-cols-4 gap-12 relative z-10",
-                    isNewDesignPage && "md:gap-0"
+                    "flex flex-col md:grid md:grid-cols-4 gap-0 md:gap-12 relative z-10"
                   )}>
                     {content.approach.steps.map((step, idx) => (
                       <motion.div
@@ -233,8 +233,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.1 }}
                         className={cn(
-                          "space-y-8",
-                          isNewDesignPage ? "text-left p-8 pt-20 relative border-t md:border-t-0" : "text-center"
+                          "space-y-6 md:space-y-8 mb-0 md:mb-0",
+                          isNewDesignPage ? "text-left p-6 pt-10 relative border-t md:border-t-0" : "text-center py-8"
                         )}
                       >
                         {isNewDesignPage && idx > 0 && (
@@ -242,34 +242,34 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                         )}
                         {isNewDesignPage ? (
                           <>
-                            <div className="space-y-6 relative z-10">
+                            <div className="space-y-3 md:space-y-4 relative z-10">
                               <span className="text-brand-charcoal/30 text-[10px] tracking-[0.4em] font-bold uppercase block">
                                 STEP 0{idx + 1}
                               </span>
-                              <h3 className="text-2xl font-sans font-bold text-brand-charcoal tracking-tight group-hover:text-brand-gold transition-colors duration-500 break-keep">
+                              <h3 className="text-lg md:text-2xl font-sans font-bold text-brand-charcoal tracking-tight group-hover:text-brand-gold transition-colors duration-500 break-keep">
                                 {step.title}
                               </h3>
-                              <p className="text-sm leading-relaxed text-brand-charcoal/50 font-light break-keep">
+                              <p className="text-sm leading-[1.6] text-brand-charcoal/50 font-light break-keep">
                                 {step.text}
                               </p>
                             </div>
                           </>
                         ) : (
                           <>
-                            <div className="flex flex-col items-center space-y-6">
-                              <div className="w-32 h-32 rounded-full border border-black/5 bg-white flex items-center justify-center shadow-sm group-hover:border-brand-gold/30 transition-colors">
-                                <span className="text-brand-gold font-serif italic text-2xl">0{idx + 1}</span>
+                            <div className="flex flex-col items-center space-y-3 md:space-y-4">
+                              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border border-black/5 bg-white flex items-center justify-center shadow-sm group-hover:border-brand-gold/30 transition-colors">
+                                <span className="text-brand-gold font-serif italic text-xl md:text-2xl">0{idx + 1}</span>
                               </div>
-                              <div className="space-y-4">
+                              <div className="space-y-2">
                                 <span className="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block">
                                   STEP 0{idx + 1}
                                 </span>
-                                <h3 className="text-xl font-serif text-brand-charcoal break-keep">
+                                <h3 className="text-lg md:text-xl font-serif text-brand-charcoal break-keep">
                                   {step.title}
                                 </h3>
                               </div>
                             </div>
-                            <p className="text-sm leading-relaxed text-brand-charcoal/60 font-light px-4 break-keep">
+                            <p className="text-sm leading-[1.6] text-brand-charcoal/60 font-light px-4 break-keep">
                               {step.text}
                             </p>
                           </>
@@ -284,11 +284,11 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
 
           {/* Key Operations Section */}
           {content.operations && (
-            <section className="py-32 px-6 md:px-20 bg-brand-charcoal">
-              <div className="max-w-screen-xl mx-auto space-y-20">
-                <div className="text-center space-y-6">
+            <section className="py-20 md:py-32 px-0 md:px-20 bg-brand-charcoal">
+              <div className="max-w-screen-xl mx-auto space-y-16 md:space-y-20">
+                <div className="text-center space-y-6 px-[6vw] md:px-0">
                   <h2 className={cn(
-                    "text-4xl md:text-6xl tracking-tight",
+                    "text-3xl md:text-6xl tracking-tight px-6 md:px-0",
                     isNewDesignPage ? "font-sans font-bold uppercase text-white" : "font-serif text-brand-gold"
                   )}>
                     {content.operations.title}
@@ -299,16 +299,16 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   )} />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-[1px] md:gap-6">
                   {content.operations.cards.map((card, idx) => (
                     <motion.div
                       key={idx}
-                      initial={{ opacity: 0, y: 30 }}
+                      initial={{ opacity: 0, y: 0 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 }}
                       className={cn(
-                        "group relative h-[450px] overflow-hidden rounded-sm",
+                        "group relative aspect-[16/9] md:h-[450px] overflow-hidden md:rounded-sm",
                         isNewDesignPage ? "bg-[#1a1a1a]" : ""
                       )}
                     >
@@ -324,16 +324,16 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                       
-                      <div className="absolute inset-0 p-10 flex flex-col justify-end space-y-6">
-                        <div className="space-y-4">
+                      <div className="absolute inset-0 p-8 md:p-10 px-[6vw] md:px-10 flex flex-col justify-end space-y-4 md:space-y-6">
+                        <div className="space-y-2 md:space-y-4">
                           <h3 className={cn(
-                            "text-2xl md:text-3xl text-white tracking-tighter leading-tight break-keep",
+                            "text-xl md:text-3xl text-white tracking-tighter leading-tight break-keep",
                             isNewDesignPage ? "font-sans font-bold uppercase" : "font-serif"
                           )}>
                             {card.title}
                           </h3>
                         </div>
-                        <p className="text-sm text-white/50 font-light leading-relaxed max-w-md opacity-100 transition-opacity duration-700 break-keep">
+                        <p className="text-xs md:text-sm text-white/50 font-light leading-relaxed max-w-md opacity-100 transition-opacity duration-700 break-keep">
                           {card.text}
                         </p>
                         <div className={cn(
@@ -352,10 +352,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
 
       {variant === 'framework' && (
         <>
-          <section className="py-32 px-6 md:px-20 bg-brand-charcoal text-white overflow-hidden">
-            <div className="max-w-screen-xl mx-auto space-y-32">
+          <section className="py-24 md:py-32 px-[6vw] md:px-20 bg-brand-charcoal text-white overflow-hidden">
+            <div className="max-w-screen-xl mx-auto space-y-24 md:space-y-32">
               {content.frameworkSections?.map((section, sIdx) => (
-                <div key={sIdx} className="space-y-16 relative">
+                <div key={sIdx} className="space-y-10 md:space-y-16 relative">
                   {/* Section Label */}
                   <div className="flex items-center gap-10">
                     <div className="text-white/40 text-[10px] md:text-xs tracking-[0.6em] font-bold uppercase whitespace-nowrap">
@@ -364,20 +364,20 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                     <div className="h-[1px] w-full bg-white/10" />
                   </div>
 
-                  <div className="grid md:grid-cols-12 gap-12 items-start">
-                    <div className="md:col-span-4 space-y-6">
+                  <div className="grid md:grid-cols-12 gap-10 md:gap-12 items-start">
+                    <div className="md:col-span-4 space-y-6 mb-8 md:mb-0">
                       <motion.h2 
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="text-xl md:text-3xl font-serif tracking-tight leading-tight break-keep"
+                        className="text-2xl md:text-3xl font-serif tracking-tight leading-tight break-keep"
                       >
                         {section.title}
                       </motion.h2>
                       <div className="w-12 h-[2px] bg-white/20" />
                     </div>
 
-                    <div className="md:col-span-8 flex flex-col gap-10">
+                    <div className="md:col-span-8 flex flex-col gap-[50px] md:gap-10">
                       {section.items.map((item, iIdx) => (
                         <motion.div
                           key={iIdx}
@@ -385,21 +385,21 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: iIdx * 0.1 }}
-                          className="group relative bg-[#121212] p-8 md:p-12 rounded-sm transition-all duration-700 overflow-hidden"
+                          className="group relative bg-[#121212]/50 md:bg-[#121212] p-8 md:p-12 rounded-sm transition-all duration-700 overflow-hidden"
                         >
                           {/* Roman Numeral Background */}
                           <div className="absolute top-4 left-4 text-3xl md:text-4xl font-serif font-black text-white/[0.03] leading-none pointer-events-none group-hover:text-white/[0.08] transition-colors duration-700">
                             {['I', 'II', 'III', 'IV', 'V'][iIdx] || iIdx + 1}
                           </div>
 
-                          <div className="grid md:grid-cols-3 gap-8 relative z-10">
+                          <div className="grid md:grid-cols-3 gap-3 md:gap-8 relative z-10">
                             <div className="md:col-span-1">
                               <h3 className="text-lg md:text-xl font-sans font-bold text-white tracking-tight uppercase break-keep">
                                 {item.title}
                               </h3>
                             </div>
                             <div className="md:col-span-2">
-                              <p className="text-sm md:text-base text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700 break-keep">
+                              <p className="text-sm md:text-base text-white/40 font-light leading-[1.65] group-hover:text-white/80 transition-colors duration-700 break-keep">
                                 {item.text}
                               </p>
                             </div>
@@ -445,7 +445,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               transition={{ delay: 0.2 }} 
               className={cn(
                 "space-y-6 text-sm md:text-base opacity-80 font-light whitespace-pre-line text-white/80 break-keep",
-                (isBrandStoryPage || isCompanyIntroPage) ? "leading-[1.8]" : "leading-relaxed"
+                isBrandStoryPage ? "leading-[1.8]" : "leading-relaxed"
               )}
             >
               {content.description.map((para, i) => <p key={i}>{para}</p>)}
@@ -492,7 +492,12 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
               transition={{ delay: 0.3 }}
-              className="text-base md:text-lg font-light leading-relaxed opacity-60 whitespace-pre-line text-center max-w-3xl mx-auto break-keep"
+              className={cn(
+                "whitespace-pre-line text-center max-w-3xl mx-auto break-keep",
+                (isCompanyIntroPage || isCoreCompetencyPage) 
+                  ? "text-sm md:text-base opacity-80 font-light leading-relaxed text-white/80"
+                  : "text-base md:text-lg font-light leading-relaxed opacity-60"
+              )}
             >
               {content.description.slice(1).map((para, i) => (
                 <p key={i}>{para}</p>
@@ -528,14 +533,17 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
         <section className="py-32 px-6 md:px-20 bg-brand-charcoal text-white">
           <div className="max-w-4xl mx-auto space-y-16">
             {/* Category Filter */}
-            <div className="flex flex-wrap items-baseline gap-4 md:gap-8 border-b border-white/5 pb-12">
-              <div className="flex flex-wrap gap-4 md:gap-10">
+            <div className="relative -mx-6 md:mx-0">
+              <div className={cn(
+                "flex flex-nowrap md:flex-wrap items-center gap-x-8 md:gap-x-12 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-white/5 pb-10 px-6 md:px-0",
+                "mask-tabs-mobile md:[mask-image:none]"
+              )}>
                 {allCategories.map((cat, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleCategoryChange(cat)}
                     className={cn(
-                      "text-sm md:text-base font-sans transition-all duration-500 hover:text-white outline-none cursor-pointer",
+                      "text-sm md:text-base font-sans transition-all duration-500 hover:text-white outline-none cursor-pointer whitespace-nowrap flex-shrink-0",
                       selectedCategory === cat ? "text-white font-bold" : "text-white/30 font-light"
                     )}
                   >
@@ -546,7 +554,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             </div>
 
             {/* Accordion List */}
-            <div className="space-y-0">
+            <div className="space-y-0 px-[2vw] md:px-0">
               <AnimatePresence mode="popLayout">
                 {currentCases.map((cs, idx) => {
                   const actualIdx = (currentPage - 1) * itemsPerPage + idx;
@@ -564,21 +572,23 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                     >
                       <button
                         onClick={() => setExpandedId(isExpanded ? null : itemId)}
-                        className="w-full py-10 md:py-14 flex items-center gap-6 md:gap-12 text-left group outline-none cursor-pointer"
+                        className="w-full py-8 md:py-14 flex items-start justify-between gap-8 md:gap-12 text-left group outline-none cursor-pointer"
                       >
-                        <span className="text-sm md:text-base font-sans font-bold text-white/20 group-hover:text-white transition-colors">
-                          {String(actualIdx + 1).padStart(2, '0')}
-                        </span>
-                        <h3 className={cn(
-                          "flex-grow text-base md:text-xl font-sans tracking-tight leading-relaxed transition-all duration-500 break-keep",
-                          isExpanded ? "text-white font-bold" : "text-white/70 font-light group-hover:text-white"
-                        )}>
-                          {cs.subject}
-                        </h3>
+                        <div className="flex items-start gap-5 md:gap-12 flex-grow">
+                          <span className="text-xs md:text-base font-sans font-bold text-white/20 group-hover:text-white transition-colors pt-1.5 flex-shrink-0">
+                            {String(actualIdx + 1).padStart(2, '0')}
+                          </span>
+                          <h3 className={cn(
+                            "text-sm md:text-xl font-sans tracking-tight leading-relaxed transition-all duration-500 break-keep",
+                            isExpanded ? "text-white font-bold" : "text-white/70 font-light group-hover:text-white"
+                          )}>
+                            {cs.subject}
+                          </h3>
+                        </div>
                         <motion.div
                           animate={{ rotate: isExpanded ? 45 : 0 }}
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                          className="relative w-3 h-3 md:w-4 md:h-4 flex items-center justify-center overflow-visible"
+                          className="relative w-4 h-4 md:w-4 md:h-4 flex items-center justify-center overflow-visible mt-2 flex-shrink-0"
                         >
                           <div className="absolute w-full h-[1px] bg-white/30 group-hover:bg-white transition-colors" />
                           <div className="absolute h-full w-[1px] bg-white/30 group-hover:bg-white transition-colors" />
@@ -594,18 +604,18 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                             transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
                             className="overflow-hidden"
                           >
-                            <div className="pb-14 pl-12 md:pl-28 space-y-10">
+                            <div className="pb-12 pl-8 md:pl-28 space-y-10">
                               <div className="space-y-8 max-w-3xl">
-                                <div className="space-y-3">
-                                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] text-white/40 uppercase block">
+                                <div className="space-y-4">
+                                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] text-white/30 uppercase block">
                                     CASE
                                   </span>
-                                  <p className="text-sm md:text-base text-white/90 font-light leading-relaxed break-keep">
+                                  <p className="text-xs md:text-base text-white/80 font-light leading-relaxed break-keep">
                                     {cs.title}
                                   </p>
                                 </div>
-                                <div className="space-y-3">
-                                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] text-white/40 uppercase block">
+                                <div className="space-y-4">
+                                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] text-white/30 uppercase block">
                                     SOLUTION
                                   </span>
                                   <p className="text-sm md:text-[17px] text-white/90 font-light leading-relaxed break-keep">
@@ -670,7 +680,9 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       {content.gridItems && (
         <section className={cn(
           "py-32 px-10 md:px-20",
-          (variant === 'classic' || variant === 'modern') ? "bg-white" : "bg-brand-charcoal",
+          (variant === 'classic' || variant === 'modern' || variant === 'contact') ? "" : "bg-brand-charcoal",
+          (variant === 'classic' || variant === 'modern') && "bg-white",
+          variant === 'contact' && "px-[6vw] md:px-20 bg-brand-charcoal",
           isBrandStoryPage ? "px-8 md:px-20" : isCompanyIntroPage ? "px-[6vw] md:px-20" : isCoreCompetencyPage ? "px-10 md:px-20" : ""
         )}>
           <div className="max-w-screen-xl mx-auto">
@@ -678,14 +690,14 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               <div className="space-y-16 md:space-y-24">
                 {/* Information Section */}
                 <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start border-t border-white/5 pt-16 md:pt-24">
-                  <div className="md:col-span-5 space-y-2">
+                  <div className="md:col-span-5 space-y-6 md:space-y-2">
                     <h2 className="text-white/40 text-[10px] md:text-xs tracking-[0.6em] font-bold uppercase font-sans">INFORMATION</h2>
                     <h3 className="text-2xl md:text-4xl font-sans text-white tracking-tight break-keep">
                       선진 본사
                     </h3>
                   </div>
                   <div className="md:col-span-7 space-y-12 md:pt-[24px]">
-                    <div className="grid gap-12">
+                    <div className="grid gap-0">
                       {content.gridItems.map((item, idx) => (
                         <motion.div
                           key={idx}
@@ -693,7 +705,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 }}
-                          className="group border-b border-white/5 pb-10 last:border-0"
+                          className="group border-b border-white/5 py-8 md:py-0 md:pb-10 last:border-0"
                         >
                           <h4 className="text-white/40 text-sm md:text-base font-sans font-medium tracking-tight uppercase mb-2 transition-colors">
                             {item.title}
@@ -714,28 +726,28 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   viewport={{ once: true }}
                   className="grid md:grid-cols-12 gap-8 md:gap-16 items-start border-t border-white/5 pt-16 md:pt-24"
                 >
-                  <div className="md:col-span-5 space-y-2">
+                  <div className="md:col-span-5 space-y-6 md:space-y-2">
                     <h2 className="text-white/40 text-[10px] md:text-xs tracking-[0.6em] font-bold uppercase font-sans">RESERVATION</h2>
                     <h3 className="text-2xl md:text-4xl font-sans text-white tracking-tight leading-tight break-keep">
                       사건 의뢰 및 상담
                     </h3>
                   </div>
-                  <div className="md:col-span-7 space-y-20 md:pt-[24px]">
+                  <div className="md:col-span-7 space-y-12 md:space-y-20 md:pt-[24px]">
                     <p className="text-base md:text-lg text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700 whitespace-pre-line break-keep">
                       모든 상담은 철저한 보안 원칙 아래 진행됩니다.{"\n"}
                       아래 버튼을 통해 원하시는 일정을 선택해 주십시오.
                     </p>
-                    <div className="pt-4 flex flex-col items-start gap-4">
+                    <div className="pt-8 md:pt-4 flex flex-col items-start gap-4">
                       <button
                         onClick={onBooking}
-                        className="w-full md:w-72 flex items-center justify-center gap-3 bg-brand-gold hover:bg-brand-gold/90 text-black px-8 py-4 transition-all duration-300 font-medium tracking-widest text-xs"
+                        className="w-full md:w-72 flex items-center justify-center gap-3 bg-brand-gold hover:bg-brand-gold/90 text-black px-8 py-5 md:py-4 transition-all duration-300 font-medium tracking-widest text-xs"
                       >
                         <Calendar className="w-4 h-4" />
                         DATE & TIME RESERVATION
                       </button>
                       <a 
                         href="mailto:office@sunjinv.com"
-                        className="w-full md:w-72 flex items-center justify-center gap-3 border border-white/20 hover:border-white/40 px-8 py-4 transition-all duration-300 font-medium tracking-widest text-xs"
+                        className="w-full md:w-72 flex items-center justify-center gap-3 border border-white/20 hover:border-white/40 px-8 py-5 md:py-4 transition-all duration-300 font-medium tracking-widest text-xs"
                       >
                         <Mail className="w-4 h-4" />
                         DIRECT INQUIRY
@@ -754,8 +766,12 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 /* Horizontal Titles Navigation and Content Area */
                 <div className="space-y-4 md:space-y-6">
                   {/* Titles Navigation */}
-                  <div className="flex flex-nowrap md:flex-wrap items-center md:justify-center gap-x-10 md:gap-x-16 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-black/5 pb-10 px-6 md:px-0">
-                    {content.gridItems.map((item, idx) => (
+                  <div className="relative group/tabs -mx-10 md:mx-0">
+                    <div className={cn(
+                      "flex flex-nowrap md:flex-wrap items-center md:justify-center gap-x-10 md:gap-x-16 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-black/5 pb-10 px-10 md:px-0",
+                      "mask-tabs-mobile md:[mask-image:none]"
+                    )}>
+                      {content.gridItems.map((item, idx) => (
                       <button
                         key={idx}
                         onClick={() => setActiveTab(idx)}
@@ -774,6 +790,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                         )}
                       </button>
                     ))}
+                    </div>
                   </div>
 
                   {/* Content Area */}
@@ -785,7 +802,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.5, ease: "easeOut" }}
-                          className="bg-white p-10 md:p-20 mx-6 md:mx-auto shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
+                          className="bg-white py-12 px-6 md:p-20 w-[92%] md:w-full mx-auto shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
                         >
                           <div className="space-y-12 md:space-y-12">
                             {/* Removed decoration as requested */}
