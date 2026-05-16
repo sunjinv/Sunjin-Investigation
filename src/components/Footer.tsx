@@ -1,8 +1,15 @@
+import { ArrowUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="bg-black text-white/40 py-20 px-6 border-t border-white/5">
+    <footer className="bg-black text-white/40 py-12 px-6 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-2xl font-serif tracking-[0.3em] font-light text-white mb-2">
             SUNJIN
           </h2>
@@ -11,31 +18,61 @@ export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full text-center md:text-left text-[10px] tracking-[0.2em]">
-          <div className="space-y-2">
-            <h4 className="text-white/60 mb-4">ADDRESS</h4>
-            <p>123 Teheran-ro, Gangnam-gu, Seoul</p>
-            <p>South Korea 06000</p>
+        <div className="w-full relative flex items-center justify-center mb-10">
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-4">
+            {[
+              { name: 'COMPANY', href: '/company/story' },
+              { name: 'BUSINESS', href: '/business/divorce' },
+              { name: 'FRAMEWORK', href: '/framework/model' },
+              { name: 'PORTFOLIO', href: '/portfolio/performance' },
+              { name: 'CONTACT', href: '/contact' },
+            ].map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-white/40 text-[10px] tracking-[0.6em] font-bold uppercase whitespace-nowrap hover:text-brand-gold transition-colors"
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
-          <div className="space-y-2">
-            <h4 className="text-white/60 mb-4">CONTACT</h4>
-            <p>T +82 2 1234 5678</p>
-            <p>E ops.yu@sunjinv.com</p>
-          </div>
-          <div className="space-y-2">
-            <h4 className="text-white/60 mb-4">LEGAL</h4>
-            <p>Registration No. 000-00-00000</p>
-            <p>© 2024 SUNJIN INVESTIGATION. ALL RIGHTS RESERVED.</p>
-          </div>
+          
+          <button
+            onClick={scrollToTop}
+            className="hidden md:flex absolute right-0 group flex-col items-center justify-center transition-all duration-500"
+          >
+            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-gold text-white/40 group-hover:text-brand-gold transition-colors">
+              <ArrowUp size={16} strokeWidth={1} />
+            </div>
+          </button>
         </div>
 
-        <div className="mt-16 w-full flex justify-end">
-           <button 
-             onClick={onOpenAdmin}
-             className="text-[9px] opacity-20 hover:opacity-100 transition-opacity uppercase tracking-tighter"
-           >
-             Admin
-           </button>
+        <div className="w-full text-center text-[10px] tracking-[0.2em] space-y-4">
+          <p>COPYRIGHT © 2024 SUNJIN INVESTIGATION. ALL RIGHTS RESERVED.</p>
+        </div>
+
+        <div className="mt-8 w-full flex justify-between items-end">
+           <div className="flex gap-4">
+             {/* Left side placeholders if needed */}
+           </div>
+           
+           <div className="flex items-center gap-6">
+             <button 
+               onClick={onOpenAdmin}
+               className="text-[9px] opacity-20 hover:opacity-100 transition-opacity uppercase tracking-tighter"
+             >
+               Admin
+             </button>
+             
+             <button
+               onClick={scrollToTop}
+               className="md:hidden group flex flex-col items-center justify-center transition-all duration-500"
+             >
+               <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-gold text-white/40 group-hover:text-brand-gold transition-colors">
+                 <ArrowUp size={16} strokeWidth={1} />
+               </div>
+             </button>
+           </div>
         </div>
       </div>
     </footer>
