@@ -182,7 +182,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             </span>
             <h1 className={cn(
               "font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre break-keep",
-              isBrandStoryPage ? "text-[8vw] md:text-7xl scale-y-110" : "text-4xl md:text-7xl",
+              isBrandStoryPage ? "text-[8vw] md:text-7xl lg:text-8xl scale-y-110" : "text-4xl md:text-7xl",
               isCompanyIntroPage && "text-[7vw] md:text-5xl px-4 md:px-0 leading-[1.4] md:leading-tight",
               isCoreCompetencyPage && "text-[8vw] md:text-6xl px-6 md:px-0"
             )}>
@@ -418,23 +418,23 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
 
       {variant === 'classic' && (
         <section className={cn(
-          "py-24 md:py-32 bg-brand-charcoal text-white",
-          isBrandStoryPage ? "px-10" : isCompanyIntroPage ? "px-[5vw] md:px-20" : "px-10 md:px-20"
+          "py-24 md:py-32 lg:py-52 bg-brand-charcoal text-white",
+          isBrandStoryPage ? "px-10 lg:px-20" : isCompanyIntroPage ? "px-[5vw] md:px-20" : "px-10 md:px-20"
         )}>
           <div className={cn(
-            "max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 md:gap-10 items-start",
+            "max-w-screen-xl mx-auto grid md:grid-cols-2 lg:grid-cols-12 gap-12 md:gap-10 lg:gap-24 items-start",
             isCompanyIntroPage && "w-full"
           )}>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 lg:col-span-5">
               <h2 className={cn(
-                "text-2xl md:text-4xl font-serif leading-relaxed md:leading-snug text-white whitespace-pre-line break-keep",
+                "text-2xl md:text-4xl lg:text-5xl font-serif leading-relaxed md:leading-snug text-white whitespace-pre-line break-keep",
                 isBrandStoryPage && "mb-8 md:mb-0",
                 isCompanyIntroPage && "mb-12 md:mb-0"
               )}>
                  {content.sectionTitle || "시대적 요구와\n수사 패러다임의 진화."}
               </h2>
               <div className={cn(
-                "w-12 h-[2px]",
+                "w-12 lg:w-16 h-[2px]",
                 (isBrandStoryPage || isResponsibilityPage || isCompanyIntroPage) ? "bg-white" : "bg-brand-gold"
               )} />
             </motion.div>
@@ -444,8 +444,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               viewport={{ once: true }} 
               transition={{ delay: 0.2 }} 
               className={cn(
-                "space-y-6 text-sm md:text-base opacity-80 font-light whitespace-pre-line text-white/80 break-keep",
-                isBrandStoryPage ? "leading-[1.8]" : "leading-relaxed"
+                "space-y-6 text-sm md:text-base lg:text-[18px] lg:col-span-7 lg:pl-12 opacity-80 font-light whitespace-pre-line text-white/80 break-keep",
+                isBrandStoryPage ? "leading-[1.8] lg:leading-[2]" : "leading-relaxed"
               )}
             >
               {content.description.map((para, i) => <p key={i}>{para}</p>)}
@@ -835,7 +835,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 </div>
               ) : (
                 /* Brand Story specific detailed layout (Vertical Stack) */
-                <div className="space-y-32 md:space-y-24">
+                <div className="space-y-32 md:space-y-24 lg:space-y-64">
                   {content.gridItems.map((item, idx) => (
                     <motion.div
                       key={idx}
@@ -843,20 +843,20 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1, duration: 1 }}
-                      className="flex flex-col items-center space-y-16 md:space-y-12 group max-w-4xl mx-auto"
+                      className="flex flex-col items-center space-y-16 md:space-y-12 lg:space-y-20 group max-w-4xl lg:max-w-6xl mx-auto"
                     >
-                      <div className="space-y-8 w-full text-center">
+                      <div className="space-y-8 lg:space-y-12 w-full text-center">
                         <div className="flex items-center justify-center gap-6">
-                          <div className="h-[1px] w-12 bg-brand-gold/30 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-1000" />
+                          <div className="h-[1px] w-12 lg:w-20 bg-brand-gold/30 group-hover:w-20 lg:group-hover:w-32 group-hover:bg-brand-gold transition-all duration-1000" />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-brand-charcoal leading-tight break-keep overflow-wrap-anywhere">
+                        <h3 className="text-xl md:text-2xl lg:text-5xl font-serif tracking-tight text-brand-charcoal leading-tight break-keep overflow-wrap-anywhere">
                           {item.title}
                         </h3>
                       </div>
-                      <div className="w-full text-left">
+                      <div className="w-full text-left lg:max-w-3xl lg:mx-auto">
                         <p className={cn(
-                          "text-xs md:text-sm tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 break-keep",
-                          isBrandStoryPage ? "px-6 md:px-4 leading-9 md:leading-9" : "px-4 leading-8 md:leading-9"
+                          "text-xs md:text-sm lg:text-[18px] tracking-tight text-brand-charcoal/70 font-light whitespace-pre-line group-hover:text-brand-charcoal transition-colors duration-700 break-keep",
+                          isBrandStoryPage ? "px-6 md:px-4 leading-9 md:leading-9 lg:leading-[2.2]" : "px-4 leading-8 md:leading-9"
                         )}>
                           {item.text}
                         </p>
