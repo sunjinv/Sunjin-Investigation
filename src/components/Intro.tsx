@@ -13,7 +13,8 @@ export default function Intro() {
         >
           <div className="w-12 h-[1px] bg-brand-gold mx-auto" />
           <h2 className="text-2xl md:text-3xl font-serif leading-relaxed tracking-tight break-keep">
-            선진 민간수사 그룹은 철저한 보안과 독보적인 정보력을 바탕으로 움직입니다.<br className="hidden md:block" />
+            선진 민간수사 그룹은<br />
+            철저한 보안과 독보적인 정보력을 바탕으로 움직입니다.<br className="hidden md:block" />
             귀하의 평온한 일상과 기업의 핵심 가치를 보호하기 위해,<br className="hidden md:block" />
             사실에 입각한 가장 정확하고 합법적인 솔루션을 제공합니다.
           </h2>

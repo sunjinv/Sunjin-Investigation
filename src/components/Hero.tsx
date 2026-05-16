@@ -22,10 +22,10 @@ export default function Hero() {
            className="space-y-4"
         >
           <h2 className="text-4xl md:text-7xl font-serif tracking-[0.4em] font-light leading-tight">
-            UNCOVER THE UNSEEN.
+            BEYOND THE SURFACE.
           </h2>
           <p className="text-sm md:text-lg font-sans tracking-[0.2em] font-light opacity-80 max-w-2xl mx-auto break-keep">
-            보이지 않는 진실, 압도적인 전문성으로 증명합니다.
+            드러난 현상 이면의 위기, 견고한 자산으로 전환합니다.
           </p>
         </motion.div>
 
