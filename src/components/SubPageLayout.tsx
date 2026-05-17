@@ -403,7 +403,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       <div className="w-12 h-[2px] bg-white/20" />
                     </div>
 
-                    <div className="md:col-span-8 flex flex-col gap-[50px] md:gap-10 lg:gap-[60px]">
+                    <div className="md:col-span-8 flex flex-col gap-[50px] md:gap-10 lg:gap-[50px]">
                       {section.items.map((item, iIdx) => (
                         <motion.div
                           key={iIdx}
