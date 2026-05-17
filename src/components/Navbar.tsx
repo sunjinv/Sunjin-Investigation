@@ -70,7 +70,7 @@ function NavDropdown({ item, isScrolled }: { item: NavItem; isScrolled: boolean;
       <Link
         to={item.href}
         className={cn(
-          "text-[13px] tracking-[0.2em] font-medium transition-colors flex items-center gap-1.5 py-6",
+          "text-[15px] tracking-[0.2em] font-medium transition-colors flex items-center gap-1.5 py-6",
           location.pathname.startsWith(item.href.split('/')[1]) ? "text-brand-gold" : "hover:text-brand-gold"
         )}
       >
@@ -90,7 +90,7 @@ function NavDropdown({ item, isScrolled }: { item: NavItem; isScrolled: boolean;
               <Link
                 key={child.name}
                 to={child.href}
-                className="block px-8 py-3 text-[12px] tracking-widest text-white/60 hover:text-brand-gold hover:bg-white/5 transition-all outline-none focus:text-brand-gold"
+                className="block px-8 py-3 text-[14px] tracking-widest text-white/60 hover:text-brand-gold hover:bg-white/5 transition-all outline-none focus:text-brand-gold"
               >
                 {child.name}
               </Link>
@@ -223,7 +223,7 @@ export default function Navbar() {
                 <div key={link.name} className="border-b border-white/5 last:border-0 overflow-hidden">
                   <button
                     onClick={() => setMobileExpanded(mobileExpanded === link.name ? null : link.name)}
-                    className="w-full flex items-center justify-between py-6 text-sm tracking-[0.3em] font-light text-left"
+                    className="w-full flex items-center justify-between py-6 text-[15px] tracking-[0.3em] font-light text-left"
                   >
                     {link.name}
                     <ChevronDown className={cn("w-4 h-4 transition-transform", mobileExpanded === link.name && "rotate-180")} />
@@ -241,7 +241,7 @@ export default function Navbar() {
                             key={child.name}
                             to={child.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="block px-6 py-4 text-xs tracking-widest text-white/60 hover:text-brand-gold"
+                            className="block px-6 py-4 text-[14px] tracking-widest text-white/60 hover:text-brand-gold"
                           >
                             {child.name}
                           </Link>
