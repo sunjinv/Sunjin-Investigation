@@ -171,7 +171,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
               )} />
             </div>
             <p className={cn(
-              "text-base md:text-lg text-white/70 font-light leading-[1.65] max-w-2xl mx-auto whitespace-pre-line px-[6vw] md:px-4 break-keep",
+              "text-base md:text-lg text-white/70 font-light leading-[1.65] mx-auto whitespace-pre-line px-[6vw] md:px-4 break-keep",
+              (variant === 'service' || variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? "max-w-2xl lg:max-w-4xl xl:max-w-5xl" : "max-w-2xl",
               (isNewDesignPage || variant === 'framework' || variant === 'casestudy' || variant === 'contact') && "lg:text-[18px] lg:leading-[1.8]"
             )}>
               {content.description.join('\n')}

@@ -1,6 +1,4 @@
 import { ArrowUp } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
 export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -19,24 +17,6 @@ export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
         </div>
 
         <div className="w-full relative flex items-center justify-center mb-10">
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-4">
-            {[
-              { name: 'COMPANY', href: '/company/story' },
-              { name: 'BUSINESS', href: '/business/divorce' },
-              { name: 'FRAMEWORK', href: '/framework/model' },
-              { name: 'PORTFOLIO', href: '/portfolio/performance' },
-              { name: 'CONTACT', href: '/contact' },
-            ].map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="text-white/40 text-[10px] tracking-[0.6em] font-bold uppercase whitespace-nowrap hover:text-brand-gold transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          
           <button
             onClick={scrollToTop}
             className="hidden md:flex absolute right-0 group flex-col items-center justify-center transition-all duration-500"

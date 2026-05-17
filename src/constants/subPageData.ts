@@ -113,7 +113,8 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '법적 증명력을 갖춘 무결점 데이터를 채증하여, 의뢰인과 전담 법무법인의 가장 강력한 무기를 설계합니다.'
+      '법적 증명력을 갖춘 무결점 데이터를 채증하여,',
+      '의뢰인과 전담 법무법인의 가장 강력한 무기를 설계합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -170,7 +171,8 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1589216532372-1c2a367900d9?q=80&w=2071&auto=format&fit=crop',
     description: [
-      '변론 전략에 즉각 투입될 수 있는 가장 예리한 사실을 규명하여 의뢰인의 법률적 명분을 완성합니다.'
+      '변론 전략에 즉각 투입될 수 있는 가장 예리한 사실을 규명하여',
+      '의뢰인의 법률적 명분을 완성합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -227,7 +229,8 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '독점적인 기술 자산을 통해 정보의 무결성과 법적 증명력을 완벽하게 확보합니다.'
+      '독점적인 기술 자산을 통해',
+      '정보의 무결성과 법적 증명력을 완벽하게 확보합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -284,7 +287,8 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop',
     description: [
-      '방대한 데이터 분석과 현장 정보망을 융합하여, 대상의 소재와 실태를 가장 신속하고 정확하게 파악합니다.'
+      '방대한 데이터 분석과 현장 정보망을 융합하여,',
+      '대상의 소재와 실태를 가장 신속하고 정확하게 파악합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -341,7 +345,8 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '철저한 기밀 유지 속에서 치명적인 리스크를 진단하고, 완벽한 법적 대응망을 구축하여 기업의 영속성을 수호합니다.'
+      '철저한 기밀 유지 속에서 치명적인 리스크를 진단하고,',
+      '완벽한 법적 대응망을 구축하여 기업의 영속성을 수호합니다.'
     ],
     approach: {
       title: 'Approach',
@@ -400,7 +405,8 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
     variant: 'framework',
     image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
     description: [
-      '위기의 형태는 달라도 실체적 진실을 규명하는 프레임워크는 명확합니다. 직면한 상황에 가장 필요한 실전적 대응 전략을 설계합니다.'
+      '위기의 형태는 달라도 실체적 진실을 규명하는 프레임워크는 명확합니다.',
+      '직면한 상황에 가장 필요한 실전적 대응 전략을 설계합니다.'
     ],
     frameworkSections: [
       {
