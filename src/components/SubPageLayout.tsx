@@ -632,7 +632,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                             <div className="pb-12 pl-8 md:pl-28 lg:pl-32 space-y-10">
                               <div className="space-y-8 lg:space-y-12 max-w-4xl lg:max-w-6xl">
                                 <div className="space-y-4 lg:space-y-6">
-                                  <span className="text-[10px] md:text-xs lg:text-[16px] font-sans font-bold tracking-[0.5em] text-brand-gold uppercase block">
+                                  <span className="text-[10px] md:text-xs lg:text-[16px] font-sans font-bold tracking-[0.5em] text-white/40 uppercase block">
                                     CASE
                                   </span>
                                   <p className="text-xs md:text-base lg:text-[18px] text-white/80 font-light leading-relaxed lg:leading-[1.8] break-keep">
@@ -640,7 +640,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                                   </p>
                                 </div>
                                 <div className="space-y-4 lg:space-y-6">
-                                  <span className="text-[10px] md:text-xs lg:text-[16px] font-sans font-bold tracking-[0.5em] text-brand-gold uppercase block">
+                                  <span className="text-[10px] md:text-xs lg:text-[16px] font-sans font-bold tracking-[0.5em] text-white/40 uppercase block">
                                     SOLUTION
                                   </span>
                                   <p className="text-sm md:text-[17px] lg:text-[18px] text-white/90 font-light leading-relaxed lg:leading-[1.8] break-keep">
