@@ -84,7 +84,7 @@ export default function Expertise() {
                     </span>
                     <div className="h-[1px] w-full bg-white/10" />
                   </div>
-                  <h3 className="text-xl md:text-3xl lg:text-4xl font-serif tracking-widest text-white mb-3 break-keep transition-transform duration-700 group-hover:translate-x-2">
+                  <h3 className="text-xl md:text-3xl lg:text-4xl font-sans font-bold tracking-widest text-white mb-3 break-keep transition-transform duration-700 group-hover:translate-x-2">
                     {item.title}
                   </h3>
                   <p className="text-xs md:text-sm lg:text-base text-white/60 max-w-md opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 break-keep leading-relaxed">
