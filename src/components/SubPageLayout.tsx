@@ -147,14 +147,14 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             transition={{ duration: 1, ease: "easeOut" }}
             className={cn(
               "relative z-10 text-center space-y-10 mx-auto",
-              (isNewDesignPage || variant === 'framework') ? "max-w-screen-2xl" : "max-w-4xl"
+              (isNewDesignPage || variant === 'framework' || variant === 'casestudy') ? "max-w-screen-2xl" : "max-w-4xl"
             )}
           >
             <div className="space-y-6">
               <h1 className={cn(
                 "font-serif leading-tight text-white px-[6vw] md:px-4 break-keep mx-auto",
                 variant === 'contact' ? "tracking-[0.2em]" : "tracking-tight",
-                (variant === 'casestudy') ? "text-2xl md:text-4xl md:whitespace-nowrap leading-[1.4] md:leading-tight" :
+                (variant === 'casestudy') ? "text-2xl md:text-4xl lg:text-[64px] md:whitespace-nowrap lg:whitespace-nowrap leading-[1.4] md:leading-tight" :
                 (variant === 'contact') ? "text-2xl md:text-5xl md:whitespace-nowrap font-medium" :
                 (variant === 'framework') ? "text-2xl md:text-5xl lg:text-[64px] leading-[1.3] md:leading-tight lg:whitespace-nowrap" :
                 isNewDesignPage ? "text-3xl md:text-6xl lg:text-[64px] font-normal lg:whitespace-nowrap" :
@@ -170,7 +170,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             </div>
             <p className={cn(
               "text-base md:text-lg text-white/70 font-light leading-[1.65] max-w-2xl mx-auto whitespace-pre-line px-[6vw] md:px-4 break-keep",
-              (isNewDesignPage || variant === 'framework') && "lg:text-[18px] lg:leading-[1.8]"
+              (isNewDesignPage || variant === 'framework' || variant === 'casestudy') && "lg:text-[18px] lg:leading-[1.8]"
             )}>
               {content.description.join('\n')}
             </p>
@@ -556,11 +556,11 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
 
       {variant === 'casestudy' && (
         <section className="py-32 px-6 md:px-20 bg-brand-charcoal text-white">
-          <div className="max-w-4xl mx-auto space-y-16">
+          <div className="max-w-4xl lg:max-w-screen-xl mx-auto space-y-16">
             {/* Category Filter */}
             <div className="relative -mx-6 md:mx-0">
               <div className={cn(
-                "flex flex-nowrap md:flex-wrap items-center gap-x-8 md:gap-x-12 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-white/5 pb-10 px-6 md:px-0",
+                "flex flex-nowrap md:flex-wrap items-center gap-x-8 md:gap-x-12 lg:gap-x-16 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-white/5 pb-10 px-6 md:px-0 justify-center",
                 "mask-tabs-mobile md:[mask-image:none]"
               )}>
                 {allCategories.map((cat, idx) => (
@@ -568,7 +568,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                     key={idx}
                     onClick={() => handleCategoryChange(cat)}
                     className={cn(
-                      "text-sm md:text-base font-sans transition-all duration-500 hover:text-white outline-none cursor-pointer whitespace-nowrap flex-shrink-0",
+                      "text-sm md:text-base lg:text-[18px] font-sans transition-all duration-500 hover:text-white outline-none cursor-pointer whitespace-nowrap flex-shrink-0",
                       selectedCategory === cat ? "text-white font-bold" : "text-white/30 font-light"
                     )}
                   >
@@ -597,14 +597,14 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                     >
                       <button
                         onClick={() => setExpandedId(isExpanded ? null : itemId)}
-                        className="w-full py-8 md:py-14 flex items-start justify-between gap-8 md:gap-12 text-left group outline-none cursor-pointer"
+                        className="w-full py-8 md:py-14 lg:py-12 flex items-start justify-between gap-8 md:gap-12 text-left group outline-none cursor-pointer"
                       >
-                        <div className="flex items-start gap-5 md:gap-12 flex-grow">
-                          <span className="text-xs md:text-base font-sans font-bold text-white/20 group-hover:text-white transition-colors pt-1.5 flex-shrink-0">
+                        <div className="flex items-start gap-5 md:gap-12 lg:gap-16 flex-grow">
+                          <span className="text-xs md:text-base lg:text-[18px] font-sans font-bold text-white/20 group-hover:text-white transition-colors pt-1.5 flex-shrink-0">
                             {String(actualIdx + 1).padStart(2, '0')}
                           </span>
                           <h3 className={cn(
-                            "text-sm md:text-xl font-sans tracking-tight leading-relaxed transition-all duration-500 break-keep",
+                            "text-sm md:text-xl lg:text-[24px] font-sans tracking-tight leading-relaxed transition-all duration-500 break-keep underline-offset-8",
                             isExpanded ? "text-white font-bold" : "text-white/70 font-light group-hover:text-white"
                           )}>
                             {cs.subject}
@@ -613,10 +613,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                         <motion.div
                           animate={{ rotate: isExpanded ? 45 : 0 }}
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                          className="relative w-4 h-4 md:w-4 md:h-4 flex items-center justify-center overflow-visible mt-2 flex-shrink-0"
+                          className="relative w-4 h-4 md:w-5 md:h-5 flex items-center justify-center mt-2 flex-shrink-0 lg:mt-3"
                         >
-                          <div className="absolute w-full h-[1px] bg-white/30 group-hover:bg-white transition-colors" />
-                          <div className="absolute h-full w-[1px] bg-white/30 group-hover:bg-white transition-colors" />
+                          <div className="absolute w-full h-[1.5px] bg-white/30 group-hover:bg-white transition-colors" />
+                          <div className="absolute h-full w-[1.5px] bg-white/30 group-hover:bg-white transition-colors" />
                         </motion.div>
                       </button>
 
@@ -629,21 +629,21 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                             transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
                             className="overflow-hidden"
                           >
-                            <div className="pb-12 pl-8 md:pl-28 space-y-10">
-                              <div className="space-y-8 max-w-3xl">
-                                <div className="space-y-4">
-                                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] text-white/30 uppercase block">
+                            <div className="pb-12 pl-8 md:pl-28 lg:pl-32 space-y-10">
+                              <div className="space-y-8 lg:space-y-12 max-w-4xl lg:max-w-6xl">
+                                <div className="space-y-4 lg:space-y-6">
+                                  <span className="text-[10px] md:text-xs lg:text-[16px] font-sans font-bold tracking-[0.5em] text-brand-gold uppercase block">
                                     CASE
                                   </span>
-                                  <p className="text-xs md:text-base text-white/80 font-light leading-relaxed break-keep">
+                                  <p className="text-xs md:text-base lg:text-[18px] text-white/80 font-light leading-relaxed lg:leading-[1.8] break-keep">
                                     {cs.title}
                                   </p>
                                 </div>
-                                <div className="space-y-4">
-                                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] text-white/30 uppercase block">
+                                <div className="space-y-4 lg:space-y-6">
+                                  <span className="text-[10px] md:text-xs lg:text-[16px] font-sans font-bold tracking-[0.5em] text-brand-gold uppercase block">
                                     SOLUTION
                                   </span>
-                                  <p className="text-sm md:text-[17px] text-white/90 font-light leading-relaxed break-keep">
+                                  <p className="text-sm md:text-[17px] lg:text-[18px] text-white/90 font-light leading-relaxed lg:leading-[1.8] break-keep">
                                     {cs.solution}
                                   </p>
                                 </div>
