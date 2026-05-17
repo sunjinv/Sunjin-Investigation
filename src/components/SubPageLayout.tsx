@@ -712,16 +712,16 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
         )}>
           <div className="max-w-screen-xl mx-auto">
             {variant === 'contact' ? (
-              <div className="w-full max-w-[800px] mx-auto space-y-16 md:space-y-24 lg:space-y-[120px]">
+              <div className="w-full max-w-[800px] lg:max-w-none lg:w-fit mx-auto space-y-16 md:space-y-24 lg:space-y-[120px]">
                 {/* Information Section */}
-                <div className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-[150px] items-start border-t border-white/5 pt-16 md:pt-24">
-                  <div className="md:col-span-5 lg:col-span-4 space-y-6 md:space-y-2">
+                <div className="grid md:grid-cols-12 lg:grid-cols-[260px_420px] gap-8 md:gap-12 lg:gap-[350px] items-start border-t border-white/5 pt-16 md:pt-24">
+                  <div className="md:col-span-5 lg:col-span-1 space-y-6 md:space-y-2">
                     <h2 className="text-white/40 text-[10px] md:text-xs lg:text-[14px] tracking-[0.6em] font-bold uppercase font-sans">INFORMATION</h2>
-                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans text-white tracking-tight break-keep">
+                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans text-white tracking-tight break-keep whitespace-nowrap">
                       선진 본사
                     </h3>
                   </div>
-                  <div className="md:col-span-7 lg:col-span-8 space-y-12 md:pt-[24px]">
+                  <div className="md:col-span-7 lg:col-span-1 space-y-12 md:pt-[24px]">
                     <div className="grid gap-0">
                       {content.gridItems.map((item, idx) => (
                         <motion.div
@@ -730,7 +730,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 }}
-                          className="group border-b border-white/5 py-8 md:py-0 md:pb-10 last:border-0"
+                          className="group relative py-8 md:py-0 md:pb-10"
                         >
                           <h4 className="text-white/40 text-sm md:text-base lg:text-[16px] font-sans font-medium tracking-tight uppercase mb-2 transition-colors">
                             {item.title}
@@ -738,6 +738,9 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           <p className="text-base md:text-lg lg:text-[18px] lg:leading-[1.8] text-white font-light leading-relaxed whitespace-pre-line transition-colors duration-700 break-keep">
                             {item.text}
                           </p>
+                          {idx !== content.gridItems.length - 1 && (
+                            <div className="absolute bottom-0 left-0 w-[120px] md:w-[200px] lg:w-[280px] h-[1px] bg-white/10" />
+                          )}
                         </motion.div>
                       ))}
                     </div>
@@ -749,15 +752,15 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-[150px] items-start border-t border-white/5 pt-16 md:pt-24"
+                  className="grid md:grid-cols-12 lg:grid-cols-[260px_420px] gap-8 md:gap-12 lg:gap-[350px] items-start border-t border-white/5 pt-16 md:pt-24"
                 >
-                  <div className="md:col-span-5 lg:col-span-4 space-y-6 md:space-y-2">
+                  <div className="md:col-span-5 lg:col-span-1 space-y-6 md:space-y-2">
                     <h2 className="text-white/40 text-[10px] md:text-xs lg:text-[14px] tracking-[0.6em] font-bold uppercase font-sans">RESERVATION</h2>
-                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans text-white tracking-tight break-keep">
+                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans text-white tracking-tight break-keep whitespace-nowrap">
                       사건 의뢰 및 상담
                     </h3>
                   </div>
-                  <div className="md:col-span-7 lg:col-span-8 space-y-12 md:space-y-20 md:pt-[24px] lg:space-y-16">
+                  <div className="md:col-span-7 lg:col-span-1 space-y-12 md:space-y-20 md:pt-[24px] lg:space-y-16">
                     <p className="text-base md:text-lg lg:text-[18px] lg:leading-[1.8] text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700 whitespace-pre-line break-keep">
                       모든 상담은 철저한 보안 원칙 아래 진행됩니다.{"\n"}
                       아래 버튼을 통해 원하시는 일정을 선택해 주십시오.
