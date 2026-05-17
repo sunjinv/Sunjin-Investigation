@@ -145,15 +145,19 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative z-10 max-w-4xl text-center space-y-10"
+            className={cn(
+              "relative z-10 text-center space-y-10 mx-auto",
+              isNewDesignPage ? "max-w-screen-2xl" : "max-w-4xl"
+            )}
           >
             <div className="space-y-6">
               <h1 className={cn(
-                "font-serif leading-tight text-white px-[6vw] md:px-4 break-keep",
+                "font-serif leading-tight text-white px-[6vw] md:px-4 break-keep mx-auto",
                 variant === 'contact' ? "tracking-[0.2em]" : "tracking-tight",
                 (variant === 'casestudy') ? "text-2xl md:text-4xl md:whitespace-nowrap leading-[1.4] md:leading-tight" :
                 (variant === 'contact') ? "text-2xl md:text-5xl md:whitespace-nowrap font-medium" :
                 (variant === 'framework') ? "text-2xl md:text-5xl leading-[1.3] md:leading-tight" :
+                isNewDesignPage ? "text-3xl md:text-6xl lg:text-[64px] font-normal lg:whitespace-nowrap w-full" :
                 (content.sectionTitle && content.sectionTitle.length > 24) ? "text-xl md:text-4xl md:whitespace-nowrap" : 
                 (content.sectionTitle && content.sectionTitle.length > 18) ? "text-2xl md:text-5xl md:whitespace-nowrap" : "text-3xl md:text-6xl"
               )}>
@@ -164,7 +168,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 (variant === 'framework' || variant === 'casestudy' || variant === 'contact' || isNewDesignPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) ? "bg-white" : "bg-brand-gold"
               )} />
             </div>
-            <p className="text-base md:text-lg text-white/70 font-light leading-[1.65] max-w-2xl mx-auto whitespace-pre-line px-[6vw] md:px-4 break-keep">
+            <p className={cn(
+              "text-base md:text-lg text-white/70 font-light leading-[1.65] max-w-2xl mx-auto whitespace-pre-line px-[6vw] md:px-4 break-keep",
+              isNewDesignPage && "lg:text-[18px] lg:leading-[1.8]"
+            )}>
               {content.description.join('\n')}
             </p>
           </motion.div>
@@ -203,7 +210,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
           {content.approach && (
             <section className={cn(
               "py-20 md:py-32 px-6 md:px-20",
-              isNewDesignPage ? "bg-white" : "bg-[#f9f9f9]"
+              isNewDesignPage ? "bg-white lg:py-[150px]" : "bg-[#f9f9f9]"
             )}>
               <div className="max-w-screen-xl mx-auto space-y-12 md:space-y-20">
                 <div className="text-center space-y-6 px-[6vw] md:px-0">
@@ -223,7 +230,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   {!isNewDesignPage && <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-[1px] bg-black/5" />}
                   
                   <div className={cn(
-                    "flex flex-col md:grid md:grid-cols-4 gap-0 md:gap-12 relative z-10"
+                    "flex flex-col md:grid md:grid-cols-4 gap-0 md:gap-12 relative z-10",
+                    isNewDesignPage && "lg:gap-16"
                   )}>
                     {content.approach.steps.map((step, idx) => (
                       <motion.div
@@ -246,10 +254,16 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                               <span className="text-brand-charcoal/30 text-[10px] tracking-[0.4em] font-bold uppercase block">
                                 STEP 0{idx + 1}
                               </span>
-                              <h3 className="text-lg md:text-2xl font-sans font-bold text-brand-charcoal tracking-tight group-hover:text-brand-gold transition-colors duration-500 break-keep">
+                              <h3 className={cn(
+                                "text-lg md:text-2xl font-sans font-bold text-brand-charcoal tracking-tight group-hover:text-brand-gold transition-colors duration-500 break-keep",
+                                isNewDesignPage && "lg:text-[24px]"
+                              )}>
                                 {step.title}
                               </h3>
-                              <p className="text-sm leading-[1.6] text-brand-charcoal/50 font-light break-keep">
+                              <p className={cn(
+                                "text-sm leading-[1.6] text-brand-charcoal/50 font-light break-keep",
+                                isNewDesignPage && "lg:text-[18px] lg:leading-[1.6]"
+                              )}>
                                 {step.text}
                               </p>
                             </div>
@@ -284,7 +298,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
 
           {/* Key Operations Section */}
           {content.operations && (
-            <section className="py-20 md:py-32 px-0 md:px-20 bg-brand-charcoal">
+            <section className={cn(
+              "py-20 md:py-32 px-0 md:px-20 bg-brand-charcoal",
+              isNewDesignPage && "lg:py-[150px]"
+            )}>
               <div className="max-w-screen-xl mx-auto space-y-16 md:space-y-20">
                 <div className="text-center space-y-6 px-[6vw] md:px-0">
                   <h2 className={cn(
@@ -299,7 +316,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   )} />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-[1px] md:gap-6">
+                <div className={cn(
+                  "grid md:grid-cols-2 gap-[1px] md:gap-6 w-full",
+                  isNewDesignPage && "lg:grid-cols-2 lg:gap-8"
+                )}>
                   {content.operations.cards.map((card, idx) => (
                     <motion.div
                       key={idx}
@@ -308,8 +328,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 }}
                       className={cn(
-                        "group relative aspect-[16/9] md:h-[450px] overflow-hidden md:rounded-sm",
-                        isNewDesignPage ? "bg-[#1a1a1a]" : ""
+                        "group relative w-full overflow-hidden md:rounded-sm",
+                        isNewDesignPage ? "bg-[#1a1a1a] aspect-video" : "aspect-[16/9] md:h-[450px]"
                       )}
                     >
                       <img
@@ -324,16 +344,22 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                       
-                      <div className="absolute inset-0 p-8 md:p-10 px-[6vw] md:px-10 flex flex-col justify-end space-y-4 md:space-y-6">
+                      <div className={cn(
+                        "absolute inset-0 p-8 md:p-10 px-[6vw] md:px-10 flex flex-col justify-end space-y-4 md:space-y-6",
+                        isNewDesignPage && "lg:p-12 lg:space-y-8"
+                      )}>
                         <div className="space-y-2 md:space-y-4">
                           <h3 className={cn(
                             "text-xl md:text-3xl text-white tracking-tighter leading-tight break-keep",
-                            isNewDesignPage ? "font-sans font-bold uppercase" : "font-serif"
+                            isNewDesignPage ? "font-sans font-bold uppercase lg:text-[24px]" : "font-serif"
                           )}>
                             {card.title}
                           </h3>
                         </div>
-                        <p className="text-xs md:text-sm text-white/50 font-light leading-relaxed max-w-md opacity-100 transition-opacity duration-700 break-keep">
+                        <p className={cn(
+                          "text-xs md:text-sm text-white/50 font-light leading-relaxed max-w-md opacity-100 transition-opacity duration-700 break-keep",
+                          isNewDesignPage && "lg:text-[18px] lg:leading-[1.6]"
+                        )}>
                           {card.text}
                         </p>
                         <div className={cn(
