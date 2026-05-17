@@ -11,6 +11,9 @@ import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import AdminDashboard from './components/AdminDashboard';
 import SubPageLayout from './components/SubPageLayout';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import Sitemap from './pages/Sitemap';
 import { SUBPAGE_DATA } from './constants/subPageData';
 import { signInWithGoogle } from './lib/firebase';
 
@@ -79,6 +82,9 @@ function AppContent() {
           <Route path="/framework/*" element={<DynamicSubPage />} />
           <Route path="/portfolio/*" element={<DynamicSubPage onBooking={handleBookingClick} />} />
           <Route path="/contact" element={<DynamicSubPage onBooking={handleBookingClick} />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/sitemap" element={<Sitemap />} />
         </Routes>
       </main>
 

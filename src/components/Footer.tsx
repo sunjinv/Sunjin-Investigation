@@ -1,4 +1,6 @@
 import { ArrowUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -7,7 +9,7 @@ export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
   return (
     <footer className="bg-black text-white/40 py-16 px-10 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h2 className="text-xl md:text-2xl font-serif tracking-[0.3em] font-light text-white mb-2 uppercase">
             Sunjin
           </h2>
@@ -25,17 +27,36 @@ export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
               <ArrowUp size={16} strokeWidth={1} />
             </div>
           </button>
+
+          <div className="flex gap-4">
+            <Link 
+              to="/terms" 
+              className="text-[12px] tracking-widest text-white/60 hover:text-brand-gold transition-all outline-none focus:text-brand-gold"
+            >
+              이용약관
+            </Link>
+            <span className="text-white/20">|</span>
+            <Link 
+              to="/privacy" 
+              className="text-[12px] tracking-widest text-white/60 hover:text-brand-gold transition-all outline-none focus:text-brand-gold"
+            >
+              개인정보처리방침
+            </Link>
+            <span className="text-white/20">|</span>
+            <Link 
+              to="/sitemap" 
+              className="text-[12px] tracking-widest text-white/60 hover:text-brand-gold transition-all outline-none focus:text-brand-gold"
+            >
+              사이트맵
+            </Link>
+          </div>
         </div>
 
         <div className="w-full text-center text-[10px] tracking-[0.2em] space-y-4">
           <p>COPYRIGHT © 2024 SUNJIN INVESTIGATION. ALL RIGHTS RESERVED.</p>
         </div>
 
-        <div className="mt-8 w-full flex justify-between items-end">
-           <div className="flex gap-4">
-             {/* Left side placeholders if needed */}
-           </div>
-           
+        <div className="mt-8 w-full flex justify-end items-end">
            <div className="flex items-center gap-6">
              <button 
                onClick={onOpenAdmin}
