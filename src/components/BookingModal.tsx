@@ -378,6 +378,24 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
           color: rgba(255, 255, 255, 0.8);
           font-family: inherit;
         }
+        
+        /* 🚨 모바일 오버플로우 완벽 방어선 (가로 스크롤 제거) */
+        @media (max-width: 640px) {
+          .booking-calendar {
+            --rdp-cell-size: 36px; /* 모바일에서는 48px -> 36px로 확 줄임 */
+          }
+          .booking-calendar .rdp-day {
+            font-size: 14px !important;
+          }
+          .booking-calendar .rdp-head_cell {
+            font-size: 11px !important;
+            padding-bottom: 8px !important;
+          }
+          .booking-calendar .rdp-caption_label {
+            font-size: 16px !important;
+          }
+        }
+
         .booking-calendar .rdp-day {
           font-size: 16px;
           font-weight: 300;
@@ -423,8 +441,8 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
           display: none;
         }
         .scrollbar-none {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
