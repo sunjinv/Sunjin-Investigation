@@ -793,7 +793,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   {/* Titles Navigation */}
                   <div className={cn("relative group/tabs md:mx-0", isResponsibilityPage ? "mx-0" : "-mx-10")}>
                     <div className={cn(
-                      "flex flex-nowrap md:flex-wrap items-center md:justify-center gap-x-10 md:gap-x-16 lg:gap-x-24 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-black/5 pb-10 md:px-0",
+                      isResponsibilityPage ? "grid grid-cols-2 gap-x-4 gap-y-6 md:flex md:flex-wrap md:justify-center md:gap-x-16 md:overflow-x-visible" : "flex flex-nowrap md:flex-wrap items-center md:justify-center gap-x-10 md:gap-x-16 lg:gap-x-24 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden",
+                      "border-b border-black/5 pb-10 md:px-0",
                       isResponsibilityPage ? "px-4" : "px-10",
                       "mask-tabs-mobile md:[mask-image:none]"
                     )}>
