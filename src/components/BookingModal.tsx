@@ -102,8 +102,16 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
   }, [selectedDate]);
 
   const handleSubmit = async () => {
-    if (!category || !selectedDate || !selectedTime || !name || !contact || !privacyAgreed) {
-      alert("모든 필수 항목을 입력하고 개인정보 동의에 체크해주세요.");
+    const missingFields = [];
+    if (!category) missingFields.push("- BUSINESS CATEGORY (분야)");
+    if (!selectedDate) missingFields.push("- SCHEDULE (날짜)");
+    if (!selectedTime) missingFields.push("- TIME (시간)");
+    if (!name) missingFields.push("- 성함");
+    if (!contact) missingFields.push("- 연락처");
+    if (!privacyAgreed) missingFields.push("- 개인정보 수집 및 이용 동의");
+
+    if (missingFields.length > 0) {
+      alert(`다음 필수 항목을 확인해 주십시오:\n\n${missingFields.join('\n')}`);
       return;
     }
     
@@ -347,7 +355,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                     </label>
 
                     <button
-                      disabled={isSubmitting || !category || !selectedDate || !selectedTime || !name || !contact || !privacyAgreed}
+                      disabled={isSubmitting}
                       onClick={handleSubmit}
                       className="w-full bg-brand-gold text-black py-6 font-bold tracking-[0.2em] text-[18px] md:text-[20px] hover:bg-[#e6c175] transition-all disabled:opacity-30 disabled:cursor-not-allowed uppercase"
                     >
