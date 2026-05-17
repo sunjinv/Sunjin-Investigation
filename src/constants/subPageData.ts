@@ -3,7 +3,7 @@ import { SectionContent } from '../components/SubPageLayout';
 export const SUBPAGE_DATA: Record<string, SectionContent> = {
   // --- COMPANY ---
   '/company/story': {
-    title: '선진(先進) : \n민간수사의 새로운 글로벌 스탠다드',
+    title: '선진(先進) :\n민간수사의 새로운 글로벌 스탠다드',
     subtitle: 'BRAND STORY',
     variant: 'classic',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',

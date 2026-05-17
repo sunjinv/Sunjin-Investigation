@@ -183,8 +183,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             </span>
             <h1 className={cn(
               "font-serif tracking-tight leading-tight whitespace-pre-line md:whitespace-pre break-keep",
-              isBrandStoryPage ? "text-[8vw] md:text-7xl lg:text-7xl scale-y-110" : "text-4xl md:text-7xl",
-              (isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) && "text-[7vw] md:text-5xl lg:text-7xl px-4 md:px-0 leading-[1.4] md:leading-tight"
+              "text-4xl md:text-7xl",
+              (isBrandStoryPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) && "text-[7vw] md:text-5xl lg:text-7xl px-4 md:px-0 leading-[1.4] md:leading-tight"
             )}>
               {content.title}
             </h1>
@@ -418,7 +418,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
 
       {variant === 'classic' && (
         <section className={cn(
-          "py-24 md:py-32 lg:py-64 bg-brand-charcoal text-white",
+          "py-24 md:py-32 lg:py-32 bg-brand-charcoal text-white",
           isBrandStoryPage ? "px-10 lg:px-20" : isCompanyIntroPage ? "px-[5vw] md:px-20 lg:px-[12vw]" : "px-10 md:px-20"
         )}>
           <div className={cn(
@@ -428,7 +428,6 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 lg:col-span-4">
               <h2 className={cn(
                 "text-2xl md:text-4xl lg:text-[24px] font-serif leading-relaxed md:leading-snug text-white whitespace-pre-line break-keep",
-                isBrandStoryPage && "mb-8 md:mb-0",
                 isCompanyIntroPage && "mb-12 md:mb-0 lg:mb-16"
               )}>
                  {content.sectionTitle || "시대적 요구와\n수사 패러다임의 진화."}
