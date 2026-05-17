@@ -147,17 +147,17 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             transition={{ duration: 1, ease: "easeOut" }}
             className={cn(
               "relative z-10 text-center space-y-10 mx-auto",
-              (isNewDesignPage || variant === 'framework' || variant === 'casestudy') ? "max-w-screen-2xl" : "max-w-4xl"
+              (isNewDesignPage || variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? "max-w-screen-2xl" : "max-w-4xl"
             )}
           >
             <div className="space-y-6">
               <h1 className={cn(
                 "font-serif leading-tight text-white px-[6vw] md:px-4 break-keep mx-auto",
                 variant === 'contact' ? "tracking-[0.2em]" : "tracking-tight",
-                (variant === 'casestudy') ? "text-2xl md:text-4xl lg:text-[64px] md:whitespace-nowrap lg:whitespace-nowrap leading-[1.4] md:leading-tight" :
-                (variant === 'contact') ? "text-2xl md:text-5xl md:whitespace-nowrap font-medium" :
-                (variant === 'framework') ? "text-2xl md:text-5xl lg:text-[64px] leading-[1.3] md:leading-tight lg:whitespace-nowrap" :
-                isNewDesignPage ? "text-3xl md:text-6xl lg:text-[64px] font-normal lg:whitespace-nowrap" :
+                (variant === 'casestudy') ? "text-2xl md:text-4xl lg:text-[64px] md:whitespace-nowrap lg:whitespace-nowrap w-full leading-[1.4] md:leading-tight" :
+                (variant === 'contact') ? "text-2xl md:text-5xl lg:text-[64px] md:whitespace-nowrap lg:whitespace-nowrap w-full font-medium" :
+                (variant === 'framework') ? "text-2xl md:text-5xl lg:text-[64px] leading-[1.3] md:leading-tight lg:whitespace-nowrap w-full" :
+                isNewDesignPage ? "text-3xl md:text-6xl lg:text-[64px] font-normal lg:whitespace-nowrap w-full" :
                 (content.sectionTitle && content.sectionTitle.length > 24) ? "text-xl md:text-4xl md:whitespace-nowrap" : 
                 (content.sectionTitle && content.sectionTitle.length > 18) ? "text-2xl md:text-5xl md:whitespace-nowrap" : "text-3xl md:text-6xl"
               )}>
@@ -170,7 +170,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             </div>
             <p className={cn(
               "text-base md:text-lg text-white/70 font-light leading-[1.65] max-w-2xl mx-auto whitespace-pre-line px-[6vw] md:px-4 break-keep",
-              (isNewDesignPage || variant === 'framework' || variant === 'casestudy') && "lg:text-[18px] lg:leading-[1.8]"
+              (isNewDesignPage || variant === 'framework' || variant === 'casestudy' || variant === 'contact') && "lg:text-[18px] lg:leading-[1.8]"
             )}>
               {content.description.join('\n')}
             </p>
@@ -712,16 +712,16 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
         )}>
           <div className="max-w-screen-xl mx-auto">
             {variant === 'contact' ? (
-              <div className="space-y-16 md:space-y-24">
+              <div className="w-full max-w-[800px] mx-auto space-y-16 md:space-y-24 lg:space-y-[120px]">
                 {/* Information Section */}
-                <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start border-t border-white/5 pt-16 md:pt-24">
-                  <div className="md:col-span-5 space-y-6 md:space-y-2">
-                    <h2 className="text-white/40 text-[10px] md:text-xs tracking-[0.6em] font-bold uppercase font-sans">INFORMATION</h2>
-                    <h3 className="text-2xl md:text-4xl font-sans text-white tracking-tight break-keep">
+                <div className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-[150px] items-start border-t border-white/5 pt-16 md:pt-24">
+                  <div className="md:col-span-5 lg:col-span-4 space-y-6 md:space-y-2">
+                    <h2 className="text-white/40 text-[10px] md:text-xs lg:text-[14px] tracking-[0.6em] font-bold uppercase font-sans">INFORMATION</h2>
+                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans text-white tracking-tight break-keep">
                       선진 본사
                     </h3>
                   </div>
-                  <div className="md:col-span-7 space-y-12 md:pt-[24px]">
+                  <div className="md:col-span-7 lg:col-span-8 space-y-12 md:pt-[24px]">
                     <div className="grid gap-0">
                       {content.gridItems.map((item, idx) => (
                         <motion.div
@@ -732,10 +732,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           transition={{ delay: idx * 0.1 }}
                           className="group border-b border-white/5 py-8 md:py-0 md:pb-10 last:border-0"
                         >
-                          <h4 className="text-white/40 text-sm md:text-base font-sans font-medium tracking-tight uppercase mb-2 transition-colors">
+                          <h4 className="text-white/40 text-sm md:text-base lg:text-[16px] font-sans font-medium tracking-tight uppercase mb-2 transition-colors">
                             {item.title}
                           </h4>
-                          <p className="text-base md:text-lg text-white font-light leading-relaxed whitespace-pre-line transition-colors duration-700 break-keep">
+                          <p className="text-base md:text-lg lg:text-[18px] lg:leading-[1.8] text-white font-light leading-relaxed whitespace-pre-line transition-colors duration-700 break-keep">
                             {item.text}
                           </p>
                         </motion.div>
@@ -749,32 +749,32 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="grid md:grid-cols-12 gap-8 md:gap-16 items-start border-t border-white/5 pt-16 md:pt-24"
+                  className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-[150px] items-start border-t border-white/5 pt-16 md:pt-24"
                 >
-                  <div className="md:col-span-5 space-y-6 md:space-y-2">
-                    <h2 className="text-white/40 text-[10px] md:text-xs tracking-[0.6em] font-bold uppercase font-sans">RESERVATION</h2>
-                    <h3 className="text-2xl md:text-4xl font-sans text-white tracking-tight leading-tight break-keep">
+                  <div className="md:col-span-5 lg:col-span-4 space-y-6 md:space-y-2">
+                    <h2 className="text-white/40 text-[10px] md:text-xs lg:text-[14px] tracking-[0.6em] font-bold uppercase font-sans">RESERVATION</h2>
+                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans text-white tracking-tight break-keep">
                       사건 의뢰 및 상담
                     </h3>
                   </div>
-                  <div className="md:col-span-7 space-y-12 md:space-y-20 md:pt-[24px]">
-                    <p className="text-base md:text-lg text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700 whitespace-pre-line break-keep">
+                  <div className="md:col-span-7 lg:col-span-8 space-y-12 md:space-y-20 md:pt-[24px] lg:space-y-16">
+                    <p className="text-base md:text-lg lg:text-[18px] lg:leading-[1.8] text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700 whitespace-pre-line break-keep">
                       모든 상담은 철저한 보안 원칙 아래 진행됩니다.{"\n"}
                       아래 버튼을 통해 원하시는 일정을 선택해 주십시오.
                     </p>
-                    <div className="pt-8 md:pt-4 flex flex-col items-start gap-4">
+                    <div className="pt-8 md:pt-4 flex flex-col items-start gap-4 lg:gap-6">
                       <button
                         onClick={onBooking}
-                        className="w-full md:w-72 flex items-center justify-center gap-3 bg-brand-gold hover:bg-brand-gold/90 text-black px-8 py-5 md:py-4 transition-all duration-300 font-medium tracking-widest text-xs"
+                        className="w-full md:w-72 lg:w-96 flex items-center justify-center gap-3 bg-brand-gold hover:bg-brand-gold/90 text-black px-8 py-5 md:py-4 lg:py-6 transition-all duration-300 font-medium tracking-widest text-xs lg:text-[15px]"
                       >
-                        <Calendar className="w-4 h-4" />
+                        <Calendar className="w-4 h-4 lg:w-5 lg:h-5" />
                         DATE & TIME RESERVATION
                       </button>
                       <a 
                         href="mailto:office@sunjinv.com"
-                        className="w-full md:w-72 flex items-center justify-center gap-3 border border-white/20 hover:border-white/40 px-8 py-5 md:py-4 transition-all duration-300 font-medium tracking-widest text-xs"
+                        className="w-full md:w-72 lg:w-96 flex items-center justify-center gap-3 border border-white/20 hover:border-white/40 px-8 py-5 md:py-4 lg:py-6 transition-all duration-300 font-medium tracking-widest text-xs lg:text-[15px]"
                       >
-                        <Mail className="w-4 h-4" />
+                        <Mail className="w-4 h-4 lg:w-5 lg:h-5" />
                         DIRECT INQUIRY
                       </a>
                       <div className="mt-6 flex items-center gap-4 text-[10px] tracking-widest font-bold text-white/20 uppercase">
