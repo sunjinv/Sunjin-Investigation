@@ -9,7 +9,9 @@ export enum ReservationStatus {
 }
 
 export interface ReservationData {
-  userId: string;
+  userId?: string;
+  name: string;
+  contact: string;
   category: string;
   date: string; // YYYY-MM-DD
   timeSlot: string;

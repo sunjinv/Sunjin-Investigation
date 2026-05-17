@@ -114,7 +114,7 @@ export default function AdminDashboard({ isOpen, onClose }: { isOpen: boolean; o
                       
                       <div className="space-y-1">
                          <p className="text-lg font-serif">Scheduled for {r.date} @ {r.timeSlot}</p>
-                         <p className="text-[10px] text-white/40 tracking-widest">USER_ID: {r.userId}</p>
+                         <p className="text-[10px] text-white/40 tracking-widest mt-1">성함: {r.name} | 연락처: {r.contact}{r.userId && ` | USER_ID: ${r.userId}`}</p>
                       </div>
 
                       {r.notes && (

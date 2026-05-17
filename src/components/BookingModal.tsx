@@ -1,31 +1,93 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ChevronRight, ChevronLeft, CheckCircle2 } from 'lucide-react';
+import { X, CheckCircle2 } from 'lucide-react';
 import { DayPicker } from 'react-day-picker';
-import { format, addDays, isBefore, startOfToday } from 'date-fns';
+import { format, addDays } from 'date-fns';
 import { useAuth } from '../context/AuthContext';
 import { createReservation, getReservationsByDate, ReservationStatus } from '../lib/reservations';
 import { cn } from '../lib/utils';
 import "react-day-picker/dist/style.css";
 
 const CATEGORIES = [
-  { id: 'CORPORATE', name: 'CORPORATE INVESTIGATION', label: '기업 수사' },
-  { id: 'DIGITAL_FORENSICS', name: 'DIGITAL FORENSICS', label: '디지털 포렌식' },
-  { id: 'PRIVATE', name: 'PRIVATE INVESTIGATOR', label: '개인·가정 조사' },
-  { id: 'VIP', name: 'VIP RISK MANAGEMENT', label: 'VIP 위기 관리' },
+  '이혼·가사 조사',
+  '소송·증거 조사',
+  'TSCM 및 포렌식',
+  '실종·소재 파악',
+  '기업 리스크·보안'
 ];
 
 const TIME_SLOTS = [
   '10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'
 ];
 
+const AccordionSection = ({ 
+  title, 
+  isOpen, 
+  summary, 
+  onToggle, 
+  children 
+}: { 
+  title: string; 
+  isOpen: boolean; 
+  summary?: string; 
+  onToggle: () => void; 
+  children: React.ReactNode; 
+}) => {
+  return (
+    <div className="border-b border-white/5 last:border-0 relative">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center py-6 md:py-8 text-left focus:outline-none group"
+      >
+        <div className="flex items-center gap-4 md:gap-6 flex-wrap">
+          <span className={cn(
+            "text-[16px] md:text-[18px] font-medium tracking-[0.1em] transition-colors duration-300",
+            isOpen ? "text-white" : "text-white/40 group-hover:text-white/60"
+          )}>
+            {title}
+          </span>
+          {summary && !isOpen && (
+            <div className="flex items-center gap-4 md:gap-6">
+              <span className="text-white/20 hidden md:inline">|</span>
+              <span className="text-brand-gold text-[14px] md:text-[16px] tracking-widest font-light">
+                {summary}
+              </span>
+            </div>
+          )}
+        </div>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-8 md:pb-12 pt-2">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { user } = useAuth();
+  
   const [step, setStep] = useState(1);
   const [category, setCategory] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState('');
+  const [name, setName] = useState('');
+  const [contact, setContact] = useState('');
+  const [contactMethod, setContactMethod] = useState('');
   const [notes, setNotes] = useState('');
+  const [privacyAgreed, setPrivacyAgreed] = useState(false);
+  
   const [occupiedSlots, setOccupiedSlots] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -40,11 +102,17 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
   }, [selectedDate]);
 
   const handleSubmit = async () => {
-    if (!user || !category || !selectedDate || !selectedTime) return;
+    if (!category || !selectedDate || !selectedTime || !name || !contact || !privacyAgreed) {
+      alert("모든 필수 항목을 입력하고 개인정보 동의에 체크해주세요.");
+      return;
+    }
+    
     setIsSubmitting(true);
     try {
       await createReservation({
-        userId: user.uid,
+        userId: user?.uid, // Optional for non-members
+        name,
+        contact: contactMethod ? `${contact} [${contactMethod}]` : contact,
         category,
         date: format(selectedDate, 'yyyy-MM-dd'),
         timeSlot: selectedTime,
@@ -54,6 +122,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
       setIsSuccess(true);
     } catch (e) {
       console.error(e);
+      alert("예약 처리 중 오류가 발생했습니다.");
     } finally {
       setIsSubmitting(false);
     }
@@ -68,166 +137,286 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="absolute inset-0 bg-black/90 backdrop-blur-sm"
-        onClick={onClose}
+        onClick={() => !isSubmitting && !isSuccess && onClose()}
       />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-2xl bg-brand-charcoal border border-white/10 rounded-none overflow-hidden"
+        className="relative w-full max-w-4xl bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-none flex flex-col h-[90vh] md:h-[85vh] shadow-2xl shadow-black/80"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/5">
-          <span className="text-[10px] tracking-[0.5em] font-medium opacity-50 uppercase">
-            Step {isSuccess ? 'Completed' : `${step} / 4`}
+        <div className="flex items-center justify-between p-8 border-b border-white/5 shrink-0">
+          <span className="text-[18px] tracking-[0.2em] font-serif text-white/80">
+            {isSuccess ? 'RESERVATION SUCCESSFUL' : 'PRIVATE SECURE LINE'}
           </span>
-          <button onClick={onClose} className="hover:text-brand-gold transition-colors">
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="text-white/40 hover:text-brand-gold transition-colors">
+            <X className="w-8 h-8" />
           </button>
         </div>
 
-        <div className="p-8 md:p-12 h-[600px] overflow-y-auto custom-scrollbar">
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto px-6 py-10 md:p-12 scrollbar-none">
           {isSuccess ? (
-            <div className="h-full flex flex-col items-center justify-center text-center space-y-6">
-              <CheckCircle2 className="w-16 h-16 text-brand-gold" />
-              <h2 className="text-3xl font-serif">RESERVATION SUCCESSFUL</h2>
-              <p className="text-white/60">
-                예약이 완료되었습니다. 담당 전문가가 확인 후 개별 연락드리겠습니다.<br />
-                철저한 기밀 유지를 약속합니다.
+            <div className="h-full flex flex-col items-center justify-center text-center space-y-8 py-10">
+              <CheckCircle2 className="w-20 h-20 text-brand-gold" />
+              <h2 className="text-[32px] font-serif tracking-tight">예약이 안전하게 접수되었습니다.</h2>
+              <p className="text-[18px] text-white/50 leading-[1.8] max-w-lg break-keep">
+                담당 최고위 컨설턴트가 내용을 검토한 후, 지정하신 연락처로 신속히 연락드리겠습니다.<br className="hidden md:block"/>
+                선진의 모든 상담은 철저한 기밀 보안 원칙 아래 오프더레코드로 진행됩니다.
               </p>
               <button 
                 onClick={onClose}
-                className="mt-8 bg-white text-black px-12 py-3 tracking-widest text-xs font-bold"
+                className="mt-8 bg-brand-gold text-black hover:bg-brand-gold/90 transition-all px-16 py-5 tracking-[0.2em] text-[16px] font-bold"
               >
                 CLOSE
               </button>
             </div>
           ) : (
-            <>
-              {step === 1 && (
-                <div className="space-y-8">
-                  <h3 className="text-2xl font-serif">Select Consultation Category</h3>
-                  <div className="grid gap-4">
-                    {CATEGORIES.map((cat) => (
-                      <button
-                        key={cat.id}
-                        onClick={() => { setCategory(cat.id); setStep(2); }}
-                        className={cn(
-                          "flex items-center justify-between p-6 border transition-all duration-300 group hover:border-brand-gold",
-                          category === cat.id ? "border-brand-gold bg-brand-gold/5" : "border-white/10"
-                        )}
-                      >
-                        <div className="text-left">
-                          <span className="block text-[10px] text-brand-gold tracking-widest mb-1">{cat.label}</span>
-                          <span className="block text-sm tracking-widest font-medium">{cat.name}</span>
-                        </div>
-                        <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0" />
-                      </button>
-                    ))}
+            <div className="w-full">
+              
+              <AccordionSection
+                title="1. BUSINESS CATEGORY"
+                isOpen={step === 1}
+                summary={category}
+                onToggle={() => setStep(step === 1 ? 0 : 1)}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {CATEGORIES.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => {
+                        setCategory(cat);
+                        setTimeout(() => setStep(2), 300);
+                      }}
+                      className={cn(
+                        "p-6 border transition-all duration-500 text-left text-[16px] tracking-wide",
+                        category === cat 
+                          ? "border-brand-gold bg-brand-gold/5 text-white font-medium shadow-[0_0_15px_rgba(197,160,89,0.15)]" 
+                          : "border-white/5 hover:border-white/20 text-white/40 font-light"
+                      )}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </AccordionSection>
+
+              <AccordionSection
+                title="2. SCHEDULE & TIME"
+                isOpen={step === 2}
+                summary={selectedDate && selectedTime ? `${format(selectedDate, 'yyyy.MM.dd')} ${selectedTime}` : undefined}
+                onToggle={() => setStep(step === 2 ? 0 : 2)}
+              >
+                <div className="grid lg:grid-cols-2 gap-12 md:gap-16">
+                  <div className="space-y-6">
+                    <div className="bg-transparent flex justify-start">
+                      <DayPicker
+                        mode="single"
+                        selected={selectedDate}
+                        onSelect={setSelectedDate}
+                        disabled={{ before: addDays(new Date(), 1) }}
+                        className="booking-calendar m-0 p-0"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    {selectedDate ? (
+                      <div className="grid grid-cols-2 gap-4 h-max">
+                        {TIME_SLOTS.map((time) => {
+                          const isOccupied = occupiedSlots.includes(time);
+                          return (
+                            <button
+                              key={time}
+                              disabled={isOccupied}
+                              onClick={() => {
+                                setSelectedTime(time);
+                                setTimeout(() => setStep(3), 300);
+                              }}
+                              className={cn(
+                                "py-4 border transition-all duration-300 text-[16px] tracking-widest font-light",
+                                selectedTime === time 
+                                  ? "bg-brand-gold text-black border-brand-gold font-medium" 
+                                  : "border-white/5 text-white/60 hover:border-brand-gold/50",
+                                isOccupied && "opacity-20 cursor-not-allowed line-through hover:border-white/5 hover:text-white/60"
+                              )}
+                            >
+                              {time}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="h-full min-h-[280px] flex items-center justify-center border border-white/5 bg-white/5 text-[16px] text-white/30 tracking-widest font-light">
+                        날짜를 선택해 주십시오.
+                      </div>
+                    )}
                   </div>
                 </div>
-              )}
+              </AccordionSection>
 
-              {step === 2 && (
-                <div className="space-y-8 flex flex-col items-center">
-                  <h3 className="text-2xl font-serif">Select Preferred Date</h3>
-                  <div className="bg-white/5 p-4 rounded-none border border-white/10">
-                    <DayPicker
-                       mode="single"
-                       selected={selectedDate}
-                       onSelect={(date) => { setSelectedDate(date); if(date) setStep(3); }}
-                       disabled={{ before: addDays(new Date(), 1) }}
-                       className="booking-calendar"
-                    />
+              <AccordionSection
+                title="3. CLIENT INFORMATION"
+                isOpen={step === 3}
+                summary={name && contact ? `${name} | ${contactMethod ? `${contact} [${contactMethod}]` : contact}` : undefined}
+                onToggle={() => setStep(step === 3 ? 0 : 3)}
+              >
+                <div className="space-y-12">
+                  <div className="grid md:grid-cols-2 gap-12">
+                    <div className="space-y-2">
+                      <label className="text-[16px] text-white/40 font-light px-1">성함</label>
+                      <input
+                        type="text"
+                        placeholder="입력란"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white placeholder-white/20"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[16px] text-white/40 font-light px-1">연락처</label>
+                      <input
+                        type="text"
+                        placeholder="010-0000-0000"
+                        value={contact}
+                        onChange={(e) => setContact(e.target.value)}
+                        className="w-full bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white placeholder-white/20"
+                      />
+                    </div>
                   </div>
-                  <button onClick={() => setStep(1)} className="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 mt-4 underline underline-offset-4">Back to categories</button>
-                </div>
-              )}
 
-              {step === 3 && (
-                <div className="space-y-8 text-center">
-                  <h3 className="text-2xl font-serif">Choose Time Slot</h3>
-                  <p className="text-xs text-white/50">{selectedDate ? format(selectedDate, 'PPP') : ''}</p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6">
-                    {TIME_SLOTS.map((time) => {
-                      const isOccupied = occupiedSlots.includes(time);
-                      return (
+                  <div className="space-y-4">
+                    <label className="text-[16px] text-white/40 font-light px-1">연락 가능 수단</label>
+                    <div className="flex gap-4">
+                      {['전화', '이메일'].map(method => (
                         <button
-                          key={time}
-                          disabled={isOccupied}
-                          onClick={() => { setSelectedTime(time); setStep(4); }}
+                          key={method}
+                          onClick={() => {
+                            setContactMethod(method);
+                            if (name && contact) {
+                              setTimeout(() => setStep(4), 300);
+                            }
+                          }}
                           className={cn(
-                            "py-4 border transition-all text-xs tracking-widest",
-                            selectedTime === time ? "bg-brand-gold text-black border-brand-gold font-bold" : "border-white/10 hover:border-brand-gold",
-                            isOccupied && "opacity-20 cursor-not-allowed line-through"
+                            "px-6 py-2 border transition-colors text-[16px]",
+                            contactMethod === method 
+                              ? "border-brand-gold text-brand-gold bg-brand-gold/5" 
+                              : "border-white/10 text-white/40 hover:border-white/30"
                           )}
                         >
-                          {time}
+                          {method}
                         </button>
-                      );
-                    })}
-                  </div>
-                  <button onClick={() => setStep(2)} className="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 mt-8 underline underline-offset-4">Modify date</button>
-                </div>
-              )}
-
-              {step === 4 && (
-                <div className="space-y-8">
-                  <h3 className="text-2xl font-serif text-center">Consultation Notes</h3>
-                  <div className="space-y-6">
-                    <div className="p-6 border border-white/10 bg-white/5 text-xs text-white/60 space-y-2">
-                       <p><span className="text-brand-gold">CATEGORY:</span> {CATEGORIES.find(c => c.id === category)?.name}</p>
-                       <p><span className="text-brand-gold">SCHEDULE:</span> {selectedDate && format(selectedDate, 'PPP')} @ {selectedTime}</p>
+                      ))}
                     </div>
-                    
+                  </div>
+                </div>
+              </AccordionSection>
+
+              <AccordionSection
+                title="4. ADDITIONAL NOTES & SUBMIT"
+                isOpen={step === 4}
+                onToggle={() => setStep(step === 4 ? 0 : 4)}
+              >
+                <div className="space-y-12">
+                  <div className="space-y-4">
                     <textarea
-                      placeholder="상담을 원하시는 상세 내용을 입력해 주세요. (보안이 필요한 사항은 생략하셔도 무방합니다)"
+                      placeholder="대략적인 상황이나 증상을 간략히 남겨주시면,&#13;&#10;담당자가 확인 후 더욱 심도있는 상담을 준비합니다.&#13;&#10;기밀이 요구되는 사항은 기재하지 않으셔도 무방합니다."
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      className="w-full h-40 bg-transparent border border-white/10 p-4 focus:border-brand-gold outline-none transition-colors text-sm leading-relaxed"
+                      className="w-full h-40 bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white leading-[1.8] placeholder-white/20 resize-none font-light"
                     />
+                  </div>
+
+                  <div className="space-y-10 pt-8">
+                    <label className="flex items-start gap-4 cursor-pointer group">
+                      <div className="relative flex items-center justify-center mt-1 shrink-0">
+                        <input 
+                          type="checkbox" 
+                          className="peer appearance-none w-6 h-6 border border-white/20 checked:bg-brand-gold checked:border-brand-gold transition-colors cursor-pointer"
+                          checked={privacyAgreed}
+                          onChange={(e) => setPrivacyAgreed(e.target.checked)}
+                        />
+                        <CheckCircle2 className="w-4 h-4 text-black absolute opacity-0 peer-checked:opacity-100 pointer-events-none" />
+                      </div>
+                      <div className="text-[16px] text-white/40 leading-[1.6] font-light group-hover:text-white/60 transition-colors cursor-pointer">
+                        개인정보 수집 및 이용에 동의합니다.<br/>
+                        <span className="text-[14px] text-white/30 opacity-70 mt-1 block">수집 목적: 상담 내역 확인 및 회신 / 수집 항목: 성함, 연락처 / 보유 기간: 목적 달성 후 파기</span>
+                      </div>
+                    </label>
 
                     <button
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !category || !selectedDate || !selectedTime || !name || !contact || !privacyAgreed}
                       onClick={handleSubmit}
-                      className="w-full bg-brand-gold text-black py-4 font-bold tracking-[0.3em] text-xs hover:bg-brand-gold/90 transition-colors"
+                      className="w-full bg-brand-gold text-black py-6 font-bold tracking-[0.2em] text-[18px] md:text-[20px] hover:bg-[#e6c175] transition-all disabled:opacity-30 disabled:cursor-not-allowed uppercase"
                     >
-                      {isSubmitting ? 'PROCESSING...' : 'CONFIRM RESERVATION'}
+                      {isSubmitting ? 'PROCESSING...' : '상담 신청'}
                     </button>
-                    
-                    <button onClick={() => setStep(3)} className="w-full text-center text-xs uppercase tracking-widest opacity-40 hover:opacity-100 underline underline-offset-4">Modify time</button>
                   </div>
                 </div>
-              )}
-            </>
+              </AccordionSection>
+
+            </div>
           )}
         </div>
       </motion.div>
 
       <style>{`
         .booking-calendar {
-          --rdp-cell-size: 40px;
+          --rdp-cell-size: 48px;
+          --rdp-background-color: transparent;
           --rdp-accent-color: #C5A059;
-          --rdp-background-color: #C5A059;
+          color: rgba(255, 255, 255, 0.8);
+          font-family: inherit;
+        }
+        .booking-calendar .rdp-day {
+          font-size: 16px;
+          font-weight: 300;
+          color: rgba(255, 255, 255, 0.6);
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+        .booking-calendar .rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_disabled) {
+          background-color: rgba(255, 255, 255, 0.05);
           color: white;
         }
-        .rdp-day_selected {
+        .booking-calendar .rdp-day_selected {
           background-color: var(--rdp-accent-color) !important;
           color: black !important;
-          font-weight: bold;
+          font-weight: 500;
         }
-        .rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
-           background-color: rgba(197, 160, 89, 0.2);
+        .booking-calendar .rdp-day_disabled {
+          opacity: 0.15;
         }
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
+        .booking-calendar .rdp-head_cell {
+          font-size: 14px;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.3);
+          text-transform: uppercase;
+          padding-bottom: 12px;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
+        .booking-calendar .rdp-nav_button {
+          color: rgba(255, 255, 255, 0.5);
+          width: 32px;
+          height: 32px;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.1);
+        .booking-calendar .rdp-nav_button:hover {
+          color: white;
+          background: rgba(255, 255, 255, 0.05);
+        }
+        .booking-calendar .rdp-caption_label {
+          font-size: 18px;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.8);
+          letter-spacing: 0.05em;
+        }
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-none {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
         }
       `}</style>
     </div>
