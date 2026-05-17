@@ -128,7 +128,9 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       <section className={cn(
         "relative flex items-center overflow-hidden px-6 md:px-20",
         (isBrandStoryPage || isCompanyIntroPage || isResponsibilityPage || isCoreCompetencyPage) && "lg:px-[12vw]",
-        (variant === 'service' || variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? "h-[85vh] md:h-[90vh] justify-center" : "h-[70vh] md:h-[80vh] justify-start"
+        variant === 'service' ? "h-[85vh] md:h-[90vh] justify-center" :
+        (variant === 'framework' || variant === 'casestudy' || variant === 'contact') ? "h-[70vh] md:h-[80vh] justify-center" :
+        "h-[70vh] md:h-[80vh] justify-start"
       )}>
         <div className="absolute inset-0 z-0">
           <img
@@ -704,7 +706,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       {/* Grid Features Section - Layout varies based on variant */}
       {content.gridItems && (
         <section className={cn(
-          "py-32 px-10 md:px-20 lg:py-64 lg:px-24",
+          "px-10 md:px-20 lg:px-24",
+          variant === 'contact' ? "pt-8 md:pt-8 pb-32 lg:pb-64" : "py-32 lg:py-64",
           (variant === 'classic' || variant === 'modern' || variant === 'contact') ? "" : "bg-brand-charcoal",
           (variant === 'classic' || variant === 'modern') && "bg-white",
           variant === 'contact' && "px-[6vw] md:px-20 bg-brand-charcoal",
@@ -721,7 +724,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       선진 본사
                     </h3>
                   </div>
-                  <div className="md:col-span-7 lg:col-span-1 space-y-12 md:pt-[24px]">
+                  <div className="md:col-span-7 lg:col-span-1 space-y-12 md:pt-[24px] lg:pt-[36px]">
                     <div className="grid gap-0">
                       {content.gridItems.map((item, idx) => (
                         <motion.div
@@ -739,7 +742,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                             {item.text}
                           </p>
                           {idx !== content.gridItems.length - 1 && (
-                            <div className="absolute bottom-0 left-0 w-[120px] md:w-[200px] lg:w-[280px] h-[1px] bg-white/10" />
+                            <div className="absolute bottom-0 left-0 w-[160px] md:w-[240px] lg:w-[320px] h-[1px] bg-white/10" />
                           )}
                         </motion.div>
                       ))}
@@ -760,7 +763,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                       사건 의뢰 및 상담
                     </h3>
                   </div>
-                  <div className="md:col-span-7 lg:col-span-1 space-y-12 md:space-y-20 md:pt-[24px] lg:space-y-16">
+                  <div className="md:col-span-7 lg:col-span-1 space-y-12 md:space-y-20 md:pt-[24px] lg:pt-[36px] lg:space-y-16">
                     <p className="text-base md:text-lg lg:text-[18px] lg:leading-[1.8] text-white/40 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-700 whitespace-pre-line break-keep">
                       모든 상담은 철저한 보안 원칙 아래 진행됩니다.{"\n"}
                       아래 버튼을 통해 원하시는 일정을 선택해 주십시오.
