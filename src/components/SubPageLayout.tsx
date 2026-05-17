@@ -147,7 +147,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             transition={{ duration: 1, ease: "easeOut" }}
             className={cn(
               "relative z-10 text-center space-y-10 mx-auto",
-              isNewDesignPage ? "max-w-screen-2xl" : "max-w-4xl"
+              (isNewDesignPage || variant === 'framework') ? "max-w-screen-2xl" : "max-w-4xl"
             )}
           >
             <div className="space-y-6">
@@ -156,8 +156,8 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 variant === 'contact' ? "tracking-[0.2em]" : "tracking-tight",
                 (variant === 'casestudy') ? "text-2xl md:text-4xl md:whitespace-nowrap leading-[1.4] md:leading-tight" :
                 (variant === 'contact') ? "text-2xl md:text-5xl md:whitespace-nowrap font-medium" :
-                (variant === 'framework') ? "text-2xl md:text-5xl leading-[1.3] md:leading-tight" :
-                isNewDesignPage ? "text-3xl md:text-6xl lg:text-[64px] font-normal lg:whitespace-nowrap w-full" :
+                (variant === 'framework') ? "text-2xl md:text-5xl lg:text-[64px] leading-[1.3] md:leading-tight lg:whitespace-nowrap" :
+                isNewDesignPage ? "text-3xl md:text-6xl lg:text-[64px] font-normal lg:whitespace-nowrap" :
                 (content.sectionTitle && content.sectionTitle.length > 24) ? "text-xl md:text-4xl md:whitespace-nowrap" : 
                 (content.sectionTitle && content.sectionTitle.length > 18) ? "text-2xl md:text-5xl md:whitespace-nowrap" : "text-3xl md:text-6xl"
               )}>
@@ -170,7 +170,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
             </div>
             <p className={cn(
               "text-base md:text-lg text-white/70 font-light leading-[1.65] max-w-2xl mx-auto whitespace-pre-line px-[6vw] md:px-4 break-keep",
-              isNewDesignPage && "lg:text-[18px] lg:leading-[1.8]"
+              (isNewDesignPage || variant === 'framework') && "lg:text-[18px] lg:leading-[1.8]"
             )}>
               {content.description.join('\n')}
             </p>
@@ -379,7 +379,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
       {variant === 'framework' && (
         <>
           <section className="py-24 md:py-32 px-[6vw] md:px-20 bg-brand-charcoal text-white overflow-hidden">
-            <div className="max-w-screen-xl mx-auto space-y-24 md:space-y-32">
+            <div className="max-w-screen-xl mx-auto space-y-24 md:space-y-32 lg:space-y-[150px]">
               {content.frameworkSections?.map((section, sIdx) => (
                 <div key={sIdx} className="space-y-10 md:space-y-16 relative">
                   {/* Section Label */}
@@ -390,20 +390,20 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                     <div className="h-[1px] w-full bg-white/10" />
                   </div>
 
-                  <div className="grid md:grid-cols-12 gap-10 md:gap-12 items-start">
+                  <div className="grid md:grid-cols-12 gap-10 md:gap-12 lg:gap-24 items-start">
                     <div className="md:col-span-4 space-y-6 mb-8 md:mb-0">
                       <motion.h2 
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="text-2xl md:text-3xl font-serif tracking-tight leading-tight break-keep"
+                        className="text-2xl md:text-3xl lg:text-[24px] font-serif tracking-tight leading-tight break-keep"
                       >
                         {section.title}
                       </motion.h2>
                       <div className="w-12 h-[2px] bg-white/20" />
                     </div>
 
-                    <div className="md:col-span-8 flex flex-col gap-[50px] md:gap-10">
+                    <div className="md:col-span-8 flex flex-col gap-[50px] md:gap-10 lg:gap-[60px]">
                       {section.items.map((item, iIdx) => (
                         <motion.div
                           key={iIdx}
@@ -420,12 +420,12 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
 
                           <div className="grid md:grid-cols-3 gap-3 md:gap-8 relative z-10">
                             <div className="md:col-span-1">
-                              <h3 className="text-lg md:text-xl font-sans font-bold text-white tracking-tight uppercase break-keep">
+                              <h3 className="text-lg md:text-xl lg:text-[24px] font-sans font-bold text-white tracking-tight uppercase break-keep">
                                 {item.title}
                               </h3>
                             </div>
                             <div className="md:col-span-2">
-                              <p className="text-sm md:text-base text-white/40 font-light leading-[1.65] group-hover:text-white/80 transition-colors duration-700 break-keep">
+                              <p className="text-sm md:text-base lg:text-[18px] text-white/40 font-light leading-[1.65] lg:leading-[1.8] group-hover:text-white/80 transition-colors duration-700 break-keep lg:max-w-2xl">
                                 {item.text}
                               </p>
                             </div>

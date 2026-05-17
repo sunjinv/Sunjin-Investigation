@@ -280,7 +280,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
   '/business/missing': {
     title: 'Missing Persons',
     subtitle: 'SEARCH & FIND',
-    sectionTitle: '입체적 정보망과 기동력으로 은닉된 소재를 완벽히 규명합니다.',
+    sectionTitle: '입체적 정보망으로 은닉된 소재를 완벽히 규명합니다.',
     variant: 'service',
     image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop',
     description: [
