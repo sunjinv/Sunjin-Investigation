@@ -708,7 +708,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
           (variant === 'classic' || variant === 'modern' || variant === 'contact') ? "" : "bg-brand-charcoal",
           (variant === 'classic' || variant === 'modern') && "bg-white",
           variant === 'contact' && "px-[6vw] md:px-20 bg-brand-charcoal",
-          isBrandStoryPage ? "px-8 md:px-20" : isCompanyIntroPage ? "px-[6vw] md:px-20 lg:px-[12vw]" : isResponsibilityPage ? "px-6 md:px-20" : isCoreCompetencyPage ? "px-10 md:px-20" : ""
+          isBrandStoryPage ? "px-8 md:px-20" : isCompanyIntroPage ? "px-[6vw] md:px-20 lg:px-[12vw]" : isResponsibilityPage ? "px-0 md:px-20" : isCoreCompetencyPage ? "px-10 md:px-20" : ""
         )}>
           <div className="max-w-screen-xl mx-auto">
             {variant === 'contact' ? (
@@ -791,10 +791,10 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 /* Horizontal Titles Navigation and Content Area */
                 <div className="space-y-4 md:space-y-6">
                   {/* Titles Navigation */}
-                  <div className={cn("relative group/tabs md:mx-0", isResponsibilityPage ? "-mx-6" : "-mx-10")}>
+                  <div className={cn("relative group/tabs md:mx-0", isResponsibilityPage ? "mx-0" : "-mx-10")}>
                     <div className={cn(
                       "flex flex-nowrap md:flex-wrap items-center md:justify-center gap-x-10 md:gap-x-16 lg:gap-x-24 overflow-x-auto md:overflow-x-visible [&::-webkit-scrollbar]:hidden border-b border-black/5 pb-10 md:px-0",
-                      isResponsibilityPage ? "px-6" : "px-10",
+                      isResponsibilityPage ? "px-4" : "px-10",
                       "mask-tabs-mobile md:[mask-image:none]"
                     )}>
                       {content.gridItems.map((item, idx) => (
@@ -828,7 +828,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.5, ease: "easeOut" }}
-                          className="bg-white py-12 px-6 md:p-20 lg:py-32 lg:px-20 w-full md:w-full mx-auto shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
+                          className="bg-white py-12 px-5 md:p-20 lg:py-32 lg:px-20 w-full md:w-full mx-auto shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] border border-black/[0.02]"
                         >
                           <div className="space-y-12 md:space-y-12 lg:space-y-24">
                             {/* Removed decoration as requested */}
