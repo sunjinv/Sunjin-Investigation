@@ -721,7 +721,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 <div className="grid md:grid-cols-12 lg:grid-cols-[260px_420px] gap-8 md:gap-12 lg:gap-[350px] items-start border-t border-white/5 pt-16 md:pt-24">
                   <div className="md:col-span-5 lg:col-span-1 space-y-6 md:space-y-2">
                     <h2 className="text-white/40 text-[10px] md:text-xs lg:text-[14px] tracking-[0.6em] font-bold uppercase font-sans">INFORMATION</h2>
-                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans text-white tracking-tight break-keep whitespace-nowrap">
+                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans font-bold text-white tracking-tight break-keep whitespace-nowrap">
                       선진 본사
                     </h3>
                   </div>
@@ -760,7 +760,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 >
                   <div className="md:col-span-5 lg:col-span-1 space-y-6 md:space-y-2">
                     <h2 className="text-white/40 text-[10px] md:text-xs lg:text-[14px] tracking-[0.6em] font-bold uppercase font-sans">RESERVATION</h2>
-                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans text-white tracking-tight break-keep whitespace-nowrap">
+                    <h3 className="text-3xl md:text-4xl lg:text-[32px] lg:leading-[1.2] font-sans font-bold text-white tracking-tight break-keep whitespace-nowrap">
                       사건 의뢰 및 상담
                     </h3>
                   </div>

@@ -4,26 +4,25 @@ import { navLinks } from '../components/Navbar';
 
 export default function Sitemap() {
   return (
-    <div className="min-h-screen bg-brand-charcoal pt-32 pb-24 px-6 md:px-12 text-white/70">
-      <div className="max-w-4xl mx-auto space-y-12">
-        <div className="text-center space-y-4">
+    <div className="min-h-screen bg-brand-charcoal pt-32 pb-32 px-6 md:px-12 text-white/70">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="text-center">
           <h1 className="text-3xl md:text-4xl font-serif tracking-[0.2em] text-white">SITEMAP</h1>
-          <p className="text-white/40 tracking-widest text-sm">사이트맵</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 pt-12 border-t border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-16 lg:gap-x-24 mt-24 md:mt-32 pt-16 border-t border-white/5">
           {navLinks.map((category) => (
-            <div key={category.name} className="space-y-6">
-              <h2 className="text-xl font-serif tracking-[0.2em] text-brand-gold border-b border-brand-gold/20 pb-4">
+            <div key={category.name} className="space-y-8">
+              <h2 className="text-[14px] md:text-[16px] font-sans font-medium tracking-[0.2em] text-white border-b border-white/5 pb-4 uppercase">
                 {category.name}
               </h2>
               {category.children && category.children.length > 0 ? (
-                <ul className="space-y-3">
+                <ul className="space-y-5">
                   {category.children.map((child) => (
                     <li key={child.name}>
                       <Link 
                         to={child.href} 
-                        className="text-[15px] font-light tracking-wide text-white/60 hover:text-white transition-colors"
+                        className="inline-block text-[16px] font-light tracking-wide text-white/50 hover:text-white hover:translate-x-2 transition-all duration-300 ease-out"
                       >
                         {child.name}
                       </Link>
@@ -31,11 +30,11 @@ export default function Sitemap() {
                   ))}
                 </ul>
               ) : (
-                <ul className="space-y-3">
+                <ul className="space-y-5">
                   <li>
                     <Link 
                       to={category.href} 
-                      className="text-[15px] font-light tracking-wide text-white/60 hover:text-white transition-colors"
+                      className="inline-block text-[16px] font-light tracking-wide text-white/50 hover:text-white hover:translate-x-2 transition-all duration-300 ease-out"
                     >
                       {category.name}
                     </Link>
