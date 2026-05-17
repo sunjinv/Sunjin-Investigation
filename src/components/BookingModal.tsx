@@ -165,7 +165,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto px-6 py-10 md:p-12 scrollbar-none">
+        <div className="flex-1 overflow-y-auto px-4 md:px-12 py-10 md:py-12 scrollbar-none">
           {isSuccess ? (
             <div className="h-full flex flex-col items-center justify-center text-center space-y-8 py-10">
               <CheckCircle2 className="w-20 h-20 text-brand-gold" />
@@ -218,8 +218,8 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                 onToggle={() => setStep(step === 2 ? 0 : 2)}
               >
                 <div className="grid lg:grid-cols-2 gap-12 md:gap-16">
-                  <div className="space-y-6">
-                    <div className="bg-transparent flex justify-start">
+                  <div className="space-y-6 flex justify-center lg:justify-start overflow-hidden">
+                    <div className="bg-transparent">
                       <DayPicker
                         mode="single"
                         selected={selectedDate}
@@ -372,30 +372,22 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
 
       <style>{`
         .booking-calendar {
-          --rdp-cell-size: 48px;
+          --rdp-cell-size: 44px;
           --rdp-background-color: transparent;
           --rdp-accent-color: #C5A059;
           color: rgba(255, 255, 255, 0.8);
           font-family: inherit;
         }
-        
-        /* 🚨 모바일 오버플로우 완벽 방어선 (가로 스크롤 제거) */
-        @media (max-width: 640px) {
+        @media (max-width: 400px) {
           .booking-calendar {
-            --rdp-cell-size: 36px; /* 모바일에서는 48px -> 36px로 확 줄임 */
-          }
-          .booking-calendar .rdp-day {
-            font-size: 14px !important;
-          }
-          .booking-calendar .rdp-head_cell {
-            font-size: 11px !important;
-            padding-bottom: 8px !important;
-          }
-          .booking-calendar .rdp-caption_label {
-            font-size: 16px !important;
+            --rdp-cell-size: 38px;
           }
         }
-
+        @media (max-width: 350px) {
+          .booking-calendar {
+            --rdp-cell-size: 34px;
+          }
+        }
         .booking-calendar .rdp-day {
           font-size: 16px;
           font-weight: 300;
@@ -441,8 +433,8 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
           display: none;
         }
         .scrollbar-none {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
         }
       `}</style>
     </div>
