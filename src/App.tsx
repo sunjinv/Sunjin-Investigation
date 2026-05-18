@@ -15,7 +15,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Sitemap from './pages/Sitemap';
 import { SUBPAGE_DATA } from './constants/subPageData';
-import { signInWithGoogle } from './lib/firebase';
+import InAppBrowserHandler from './components/InAppBrowserHandler';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -56,10 +56,6 @@ function AppContent() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   const handleBookingClick = () => {
-    if (!user) {
-      signInWithGoogle();
-      return;
-    }
     setIsBookingOpen(true);
   };
 
@@ -71,6 +67,7 @@ function AppContent() {
 
   return (
     <div className="relative min-h-screen bg-brand-charcoal overflow-x-hidden selection:bg-brand-gold/30">
+      <InAppBrowserHandler />
       <ScrollToTop />
       <Navbar onOpenAdmin={handleAdminClick} />
       
@@ -88,7 +85,7 @@ function AppContent() {
         </Routes>
       </main>
 
-      <Footer onOpenAdmin={handleAdminClick} />
+      <Footer />
 
       {/* Overlays */}
       <BookingModal 

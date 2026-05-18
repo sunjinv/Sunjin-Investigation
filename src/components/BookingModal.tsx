@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, CheckCircle2 } from 'lucide-react';
 import { DayPicker } from 'react-day-picker';
@@ -31,7 +31,7 @@ const AccordionSection = ({
   isOpen: boolean; 
   summary?: string; 
   onToggle: () => void; 
-  children: React.ReactNode; 
+  children: ReactNode; 
 }) => {
   return (
     <div className="border-b border-white/5 last:border-0 relative">
