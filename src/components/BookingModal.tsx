@@ -170,8 +170,8 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
             <div className="h-full flex flex-col items-center justify-center text-center space-y-8 py-10">
               <CheckCircle2 className="w-20 h-20 text-brand-gold" />
               <h2 className="text-[32px] font-serif tracking-tight">예약이 안전하게 접수되었습니다.</h2>
-              <p className="text-[18px] text-white/50 leading-[1.8] max-w-lg break-keep">
-                담당 최고위 컨설턴트가 내용을 검토한 후, 지정하신 연락처로 신속히 연락드리겠습니다.<br className="hidden md:block"/>
+              <p className="text-[18px] text-white/50 leading-[1.8] w-full max-w-2xl break-keep">
+                담당자가 내용을 검토한 후, 지정하신 연락처로 신속히 연락드리겠습니다.<br className="hidden md:block"/>
                 선진의 모든 상담은 철저한 기밀 보안 원칙 아래 오프더레코드로 진행됩니다.
               </p>
               <button 

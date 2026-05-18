@@ -72,7 +72,7 @@ function AppContent() {
   return (
     <div className="relative min-h-screen bg-brand-charcoal overflow-x-hidden selection:bg-brand-gold/30">
       <ScrollToTop />
-      <Navbar />
+      <Navbar onOpenAdmin={handleAdminClick} />
       
       <main>
         <Routes>

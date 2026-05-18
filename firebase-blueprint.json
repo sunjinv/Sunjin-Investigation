@@ -18,16 +18,17 @@
       "description": "Consultation reservation details",
       "type": "object",
       "properties": {
-        "userId": { "type": "string" },
-        "category": { "type": "string", "enum": ["CORPORATE", "DIGITAL_FORENSICS", "PRIVATE", "VIP"] },
+        "userId": { "type": ["string", "null"] },
+        "name": { "type": "string" },
+        "contact": { "type": "string" },
+        "category": { "type": "string", "enum": ["이혼·가사 조사", "소송·증거 조사", "TSCM 및 포렌식", "실종·소재 파악", "기업 리스크·보안"] },
         "date": { "type": "string", "format": "date" },
         "timeSlot": { "type": "string" },
         "status": { "type": "string", "enum": ["PENDING", "CONFIRMED", "COMPLETED", "CANCELLED"] },
         "notes": { "type": "string" },
-        "createdAt": { "type": "string", "format": "date-time" },
-        "updatedAt": { "type": "string", "format": "date-time" }
+        "createdAt": { "type": "string", "format": "date-time" }
       },
-      "required": ["userId", "category", "date", "timeSlot", "status", "createdAt"]
+      "required": ["name", "contact", "category", "date", "timeSlot", "status", "createdAt"]
     }
   },
   "firestore": {

@@ -42,13 +42,15 @@ service cloud.firestore {
     }
 
     function isValidReservation(data) {
-      return data.keys().hasAll(['userId', 'category', 'date', 'timeSlot', 'status', 'notes', 'createdAt']) &&
-             data.userId == request.auth.uid &&
-             data.category in ['CORPORATE', 'DIGITAL_FORENSICS', 'PRIVATE', 'VIP'] &&
+      return data.keys().hasAll(['category', 'date', 'timeSlot', 'status', 'notes', 'createdAt', 'name', 'contact']) &&
+             (!data.keys().contains('userId') || data.userId == null || (isSignedIn() && data.userId == request.auth.uid)) &&
+             data.category in ['이혼·가사 조사', '소송·증거 조사', 'TSCM 및 포렌식', '실종·소재 파악', '기업 리스크·보안'] &&
              data.date is string && data.date.size() == 10 &&
              data.timeSlot is string && data.timeSlot.size() <= 10 &&
              data.status in ['PENDING', 'CONFIRMED', 'COMPLETED', 'CANCELLED'] &&
-             data.notes is string && data.notes.size() <= 2000;
+             data.notes is string && data.notes.size() <= 2000 &&
+             data.name is string && data.name.size() <= 100 &&
+             data.contact is string && data.contact.size() <= 100;
     }
 
     // --- Matches ---
@@ -63,10 +65,10 @@ service cloud.firestore {
     }
 
     match /reservations/{reservationId} {
-      allow get: if isOwner(resource.data.userId) || isAdmin();
-      allow list: if isSignedIn() && (isAdmin() || (resource.data.userId == request.auth.uid));
-      allow create: if isSignedIn() && isValidId(reservationId) && isValidReservation(incoming());
-      allow update: if (isAdmin() || (isOwner(existing().userId) && existing().status == 'PENDING' && incoming().status == 'PENDING')) &&
+      allow get: if (resource.data.get('userId', null) != null && isOwner(resource.data.userId)) || isAdmin();
+      allow list: if isAdmin() || (isSignedIn() && resource.data.get('userId', null) == request.auth.uid);
+      allow create: if isValidId(reservationId) && isValidReservation(incoming());
+      allow update: if (isAdmin() || (isSignedIn() && existing().get('userId', null) == request.auth.uid && existing().status == 'PENDING' && incoming().status == 'PENDING')) &&
                     isValidReservation(incoming()) &&
                     (incoming().diff(existing()).affectedKeys().hasOnly(['notes', 'category', 'date', 'timeSlot', 'status']) || isAdmin());
       allow delete: if isAdmin();
