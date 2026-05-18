@@ -7,6 +7,10 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  app.get('/api/health', (req, res) => {
+    res.json({ ok: true, node_env: process.env.NODE_ENV });
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
@@ -15,16 +19,36 @@ async function startServer() {
     });
     app.use(vite.middlewares);
 
-    app.use('*', async (req, res, next) => {
+    app.get('*', async (req, res, next) => {
       const url = req.originalUrl;
+      
+      // Ignore common asset extensions to avoid infinite loops or overhead if Vite middleware missed them
+      if (
+        url.includes('.js') || 
+        url.includes('.css') || 
+        url.includes('.png') || 
+        url.includes('.jpg') || 
+        url.includes('.svg') ||
+        url.includes('/@vite') ||
+        url.includes('/src/') ||
+        url.includes('/node_modules/')
+      ) {
+        return next();
+      }
+
+      console.log(`[Dev Server] SPA Fallback for: ${url}`);
       try {
-        // Read index.html
-        let template = fs.readFileSync(path.resolve(process.cwd(), 'index.html'), 'utf-8');
-        // Apply Vite HTML transforms
+        const templatePath = path.resolve(process.cwd(), 'index.html');
+        if (!fs.existsSync(templatePath)) {
+          console.error(`[Dev Server] index.html not found!`);
+          return next();
+        }
+        
+        let template = fs.readFileSync(templatePath, 'utf-8');
         template = await vite.transformIndexHtml(url, template);
-        // Send the rendered HTML back
         res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
       } catch (e) {
+        console.error(`[Dev Server] SPA Error:`, e);
         vite.ssrFixStacktrace(e as Error);
         next(e);
       }
