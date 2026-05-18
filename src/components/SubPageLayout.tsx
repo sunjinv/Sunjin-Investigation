@@ -159,7 +159,7 @@ export default function SubPageLayout({ content, onBooking }: { content: Section
                 (variant === 'casestudy') ? "text-2xl lg:text-4xl lg:text-[64px] lg:whitespace-nowrap lg:whitespace-nowrap w-full leading-[1.4] lg:leading-tight" :
                 (variant === 'contact') ? "text-2xl lg:text-5xl lg:text-[64px] lg:whitespace-nowrap lg:whitespace-nowrap w-full font-medium" :
                 (variant === 'framework') ? "text-2xl lg:text-5xl lg:text-[64px] leading-[1.3] lg:leading-tight lg:whitespace-nowrap w-full" :
-                isNewDesignPage ? "text-3xl lg:text-6xl lg:text-[64px] font-normal lg:whitespace-nowrap w-full" :
+                isNewDesignPage ? "text-2xl lg:text-5xl lg:text-[64px] font-normal lg:whitespace-nowrap w-full" :
                 (content.sectionTitle && content.sectionTitle.length > 24) ? "text-xl lg:text-4xl lg:whitespace-nowrap" : 
                 (content.sectionTitle && content.sectionTitle.length > 18) ? "text-2xl lg:text-5xl lg:whitespace-nowrap" : "text-3xl lg:text-6xl"
               )}>
