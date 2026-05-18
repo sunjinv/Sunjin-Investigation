@@ -744,7 +744,7 @@ export const SUBPAGE_DATA: Record<string, SectionContent> = {
       },
       { 
         title: '전화', 
-        text: '02-3444-XXXX (24HR Hot-line)' 
+        text: '010-5237-5721 (24HR Hot-line)' 
       },
       { 
         title: '이메일', 

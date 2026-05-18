@@ -136,7 +136,7 @@ export default function Navbar({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-[60] transition-all duration-500 px-6 py-3 md:px-12',
+        'fixed top-0 left-0 right-0 z-[60] transition-all duration-500 px-6 py-3 lg:px-12',
         (isScrolled || isMobileMenuOpen) ? 'bg-brand-charcoal border-b border-white/5 backdrop-blur-md py-2' : 'bg-transparent'
       )}
     >
@@ -150,10 +150,10 @@ export default function Navbar({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
 
         {/* Logo */}
         <Link to="/" className="flex flex-col items-center py-6">
-          <h1 className="text-2xl md:text-[32px] font-serif tracking-[0.4em] font-light leading-none">
+          <h1 className="text-2xl lg:text-[32px] font-serif tracking-[0.4em] font-light leading-none">
             SUNJIN
           </h1>
-          <span className="text-[9px] md:text-[11px] tracking-[0.6em] font-sans opacity-50 mt-2 uppercase">
+          <span className="text-[9px] lg:text-[11px] tracking-[0.6em] font-sans opacity-50 mt-2 uppercase">
             Investigation
           </span>
         </Link>

@@ -10,10 +10,10 @@ export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
     <footer className="bg-black text-white/40 py-16 px-10 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         <div className="text-center mb-10">
-          <h2 className="text-xl md:text-2xl font-serif tracking-[0.3em] font-light text-white mb-2 uppercase">
+          <h2 className="text-xl lg:text-2xl font-serif tracking-[0.3em] font-light text-white mb-2 uppercase">
             Sunjin
           </h2>
-          <span className="text-[8px] md:text-[10px] tracking-[0.5em] font-sans opacity-60 block">
+          <span className="text-[8px] lg:text-[10px] tracking-[0.5em] font-sans opacity-60 block">
             INVESTIGATION
           </span>
         </div>
@@ -21,7 +21,7 @@ export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
         <div className="w-full relative flex items-center justify-center mb-10">
           <button
             onClick={scrollToTop}
-            className="hidden md:flex absolute right-0 group flex-col items-center justify-center transition-all duration-500"
+            className="hidden lg:flex absolute right-0 group flex-col items-center justify-center transition-all duration-500"
           >
             <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-gold text-white/40 group-hover:text-brand-gold transition-colors">
               <ArrowUp size={16} strokeWidth={1} />
@@ -67,7 +67,7 @@ export default function Footer({ onOpenAdmin }: { onOpenAdmin: () => void }) {
              
              <button
                onClick={scrollToTop}
-               className="md:hidden group flex flex-col items-center justify-center transition-all duration-500"
+               className="lg:hidden group flex flex-col items-center justify-center transition-all duration-500"
              >
                <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-gold text-white/40 group-hover:text-brand-gold transition-colors">
                  <ArrowUp size={16} strokeWidth={1} />

@@ -37,19 +37,19 @@ const AccordionSection = ({
     <div className="border-b border-white/5 last:border-0 relative">
       <button
         onClick={onToggle}
-        className="w-full flex items-center py-6 md:py-8 text-left focus:outline-none group"
+        className="w-full flex items-center py-6 lg:py-8 text-left focus:outline-none group"
       >
-        <div className="flex items-center gap-4 md:gap-6 flex-wrap">
+        <div className="flex items-center gap-4 lg:gap-6 flex-wrap">
           <span className={cn(
-            "text-[16px] md:text-[18px] font-medium tracking-[0.1em] transition-colors duration-300",
+            "text-[16px] lg:text-[18px] font-medium tracking-[0.1em] transition-colors duration-300",
             isOpen ? "text-white" : "text-white/40 group-hover:text-white/60"
           )}>
             {title}
           </span>
           {summary && !isOpen && (
-            <div className="flex items-center gap-4 md:gap-6">
-              <span className="text-white/20 hidden md:inline">|</span>
-              <span className="text-brand-gold text-[14px] md:text-[16px] tracking-widest font-light">
+            <div className="flex items-center gap-4 lg:gap-6">
+              <span className="text-white/20 hidden lg:inline">|</span>
+              <span className="text-brand-gold text-[14px] lg:text-[16px] tracking-widest font-light">
                 {summary}
               </span>
             </div>
@@ -65,7 +65,7 @@ const AccordionSection = ({
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="pb-8 md:pb-12 pt-2">
+            <div className="pb-8 lg:pb-12 pt-2">
               {children}
             </div>
           </motion.div>
@@ -152,7 +152,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-4xl bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-none flex flex-col h-[90vh] md:h-[85vh] shadow-2xl shadow-black/80"
+        className="relative w-full max-w-4xl bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-none flex flex-col h-[90vh] lg:h-[85vh] shadow-2xl shadow-black/80"
       >
         {/* Header */}
         <div className="flex items-center justify-between p-8 border-b border-white/5 shrink-0">
@@ -165,13 +165,13 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto px-4 md:px-12 py-10 md:py-12 scrollbar-none">
+        <div className="flex-1 overflow-y-auto px-4 lg:px-12 py-10 lg:py-12 scrollbar-none">
           {isSuccess ? (
             <div className="h-full flex flex-col items-center justify-center text-center space-y-8 py-10">
               <CheckCircle2 className="w-20 h-20 text-brand-gold" />
               <h2 className="text-[32px] font-serif tracking-tight">예약이 안전하게 접수되었습니다.</h2>
               <p className="text-[18px] text-white/50 leading-[1.8] w-full max-w-2xl break-keep">
-                담당자가 내용을 검토한 후, 지정하신 연락처로 신속히 연락드리겠습니다.<br className="hidden md:block"/>
+                담당자가 내용을 검토한 후, 지정하신 연락처로 신속히 연락드리겠습니다.<br className="hidden lg:block"/>
                 선진의 모든 상담은 철저한 기밀 보안 원칙 아래 오프더레코드로 진행됩니다.
               </p>
               <button 
@@ -190,7 +190,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                 summary={category}
                 onToggle={() => setStep(step === 1 ? 0 : 1)}
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                   {CATEGORIES.map((cat) => (
                     <button
                       key={cat}
@@ -217,7 +217,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                 summary={selectedDate && selectedTime ? `${format(selectedDate, 'yyyy.MM.dd')} ${selectedTime}` : undefined}
                 onToggle={() => setStep(step === 2 ? 0 : 2)}
               >
-                <div className="grid lg:grid-cols-2 gap-12 md:gap-16">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
                   <div className="space-y-6 flex justify-center lg:justify-start overflow-hidden">
                     <div className="bg-transparent">
                       <DayPicker
@@ -272,7 +272,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                 onToggle={() => setStep(step === 3 ? 0 : 3)}
               >
                 <div className="space-y-12">
-                  <div className="grid md:grid-cols-2 gap-12">
+                  <div className="grid lg:grid-cols-2 gap-12">
                     <div className="space-y-2">
                       <label className="text-[16px] text-white/40 font-light px-1">성함</label>
                       <input
@@ -357,7 +357,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                     <button
                       disabled={isSubmitting}
                       onClick={handleSubmit}
-                      className="w-full bg-brand-gold text-black py-6 font-bold tracking-[0.2em] text-[18px] md:text-[20px] hover:bg-[#e6c175] transition-all disabled:opacity-30 disabled:cursor-not-allowed uppercase"
+                      className="w-full bg-brand-gold text-black py-6 font-bold tracking-[0.2em] text-[18px] lg:text-[20px] hover:bg-[#e6c175] transition-all disabled:opacity-30 disabled:cursor-not-allowed uppercase"
                     >
                       {isSubmitting ? 'PROCESSING...' : '상담 신청'}
                     </button>
