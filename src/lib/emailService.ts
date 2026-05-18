@@ -1,6 +1,6 @@
 import { ReservationData } from './reservations';
 
-const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyW2lwB9oLAS-u_qEuIVOLsAfzmJWAqdmPgu7XXGqhcy-tG3G-7Tlbmb5LpF2ao3Q1j/exec';
+const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwvP8n57Bk6OVyR8kLlHRXB2mz-SdwmpjRZ5a5Hd0SudAIgIhWhAX1hzc__CFsiShG8/exec';
 
 export const sendEmailNotification = async (data: Omit<ReservationData, 'createdAt'>) => {
   try {
@@ -8,9 +8,9 @@ export const sendEmailNotification = async (data: Omit<ReservationData, 'created
     // 단순 POST 요청을 보냅니다. fetch를 사용하여 데이터를 전송합니다.
     const response = await fetch(GAS_WEBAPP_URL, {
       method: 'POST',
-      mode: 'no-cors', // GAS 웹앱 특성상 응답을 직접 받기보다는 실행에 목적을 둡니다.
+      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain', // no-cors에서 허용되는 헤더로 변경
       },
       body: JSON.stringify({
         ...data,
