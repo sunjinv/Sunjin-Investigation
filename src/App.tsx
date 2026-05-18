@@ -65,6 +65,25 @@ function AppContent() {
     }
   };
 
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // Allow right-click on inputs, textareas, and elements with .allow-select class
+      if (
+        target.closest('.allow-select') || 
+        target.tagName === 'INPUT' || 
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable
+      ) {
+        return;
+      }
+      e.preventDefault();
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+    return () => document.removeEventListener('contextmenu', handleContextMenu);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-brand-charcoal overflow-x-hidden selection:bg-brand-gold/30">
       <InAppBrowserHandler />

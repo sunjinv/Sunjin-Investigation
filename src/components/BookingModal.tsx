@@ -280,7 +280,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                         placeholder="입력란"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white placeholder-white/20"
+                        className="allow-select w-full bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white placeholder-white/20"
                       />
                     </div>
                     <div className="space-y-2">
@@ -290,7 +290,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                         placeholder="010-0000-0000"
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
-                        className="w-full bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white placeholder-white/20"
+                        className="allow-select w-full bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white placeholder-white/20"
                       />
                     </div>
                   </div>
@@ -333,7 +333,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                       placeholder="대략적인 상황이나 증상을 간략히 남겨주시면,&#13;&#10;담당자가 확인 후 더욱 심도있는 상담을 준비합니다.&#13;&#10;기밀이 요구되는 사항은 기재하지 않으셔도 무방합니다."
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      className="w-full h-40 bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white leading-[1.8] placeholder-white/20 resize-none font-light"
+                      className="allow-select w-full h-40 bg-transparent border-0 border-b border-white/20 p-3 px-1 focus:border-brand-gold focus:ring-0 outline-none transition-colors text-[18px] text-white leading-[1.8] placeholder-white/20 resize-none font-light"
                     />
                   </div>
 
@@ -348,9 +348,9 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                         />
                         <CheckCircle2 className="w-4 h-4 text-black absolute opacity-0 peer-checked:opacity-100 pointer-events-none" />
                       </div>
-                      <div className="text-[16px] text-white/40 leading-[1.6] font-light group-hover:text-white/60 transition-colors cursor-pointer">
+                      <div className="allow-select text-[16px] text-white/40 leading-[1.6] font-light group-hover:text-white/60 transition-colors cursor-pointer">
                         개인정보 수집 및 이용에 동의합니다.<br/>
-                        <span className="text-[14px] text-white/30 opacity-70 mt-1 block">수집 목적: 상담 내역 확인 및 회신 / 수집 항목: 성함, 연락처 / 보유 기간: 목적 달성 후 파기</span>
+                        <span className="text-[14px] text-white/30 opacity-70 mt-1 block font-sans">수집 목적: 상담 내역 확인 및 회신 / 수집 항목: 성함, 연락처 / 보유 기간: 목적 달성 후 파기</span>
                       </div>
                     </label>
 
