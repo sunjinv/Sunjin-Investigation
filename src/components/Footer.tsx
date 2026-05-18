@@ -1,10 +1,38 @@
+import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function Footer() {
+export default function Footer({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
+  const [clickCount, setClickCount] = useState(0);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // 🚨 시크릿 노크 로직
+  const handleSecretKnock = () => {
+    setClickCount((prev) => {
+      const newCount = prev + 1;
+      
+      // 5번 연속 클릭 달성 시 게이트 오픈!
+      if (newCount === 5) {
+        onOpenAdmin?.();
+        return 0; // 초기화
+      }
+      return newCount;
+    });
+  };
+
+  // 1.5초 동안 추가 클릭이 없으면 카운트 초기화
+  useEffect(() => {
+    if (clickCount === 0) return;
+    
+    const timer = setTimeout(() => {
+      setClickCount(0);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [clickCount]);
 
   return (
     <footer className="bg-black text-white/40 py-16 px-10 border-t border-white/5 relative">
@@ -53,7 +81,12 @@ export default function Footer() {
         </div>
 
         <div className="w-full text-center text-[10px] tracking-[0.2em] space-y-4">
-          <p>COPYRIGHT © 2024 SUNJIN INVESTIGATION. ALL RIGHTS RESERVED.</p>
+          <p 
+            onClick={handleSecretKnock}
+            className="cursor-default select-none"
+          >
+            COPYRIGHT © 2024 SUNJIN INVESTIGATION. ALL RIGHTS RESERVED.
+          </p>
         </div>
 
         <div className="mt-8 w-full flex justify-end items-end">

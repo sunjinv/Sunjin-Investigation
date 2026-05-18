@@ -48,13 +48,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(user);
       if (user) {
         await checkAdminStatus(user.uid, user.email);
-        // Sync user doc
-        await setDoc(doc(db, 'users', user.uid), {
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-          lastLogin: new Date().toISOString()
-        }, { merge: true });
+        // Only sync user doc for non-anonymous users (those with emails/providers)
+        if (!user.isAnonymous) {
+          try {
+            await setDoc(doc(db, 'users', user.uid), {
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+              lastLogin: new Date().toISOString()
+            }, { merge: true });
+          } catch (e) {
+            console.error("Failed to sync user doc:", e);
+          }
+        }
       } else {
         setIsAdmin(false);
       }

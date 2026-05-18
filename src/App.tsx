@@ -85,7 +85,7 @@ function AppContent() {
         </Routes>
       </main>
 
-      <Footer />
+      <Footer onOpenAdmin={handleAdminClick} />
 
       {/* Overlays */}
       <BookingModal 

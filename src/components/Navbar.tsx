@@ -163,32 +163,6 @@ export default function Navbar({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
           {navLinks.slice(3).map((link) => (
             <NavDropdown key={link.name} item={link} isScrolled={isScrolled} />
           ))}
-          <div className="h-5 w-[1px] bg-white/10 mx-3" />
-          {user ? (
-            <div className="flex items-center gap-7">
-              <button
-                onClick={() => logout()}
-                className="text-[12px] tracking-[0.2em] font-medium hover:text-brand-gold transition-colors opacity-70"
-              >
-                LOGOUT
-              </button>
-              {isAdmin && (
-                 <button 
-                  onClick={onOpenAdmin}
-                  className="p-2.5 rounded-full border border-white/10 hover:border-brand-gold hover:bg-brand-gold/5 transition-all outline-none focus:border-brand-gold"
-                 >
-                    <User className="w-5 h-5 text-brand-gold" />
-                 </button>
-              )}
-            </div>
-          ) : (
-            <button
-              onClick={() => signInWithGoogle()}
-              className="text-[12px] tracking-[0.2em] font-medium hover:text-brand-gold transition-colors opacity-70"
-            >
-              LOGIN
-            </button>
-          )}
         </div>
 
         {/* Mobile Toggle */}
@@ -254,32 +228,6 @@ export default function Navbar({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
                   </AnimatePresence>
                 </div>
               ))}
-              
-              <div className="pt-10 flex flex-col gap-4">
-                {isAdmin && (
-                  <button 
-                    onClick={() => { onOpenAdmin?.(); setIsMobileMenuOpen(false); }} 
-                    className="w-full bg-brand-gold text-black py-5 text-xs tracking-widest font-bold"
-                  >
-                    ADMIN DASHBOARD
-                  </button>
-                )}
-                {user ? (
-                   <button 
-                    onClick={() => { logout(); setIsMobileMenuOpen(false); }} 
-                    className="w-full border border-white/10 py-5 text-xs tracking-widest font-bold"
-                   >
-                     LOGOUT
-                   </button>
-                ) : (
-                   <button 
-                    onClick={() => { signInWithGoogle(); setIsMobileMenuOpen(false); }} 
-                    className="w-full bg-brand-gold text-black py-5 text-xs tracking-widest font-bold"
-                   >
-                     SIGN IN
-                   </button>
-                )}
-              </div>
             </div>
           </motion.div>
         )}

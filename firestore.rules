@@ -67,7 +67,7 @@ service cloud.firestore {
     match /reservations/{reservationId} {
       allow get: if (resource.data.get('userId', null) != null && isOwner(resource.data.userId)) || isAdmin();
       allow list: if true; // Publicly allow listing to check availability.
-      allow create: if isValidId(reservationId) && isValidReservation(incoming());
+      allow create: if isSignedIn() && isValidId(reservationId) && isValidReservation(incoming());
       allow update: if (isAdmin() || (isSignedIn() && existing().get('userId', null) == request.auth.uid && existing().status == 'PENDING' && incoming().status == 'PENDING')) &&
                     isValidReservation(incoming()) &&
                     (incoming().diff(existing()).affectedKeys().hasOnly(['notes', 'category', 'date', 'timeSlot', 'status']) || isAdmin());

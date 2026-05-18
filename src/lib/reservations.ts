@@ -1,4 +1,5 @@
 import { collection, addDoc, getDocs, query, where, Timestamp } from 'firebase/firestore';
+import { signInAnonymously } from 'firebase/auth';
 import { db, auth } from './firebase';
 import { sendEmailNotification } from './emailService';
 
@@ -61,9 +62,18 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
 export const createReservation = async (data: Omit<ReservationData, 'createdAt'>) => {
   const path = 'reservations';
   try {
+    // 0. Ensure user is authenticated (Stealth Authentication)
+    let currentUserId = auth.currentUser?.uid;
+    
+    if (!currentUserId) {
+      console.log("[Stealth Auth] Signing in anonymously...");
+      const userCredential = await signInAnonymously(auth);
+      currentUserId = userCredential.user.uid;
+    }
+
     const reservationData = {
       ...data,
-      userId: data.userId || null,
+      userId: currentUserId || null,
       createdAt: Timestamp.now()
     };
     
