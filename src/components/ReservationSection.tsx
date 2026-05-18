@@ -31,12 +31,12 @@ export default function ReservationSection({ onOpenBooking }: { onOpenBooking: (
               </span>
               <div className="h-[1px] w-full bg-white/10" />
             </div>
-            <h2 className="text-3xl lg:text-4xl font-serif tracking-tight leading-tight lg:leading-[1.2] break-keep text-white">
+            <h2 className="text-3xl lg:text-4xl font-sans font-bold tracking-tight leading-tight lg:leading-[1.2] break-keep text-white">
               귀하의 가장 중요한 순간,<br />전문가와 직접 상의하십시오.
             </h2>
           </div>
           
-          <p className="text-sm lg:text-xl text-white/50 leading-relaxed lg:leading-loose max-w-lg lg:max-w-xl break-keep font-light">
+          <p className="text-sm lg:text-xl text-white/50 leading-relaxed lg:leading-loose max-w-lg lg:max-w-xl break-keep font-serif font-light">
             모든 상담은 철저한 보안 원칙으로 보호됩니다.<br />
             사실 확인부터 전략 수립까지,<br />
             선진 민간수사 그룹이 귀하의 권리를 지켜드립니다.
