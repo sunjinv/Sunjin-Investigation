@@ -141,15 +141,8 @@ export default function Navbar({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
       )}
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
-        {/* Left Links */}
-        <div className="hidden lg:flex items-center gap-12 flex-1">
-          {navLinks.slice(0, 3).map((link) => (
-            <NavDropdown key={link.name} item={link} isScrolled={isScrolled} />
-          ))}
-        </div>
-
         {/* Logo */}
-        <Link to="/" className="flex flex-col items-center py-6">
+        <Link to="/" className="flex flex-col items-center py-6 flex-shrink-0">
           <h1 className="text-2xl lg:text-[32px] font-serif tracking-[0.4em] font-light leading-none">
             SUNJIN
           </h1>
@@ -158,9 +151,9 @@ export default function Navbar({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
           </span>
         </Link>
 
-        {/* Right Links */}
+        {/* Links */}
         <div className="hidden lg:flex items-center justify-end gap-12 flex-1">
-          {navLinks.slice(3).map((link) => (
+          {navLinks.map((link) => (
             <NavDropdown key={link.name} item={link} isScrolled={isScrolled} />
           ))}
         </div>
